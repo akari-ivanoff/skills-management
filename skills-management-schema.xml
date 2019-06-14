@@ -84,7 +84,7 @@
 <part>id</part>
 </key>
 </table>
-<table x="416" y="409" name="teams">
+<table x="414" y="410" name="teams">
 <row name="id" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
@@ -120,11 +120,11 @@
 <part>id</part>
 </key>
 </table>
-<table x="499" y="53" name="user_skills">
+<table x="511" y="15" name="user_skills">
 <row name="id" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
-<row name="coworker_id" null="1" autoincrement="0">
+<row name="user_id" null="1" autoincrement="0">
 <datatype>INTEGER</datatype>
 <default>NULL</default><relation table="users" row="id" />
 </row>
@@ -151,7 +151,7 @@
 <part>id</part>
 </key>
 </table>
-<table x="752" y="53" name="skills">
+<table x="747" y="78" name="skills">
 <row name="id" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
