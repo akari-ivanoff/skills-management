@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <!-- SQL XML created by WWW SQL Designer, https://github.com/ondras/wwwsqldesigner/ -->
-<!-- Active URL: https://kitt.lewagon.com/db/2220 -->
+<!-- Active URL: https://kitt.lewagon.com/db/2221 -->
 <sql>
 <datatypes db="postgresql">
   <group label="Numeric" color="rgb(238,238,170)">
@@ -48,7 +48,7 @@
 <row name="email" null="1" autoincrement="0">
 <datatype>CHAR</datatype>
 <default>NULL</default></row>
-<row name="encrypted_passsword" null="1" autoincrement="0">
+<row name="encrypted_password" null="1" autoincrement="0">
 <datatype>CHAR</datatype>
 <default>NULL</default></row>
 <row name="first_name" null="1" autoincrement="0">
@@ -66,6 +66,9 @@
 <row name="chapter" null="1" autoincrement="0">
 <datatype>CHAR</datatype>
 <default>NULL</default></row>
+<row name="availability" null="1" autoincrement="0">
+<datatype>INTEGER</datatype>
+<default>NULL</default></row>
 <row name="is_manager" null="1" autoincrement="0">
 <datatype>BOOLEAN</datatype>
 <default>NULL</default></row>
@@ -77,14 +80,11 @@
 <datatype>INTEGER</datatype>
 <default>NULL</default><relation table="sites" row="id" />
 </row>
-<row name="occupation_percentage" null="1" autoincrement="0">
-<datatype>INTEGER</datatype>
-<default>NULL</default></row>
 <key type="PRIMARY" name="">
 <part>id</part>
 </key>
 </table>
-<table x="410" y="414" name="teams">
+<table x="416" y="409" name="teams">
 <row name="id" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
@@ -92,17 +92,14 @@
 <datatype>INTEGER</datatype>
 <default>NULL</default><relation table="users" row="id" />
 </row>
-<row name="owner" null="1" autoincrement="0">
-<datatype>VARCHAR</datatype>
-<default>NULL</default></row>
-<row name="size" null="1" autoincrement="0">
-<datatype>INTEGER</datatype>
-<default>NULL</default></row>
 <row name="name" null="1" autoincrement="0">
 <datatype>CHAR</datatype>
 <default>NULL</default></row>
 <row name="description" null="1" autoincrement="0">
 <datatype>CHAR</datatype>
+<default>NULL</default></row>
+<row name="owner_contact" null="1" autoincrement="0">
+<datatype>VARCHAR</datatype>
 <default>NULL</default></row>
 <row name="site_id" null="1" autoincrement="0">
 <datatype>INTEGER</datatype>
@@ -112,15 +109,12 @@
 <part>id</part>
 </key>
 </table>
-<table x="947" y="54" name="skill_categories">
+<table x="891" y="28" name="skill_categories">
 <row name="id" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
 <row name="name" null="1" autoincrement="0">
 <datatype>TEXT</datatype>
-<default>NULL</default></row>
-<row name="new field" null="1" autoincrement="0">
-<datatype>INTEGER</datatype>
 <default>NULL</default></row>
 <key type="PRIMARY" name="">
 <part>id</part>
@@ -141,7 +135,7 @@
 <row name="self_assessment" null="1" autoincrement="0">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
-<row name="manager_assesment" null="1" autoincrement="0">
+<row name="manager_assessment" null="1" autoincrement="0">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
 <row name="self_comment" null="1" autoincrement="0">
@@ -189,7 +183,7 @@
 <part>id</part>
 </key>
 </table>
-<table x="756" y="526" name="team_roles">
+<table x="940" y="488" name="team_roles">
 <row name="id" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
@@ -197,14 +191,17 @@
 <datatype>INTEGER</datatype>
 <default>NULL</default><relation table="teams" row="id" />
 </row>
-<row name="occupation_percentage" null="1" autoincrement="0">
+<row name="occupancy" null="1" autoincrement="0">
 <datatype>INTEGER</datatype>
+<default>NULL</default></row>
+<row name="name" null="1" autoincrement="0">
+<datatype>CHAR</datatype>
 <default>NULL</default></row>
 <key type="PRIMARY" name="">
 <part>id</part>
 </key>
 </table>
-<table x="677" y="277" name="team_role_skills">
+<table x="902" y="257" name="team_role_skills">
 <row name="id" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
@@ -220,7 +217,7 @@
 <part>id</part>
 </key>
 </table>
-<table x="706" y="403" name="user_team_roles">
+<table x="725" y="352" name="user_team_roles">
 <row name="id" null="1" autoincrement="1">
 <datatype>INTEGER</datatype>
 <default>NULL</default></row>
