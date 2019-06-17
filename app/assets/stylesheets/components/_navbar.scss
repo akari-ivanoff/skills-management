@@ -1,6 +1,7 @@
 .navbar-lewagon {
   justify-content: space-between;
   background: white;
+  height: 75px;
 }
 
 .navbar-lewagon .navbar-collapse {
@@ -8,5 +9,21 @@
 }
 
 .navbar-lewagon .navbar-brand img {
-  width: 40px;
+  width: 50px;
+  border-radius: 50%;
+}
+
+.navbar-lewagon .navbar-brandtext {
+  font-size: 28px;
+  position: absolute;
+  top: 20px; left: 75px;
+  font-weight: normal;
+  // font-family: 'Amaranth', sans-serif;
+  font-family: 'Courgette', cursive;
+  // font-family: 'Concert One', cursive;
+  // font-family: 'Averia Gruesa Libre', cursive;
+
+  span {
+  color: $red;
+  }
 }
