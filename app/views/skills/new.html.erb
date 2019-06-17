@@ -8,6 +8,7 @@
     <%= f.button :submit, class: "btn btn-primary" %>
   <% end %>
   <hr>
-  <%= link_to "Back to the list", skills_path %>
-
+  <%= link_to skills_path do %>
+    <i class="fas fa-undo-alt"></i> Skills list
+  <% end %>
 </div>

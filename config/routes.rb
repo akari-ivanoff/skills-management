@@ -3,10 +3,11 @@ Rails.application.routes.draw do
   root to: 'pages#home'
 
   devise_for :users
-  resources :users, except: [:new, :create, :destroy]
+  resources :users, except: [:new, :create, :destroy] do
+    resources :user_skills
+  end
 
   resources :skills
-  resources :user_skills
 
   resources :teams do
     resources :team_roles, except: [:index]

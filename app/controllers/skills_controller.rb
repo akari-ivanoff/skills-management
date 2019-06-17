@@ -1,10 +1,9 @@
 class SkillsController < ApplicationController
   def index
-    @skills = Skill.all
+    @skills = Skill.all.order("name ASC")
   end
 
   def new
-    @user = current_user
     @skill = Skill.new
   end
 
@@ -20,6 +19,7 @@ class SkillsController < ApplicationController
   def update
     @skill = Skill.find(params[:id])
     if @skill.update(skills_params)
+      flash[:success] = "updated"
       redirect_to skills_path
     else
       render :edit
