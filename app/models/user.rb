@@ -13,6 +13,17 @@ class User < ApplicationRecord
   has_many :user_skills
   has_many :skills, through: :user_skills
 
+  validates :first_name, presence: true
+  validates :last_name, presence: true
+  # validates :network_id, presence: true, uniqueness: true
+  # validates :job_title, presence: true
+  # validates :chapter, presence: true
+  validates :availability, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 0, less_than_or_equal_to: 100 }, allow_empty: false
+  validates :is_manager, presence: true
+  validates :manager, presence: true
+  # validates :photo, presence: true
+  # validates :site, presence: true
+
   def employees
     is_manager ? User.where(manager_id: id) : []
   end

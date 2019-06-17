@@ -1,2 +1,18 @@
-<h1>Users#show</h1>
-<p>Find me in app/views/users/show.html.erb</p>
+<h1><%= user.first_name %> <%= user.last_name %></h1>
+<br>
+<p>Network ID: <%= @user.network_id %></p>
+<p>Job title: <%= @user.job_title %></p>
+<p>Chapter: <%= @user.chapter %></p>
+<p>Availability: <%= @user.availability %>%</p>
+<p>Manager: <%= @user.manager.first_name %> <%= user.manager.last_name %></p>
+<p>Is manager? <%= @user.is_manager ? "true" : "false" %></p>
+<p>Photo: <%= @user.photo %></p>
+<p>Site: <%= @user.country %>, <%= @user.city %></p>
+<hr>
+<%= link_to "Edit the user", edit_user_path %>
+ <br>
+<%= link_to "Delete the user", user_path(@user),
+        method: :delete,
+        data: { confirm: "Are you sure you want to delete this user?" } %>
+<hr>
+<%= link_to "Back to the list", users_path %>
