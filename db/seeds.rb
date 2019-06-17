@@ -114,13 +114,24 @@ skill_category_attributes = [
 SkillCategory.create!(skill_category_attributes)
 
 skills_attributes = [
+
+  {
+    name: 'Git',
+    description: '',
+    skill_category: SkillCategory.first
+  },
+  {
+    name: 'Ruby',
+    description: '',
+    skill_category: SkillCategory.second
+  },
   {
     name: 'JavaScript',
     description: '',
     skill_category: SkillCategory.third
   },
   {
-    name: 'Ruby',
+    name: 'HTML',
     description: '',
     skill_category: SkillCategory.fourth
   },
