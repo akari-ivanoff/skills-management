@@ -5,8 +5,6 @@ class CreateTeams < ActiveRecord::Migration[5.2]
       t.text :description
       t.string :owner_contact
       t.references :site, foreign_key: true
-      t.references :manager, foreign_key: true
-
       t.timestamps
     end
   end
