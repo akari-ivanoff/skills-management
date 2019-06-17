@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   before_action :find_user, only: [:show, :edit, :update]
 
   def index
-    @users = User.all
+    @users = User.all.order("first_name ASC")
   end
 
   def show
