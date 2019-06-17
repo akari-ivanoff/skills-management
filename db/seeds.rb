@@ -7,6 +7,7 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 #
 # require 'pry-byebug'
+puts "hello"
 TeamRoleSkill.destroy_all
 UserTeamRole.destroy_all
 UserSkill.destroy_all
