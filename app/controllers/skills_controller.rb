@@ -11,11 +11,32 @@ class SkillsController < ApplicationController
   def create
     @skill = Skill.new(skills_params)
     @skill.save
-    raise
   end
+
+  def edit
+    @skill = Skill.find(params[:id])
+  end
+
+  def update
+    @skill = Skill.find(params[:id])
+    if @skill.update(skills_params)
+      redirect_to skills_path
+    else
+      render :edit
+    end
+  end
+
+  def destroy
+    @skill = Skill.find(params[:id])
+    @skill.destroy
+  end
+
+# def show
+# end
+
 
 private
   def skills_params
-    params.require(:skill).permit(:name, :description, :skill_category)
+    params.require(:skill).permit(:name, :description, :skill_category_id)
   end
 end

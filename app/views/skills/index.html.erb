@@ -1,7 +1,11 @@
 <h1>Skills#index</h1>
 <p>Find me in app/views/skills/index.html.erb</p>
 
+
+ <p> <%= link_to "Create new skill", new_skill_path %> </p>
+
+
 <% @skills.each do |skill|%>
-<%= skill.name %>
+ <p> <%= skill.name %> <%= link_to "edit", edit_skill_path(skill) %> <%= link_to "delete", skill_path(skill) , method: :delete %></p>
 <% end %>
 
