@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   root to: 'pages#home'
   resources :users
   resources :teams, only: [:index,:new, :create, :show, :edit]
-  resources :skills, only: [:index]
+  resources :skills, only: [:index, :new, :create]
   resources :user_skills
   resources :team_roles
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
