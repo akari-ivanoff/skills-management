@@ -1,0 +1,9 @@
+<h1><%= @team_role.name %></h1>
+<br>
+<p>Occupancy: <%= @team_role.occupancy %></p>
+<hr>
+<%= link_to "Edit the team role", edit_team_team_role_path, class: "btn btn-primary" %>
+<hr>
+<%= link_to "Delete the team role", team_team_role_path(@team, @team_role), method: :delete, data: { confirm: "Delete #{@team_role.name}?" }, class: "btn btn-danger" %>
+<hr>
+<%= link_to "Back to the team", team_path(@team), class: "btn btn-secondary" %>

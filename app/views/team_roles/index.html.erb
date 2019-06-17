@@ -1,2 +1,6 @@
-<h1>TeamRoles#index</h1>
-<p>Find me in app/views/team_roles/index.html.erb</p>
+<h1>All team roles</h1>
+<ul>
+  <% @team_roles.each do |team_role| %>
+  <li><%= link_to team_role.name, team_team_role_path(team_role.team, team_role) %></li>
+  <% end %>
+</ul>
