@@ -5,6 +5,8 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+#
+# require 'pry-byebug'
 TeamRoleSkill.destroy_all
 UserTeamRole.destroy_all
 UserSkill.destroy_all
@@ -36,22 +38,21 @@ dortmund = Site.second
 malmo = Site.third
 puts 'Sites created'
 
-
+User.create!(
+  email: 'meg@griffin.com',
+  password: '111111',
+  first_name: 'Meg',
+  last_name: 'Griffin',
+  network_id: 'meggri2',
+  job_title: 'Chapter Lead',
+  chapter: 'Software Engineering',
+  availability: 100,
+  is_manager: true,
+  photo: "meg.jpg",
+  site: Site.first
+)
 
 users_attributes = [
-  {
-    email: 'meg@griffin.com',
-    password: '111111',
-    first_name: 'Meg',
-    last_name: 'Griffin',
-    network_id: 'meggri2',
-    job_title: 'Software Engineer',
-    chapter: 'Software Engineering',
-    availability: 100,
-    is_manager: true,
-    photo: "meg.jpg",
-    site: Site.first
-  },
   {
     email: 'homer@simpson.com',
     password: '111111',
@@ -62,6 +63,7 @@ users_attributes = [
     chapter: 'Development Pipeline',
     availability: 50,
     is_manager: false,
+    manager_id: User.first.id,
     photo: "homer.jpg",
     site: Site.first
   },
@@ -75,20 +77,31 @@ users_attributes = [
     chapter: 'Data Science',
     availability: 80,
     is_manager: false,
+    manager_id: User.first.id,
     photo: "peter.jpg",
     site: Site.last
   }
 ]
 
 puts 'Creating Users...'
+
 User.create!(users_attributes)
+# users_attributes.each do |attributes|
+#   u = nil
+#   begin
+#     u = User.new(attributes)
+#     u.save!
+#   rescue ActiveRecord::RecordInvalid
+#     binding.pry
+#     puts "oh oh"
+#   end
+# end
+
 users = User.all
 meg = User.first
 homer = User.second
 peter = User.third
 puts 'Users created'
-
-
 
 skill_category_attributes = [
   {
