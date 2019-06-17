@@ -1,6 +1,6 @@
 class Team < ApplicationRecord
   belongs_to :site
-  belongs_to :manager, class_name: :User, foreign_key: :team_manager_id
+  belongs_to :team_manager, class_name: "User", foreign_key: :team_manager_id
 
   has_many :team_roles # to know which team roles are allocated in a team (current members + requests (team roles without assigned user))
   has_many :team_role_skills, through: :team_roles # to know the placeholder skillset ID in a team (real life: users to be found)
@@ -10,8 +10,7 @@ class Team < ApplicationRecord
   has_many :users, through: :user_team_roles # to know the assigned users in a team (real life: already working users)
 
   validates :name, presence: true, uniqueness: true
-
   validates :owner_contact, presence: true
-  # validates :description
-  # validates :site_id
+  validates :site_id, presence: true
+  # validates :description, presence: true
 end

@@ -1,2 +1,11 @@
-<h1>Teams#show</h1>
-<p>Find me in app/views/teams/show.html.erb</p>
+<h1><%= @team.name %></h1>
+<br>
+<p>Description: <%= @team.description %></p>
+<p>Owner contact: <%= @team.owner_contact %></p>
+<p>Team manager: <%= link_to "#{@team.team_manager.first_name} #{@team.team_manager.last_name}", user_path(@team.team_manager) %></p>
+<p>Site: <%= @team.site.country %>, <%= @team.site.city %></p>
+<hr>
+<%= link_to "Edit the team", edit_team_path %>
+ <br>
+<hr>
+<%= link_to "Back to the list", teams_path %>

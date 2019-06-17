@@ -5,7 +5,7 @@
 <p>Chapter: <%= @user.chapter %></p>
 <p>Availability: <%= @user.availability %>%</p>
 <% if @user.id != 1 %>
-  <p>Manager: <%= @user.manager.first_name %> <%= @user.manager.last_name %></p>
+  <p>Manager: <%= link_to "#{@user.manager.first_name} #{@user.manager.last_name}", user_path(@user.manager) %></p>
 <% end %>
 <p>Is manager? <%= @user.is_manager ? "true" : "false" %></p>
 <p>Photo: <%= @user.photo %></p>
