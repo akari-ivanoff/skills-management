@@ -1,2 +1,6 @@
-<h1>Teams#edit</h1>
-<p>Find me in app/views/teams/edit.html.erb</p>
+<div class="container">
+  <h1>Edit "<%= @team.name %>" team</h1>
+  <%= render 'team_form', task: @team %>
+  <hr>
+  <%= link_to "Back to the list", teams_path %>
+</div>

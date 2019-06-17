@@ -1,0 +1,8 @@
+<%= simple_form_for(@team) do |f| %>
+  <%= f.input :name %>
+  <%= f.input :description %>
+  <%= f.input :owner_contact %>
+  <%= f.association :team_manager, label_method: :network_id, value_method: :id, include_blank: false%>
+  <%= f.association :site, as: :select, label_method: :city, value_method: :id, include_blank: false %>
+  <%= f.button :submit, class: "btn btn-primary" %>
+<% end %>
