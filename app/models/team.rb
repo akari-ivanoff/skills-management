@@ -10,7 +10,8 @@ class Team < ApplicationRecord
   has_many :users, trough: :user_team_roles # to know the assigned users in a team (real life: already working users)
 
   validates :name, presence: true, uniqueness: true
-  validates :description
+
   validates :owner_contact, presence: true
-  validates :site_id
+  # validates :description
+  # validates :site_id
 end

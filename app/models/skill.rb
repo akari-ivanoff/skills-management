@@ -6,4 +6,5 @@ class Skill < ApplicationRecord
   has_many :team_roles, through: :team_role_skills # in order to show all placeholders in need of a particular skill
   has_many :team, through: :team_roles # in order to show all teams that are working with a skill
   validates :name, presence: true, uniqueness: true
+  # validates :description
 end
