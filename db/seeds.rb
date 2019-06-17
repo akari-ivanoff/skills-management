@@ -105,36 +105,52 @@ puts 'Users created'
 
 skill_category_attributes = [
   {
-    name:'JavaScript'
+    name:'Establish DevOps toolchain'
   },
   {
-    name:'Ruby'
+    name:'General-purpose languages'
   },
   {
-    name:'React'
+    name:'Script- and Shell languages'
   },
   {
-    name:'front-end'
+    name:'Web languages'
   },
   {
-    name:'back-end'
+    name:'Languages for mobile environments'
   },
   {
-    name:'Scrum'
+    name:'Other'
   }
 ]
 
 SkillCategory.create!(skill_category_attributes)
 
 skills_attributes = [
+
   {
-    name: 'excellent at front-end JS',
-    description: '3 years of working experience as UX dev in DevOps team',
+    name: 'Git',
+    description: '',
     skill_category: SkillCategory.first
   },
   {
-    name: 'limited Python experience',
-    description: 'followed a class course',
+    name: 'Ruby',
+    description: '',
+    skill_category: SkillCategory.second
+  },
+  {
+    name: 'JavaScript',
+    description: '',
+    skill_category: SkillCategory.third
+  },
+  {
+    name: 'HTML',
+    description: '',
+    skill_category: SkillCategory.fourth
+  },
+  {
+    name: '.NET',
+    description: '',
     skill_category: SkillCategory.last
   }
 ]
@@ -154,7 +170,7 @@ user_skills_attributes = [
     manager_assessment: 3,
     self_comment: 'great',
     manager_comment: 'quite ok',
-    experience: 'what do we use this field for?',
+    experience: '3 years of working experience as UX dev in DevOps team',
     user: homer,
     skill: javascript
   }

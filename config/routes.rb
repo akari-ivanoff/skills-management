@@ -4,7 +4,9 @@ Rails.application.routes.draw do
   root to: 'pages#home'
   resources :users, except: [:new, :create, :destroy]
   resources :teams
-  resources :skills, only: [:index]
+
+  resources :skills
+
   resources :user_skills
   resources :team_roles
 end

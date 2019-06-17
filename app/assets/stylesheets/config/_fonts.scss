@@ -1,9 +1,23 @@
 // Import Google fonts
 @import url("https://fonts.googleapis.com/css?family=Open+Sans:400,300,700|Raleway:400,100,300,700,500");
 
+// font-family: 'Noto IKEA', 'Noto Sans', 'Roboto', 'Open Sans', sans-serif;
+@font-face {
+  font-family: 'IKEA';
+  font-style: normal;
+  font-weight: normal;
+  src: asset_url('NotoIKEALatin-Regular.woff') format('woff')
+}
+
+@font-face {
+  font-family: 'IKEA-Bold';
+  font-style: normal;
+  font-weight: normal;
+  src: asset_url('NotoIKEALatin-Bold.woff') format('woff')
+}
 // Define fonts for body and headers
-$body-font: "Open Sans", "Helvetica", "sans-serif";
-$headers-font: "Raleway", "Helvetica", "sans-serif";
+$body-font: 'IKEA';
+$headers-font: 'IKEA-Bold';
 
 // To use a font file (.woff) uncomment following lines
 // @font-face {
