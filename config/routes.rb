@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   # get 'users/show'
   # get 'users/edit'
   root to: 'pages#home'
-  resources :users
+  resources :users, except: [:new, :create, :destroy]
   resources :teams, only: [:index,:new, :create, :show, :edit]
   resources :skills, only: [:index]
   resources :user_skills

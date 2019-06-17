@@ -1,2 +1,20 @@
-<h1>Users#edit</h1>
-<p>Find me in app/views/users/edit.html.erb</p>
+<div class="container">
+  <h1>Edit profile of <%= @user.first_name %> <%= @user.last_name %></h1>
+
+  <%= simple_form_for(@user) do |f| %>
+    <%= f.input :first_name %>
+    <%= f.input :last_name %>
+    <%= f.input :network_id %>
+    <%= f.input :job_title %>
+    <%= f.input :chapter %>
+    <%= f.input :availability %>
+    <%= f.input :is_manager, as: :select %>
+    <%= f.association :manager, label_method: :network_id, value_method: :id, include_blank: false %>
+    <%= f.input :photo %>
+    <%= f.association :site, as: :select, label_method: :city, value_method: :id, include_blank: false %>
+    <%= f.button :submit, class: "btn btn-primary" %>
+  <% end %>
+  <hr>
+  <%= link_to "Back to the list", users_path %>
+
+</div>
