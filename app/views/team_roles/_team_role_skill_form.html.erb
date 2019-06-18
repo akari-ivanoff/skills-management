@@ -1,0 +1,4 @@
+<%= simple_form_for [@team, @team_role, @team_role_skill] do |f| %>
+  <%= f.association :skill, label: false %>
+  <%= f.button :submit, "Add new skill", class: "btn btn-primary" %>
+<% end %>

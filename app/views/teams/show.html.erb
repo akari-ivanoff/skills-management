@@ -4,16 +4,15 @@
 <p>Owner contact: <%= @team.owner_contact %></p>
 <p>Team manager: <%= link_to "#{@team.team_manager.first_name} #{@team.team_manager.last_name}", user_path(@team.team_manager) %></p>
 <p>Site: <%= @team.site.country %>, <%= @team.site.city %></p>
-<hr>
 <%= link_to "Edit the team", edit_team_path, class: "btn btn-primary" %>
 <hr>
+<h3>Team roles</h3>
 <ul class="list-group">
   <% @team.team_roles.each do |team_role| %>
   <li class="list-group-item"><%= link_to team_role.name, team_team_role_path(@team, team_role) %></li>
   <!-- <li class="list-group-item"><%= team_role.name %></li> -->
   <% end %>
 </ul>
-<hr>
 <%= link_to "Add a team role", new_team_team_role_path(@team), class: "btn btn-primary" %>
 <hr>
 <%= link_to "Back to the teams list", teams_path, class: "btn btn-secondary" %>

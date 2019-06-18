@@ -1,6 +1,6 @@
 class TeamRole < ApplicationRecord
   belongs_to :team
-  has_many :user_team_roles
+  belongs_to :user, optional: true
   has_many :team_role_skills
 
   validates :name, presence: true

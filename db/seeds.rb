@@ -9,7 +9,6 @@
 # require 'pry-byebug'
 puts "hello"
 TeamRoleSkill.destroy_all
-UserTeamRole.destroy_all
 UserSkill.destroy_all
 TeamRole.destroy_all
 Team.destroy_all
@@ -215,12 +214,14 @@ team_roles_attributes = [
   {
     name: 'Recommendation Engine team needs 1 senior UX specialist, pref Ruby & JS',
     team: recommendation_engine,
-    occupancy: 1,
+    occupancy: 100,
+    user: homer
   },
-    {
+  {
     name: 'Optimize CDC flow team needs 2 junior backend dev Python',
     team: optimize_flow,
-    occupancy: 2,
+    occupancy: 50,
+    user: meg
   }
 ]
 
@@ -230,25 +231,6 @@ team_roles = TeamRole.all
 rec_eng_team_role = TeamRole.first
 opt_flow_team_role = TeamRole.second
 puts 'Team Roles created'
-
-
-
-user_team_roles_attributes = [
-  {
-    team_role: rec_eng_team_role,
-    user: homer
-  },
-  {
-    team_role: opt_flow_team_role,
-    user: peter
-  }
-
-]
-
-puts 'Creating User Team Roles...'
-UserTeamRole.create!(user_team_roles_attributes)
-user_team_roles = UserTeamRole.all
-puts 'User Team Roles created'
 
 team_role_skills_attributes = [
   {
