@@ -6,6 +6,11 @@ Rails.application.routes.draw do
   resources :users, except: [:new, :create, :destroy] do
     resources :user_skills
   end
+  resources :user_skills do
+    member do
+      patch "manager_assessment_update"
+    end
+  end
 
   resources :skills
 
