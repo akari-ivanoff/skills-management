@@ -18,7 +18,11 @@ class TeamRolesController < ApplicationController
     @team_role = TeamRole.new(team_role_params)
     @team_role.team = @team
     if @team_role.save
-      redirect_to team_team_role_path(@team, @team_role)
+      if @team_role.user != nil
+        redirect_to team_path(@team)
+      else
+        redirect_to team_team_role_path(@team, @team_role)
+      end
     else
       render :new
     end
