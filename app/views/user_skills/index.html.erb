@@ -1,30 +1,33 @@
-<div class="d-flex flex-wrap">
-<% @userskills.all.each do |userskill| %>
-  <div class="d-flex flex-row mt-3 mb-3 skill-inventory-card">
-    <div class="p-2">
 
+<% @userskills.all.each do |userskill| %>
+
+<div class="card">
+
+
+    <h5 class="card-header">
+      Skill: <%= userskill.skill.name %>. Experience: <%= userskill.experience %>
       <%= link_to edit_user_user_skill_path(@user, userskill) do %>
         <i class="fas fa-pen"></i>
       <% end %>
-    </div>
-    <div class="p-2">
       <%= link_to  user_user_skill_path(@user, userskill), method: :delete do %>
-      <i class="fas fa-trash-alt"></i>
+        <i class="fas fa-trash-alt"></i>
       <% end %>
-    </div>
-    <div class="p-2">
-      <p><%= userskill.skill.name %></p>
-      <p><%= userskill.skill.description %></p>
-      <p><%= userskill.experience %></p>
-      <div>
-        <p><%= userskill.self_assessment %></p>
-        <p><%= userskill.self_comment %></p>
+    </h5>
+    <div class="row">
+      <div class="card-body">
+        <h5> User assessment </h5>
+        <h5 class="card-title"><%= userskill.self_assessment %></h5>
+        <p class="card-text"><%= userskill.self_comment %></p>
       </div>
-      <div>
-        <p><%= userskill.manager_assessment %></p>
-        <p><%= userskill.manager_comment %></p>
+      <div class="card-body">
+        <h5>Manager assessment</h5>
+        <h5 class="card-title"><%= userskill.manager_assessment %></h5>
+        <p class="card-text"><%= userskill.manager_comment %></p>
+
       </div>
     </div>
-  </div>
-<% end %>
 </div>
+
+
+<% end %>
+

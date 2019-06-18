@@ -39,9 +39,23 @@ class UserSkillsController < ApplicationController
     @user_skill = UserSkill.find(params[:id])
     @user_skill.destroy
   end
+
+  def manager_assessment_update
+    @user_skill = UserSkill.find(params[:id])
+    if @user_skill.update(userskill_params_mgr)
+      flash[:success] = "updated"
+      redirect_to user_path(@user)
+    else
+      render :edit
+    end
+  end
 end
 
 private
   def userskill_params
     params.require(:user_skill).permit(:skill_id, :self_assessment, :self_comment, :experience)
+  end
+
+  def userskill_params_mgr
+    params.require(:user_skill).permit(:skill_id, :manager_assessment, :manager_comment, :experience)
   end
