@@ -14,4 +14,10 @@
 <%= link_to "Edit the user", edit_user_path %>
  <br>
 <hr>
+<%= link_to "View this user's skills", user_user_skills_path(@user) %>
+ <br>
+<hr>
+<%= link_to "Add new skill for this user", new_user_user_skill_path(@user) %>
+ <br>
+<hr>
 <%= link_to "Back to the list", users_path %>

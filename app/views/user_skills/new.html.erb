@@ -1,0 +1,15 @@
+<div class="container">
+  <h1>Create new skill for <%= @user.first_name %> </h1>
+
+  <%= simple_form_for([@user, @user_skill]) do |f| %>
+    <%= f.input :experience %>
+    <%= f.input :self_assessment %>
+    <%= f.input :self_comment %>
+    <%= f.association :skill, label_method: :name, value_method: :id, include_blank: false %>
+    <%= f.button :submit, class: "btn btn-primary" %>
+  <% end %>
+  <hr>
+  <%= link_to user_path(@user) do %>
+    <i class="fas fa-undo-alt"></i> Skills list
+  <% end %>
+</div>

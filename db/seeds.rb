@@ -190,14 +190,14 @@ teams_attributes = [
     description: 'this product team works on the product recommendation engine on IKEA website.',
     owner_contact: 'Tim',
     site: helsingborg,
-    manager: meg
+    team_manager: meg
   },
   {
     name: 'Optimize CDC Flow',
     description: 'this product team works on optimizing flows in the CDCs',
     owner_contact: 'Ed',
     site: dortmund,
-    manager: homer
+    team_manager: homer
   }
 ]
 
