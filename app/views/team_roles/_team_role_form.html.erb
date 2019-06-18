@@ -1,0 +1,5 @@
+<%= simple_form_for [@team, @team_role] do |f| %>
+  <%= f.input :name %>
+  <%= f.input :occupancy, input_html: { min: 1, max: 100 }  %>
+  <%= f.button :submit, class: "btn btn-primary" %>
+<% end %>
