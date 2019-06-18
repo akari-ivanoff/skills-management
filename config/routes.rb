@@ -1,17 +1,18 @@
 Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-  devise_for :users
   root to: 'pages#home'
+
+  devise_for :users
   resources :users, except: [:new, :create, :destroy] do
     resources :user_skills
   end
 
-  resources :teams
-
   resources :skills
 
-
-  resources :team_roles
+  resources :teams do
+    resources :team_roles, except: [:index]
+  end
+  resources :team_roles, only: [:index]
 end
 
 # Models and controllers generation
