@@ -1,0 +1,2 @@
+class TeamRoleSkillsController < ApplicationController
+end

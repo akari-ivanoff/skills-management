@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class UserTeamRoleTest < ActiveSupport::TestCase
+class TeamRoleSkillsControllerTest < ActionDispatch::IntegrationTest
   # test "the truth" do
   #   assert true
   # end

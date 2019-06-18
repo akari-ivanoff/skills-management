@@ -42,7 +42,7 @@ class TeamRolesController < ApplicationController
   private
 
   def team_role_params
-    params.require(:team_role).permit(:name, :occupancy)
+    params.require(:team_role).permit(:name, :occupancy, :user_id)
   end
 
   def find_team_role

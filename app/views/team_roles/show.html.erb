@@ -1,6 +1,11 @@
 <h1><%= @team_role.name %></h1>
 <br>
 <p>Occupancy: <%= @team_role.occupancy %></p>
+<% if @team_role.user != nil %>
+  <p>Assignee: <%= link_to "#{@team_role.user.first_name} #{@team_role.user.last_name}", user_path(@team_role.user) %></p>
+<% else %>
+  <p>Assignee: none </p>
+<% end %>
 <hr>
 <%= link_to "Edit the team role", edit_team_team_role_path, class: "btn btn-primary" %>
 <hr>

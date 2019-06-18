@@ -49,10 +49,12 @@ ActiveRecord::Schema.define(version: 2019_06_14_125123) do
   create_table "team_roles", force: :cascade do |t|
     t.integer "occupancy"
     t.string "name"
+    t.bigint "user_id"
     t.bigint "team_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["team_id"], name: "index_team_roles_on_team_id"
+    t.index ["user_id"], name: "index_team_roles_on_user_id"
   end
 
   create_table "teams", force: :cascade do |t|
@@ -79,15 +81,6 @@ ActiveRecord::Schema.define(version: 2019_06_14_125123) do
     t.datetime "updated_at", null: false
     t.index ["skill_id"], name: "index_user_skills_on_skill_id"
     t.index ["user_id"], name: "index_user_skills_on_user_id"
-  end
-
-  create_table "user_team_roles", force: :cascade do |t|
-    t.bigint "team_role_id"
-    t.bigint "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["team_role_id"], name: "index_user_team_roles_on_team_role_id"
-    t.index ["user_id"], name: "index_user_team_roles_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -118,12 +111,11 @@ ActiveRecord::Schema.define(version: 2019_06_14_125123) do
   add_foreign_key "team_role_skills", "skills"
   add_foreign_key "team_role_skills", "team_roles"
   add_foreign_key "team_roles", "teams"
+  add_foreign_key "team_roles", "users"
   add_foreign_key "teams", "sites"
   add_foreign_key "teams", "users", column: "team_manager_id"
   add_foreign_key "user_skills", "skills"
   add_foreign_key "user_skills", "users"
-  add_foreign_key "user_team_roles", "team_roles"
-  add_foreign_key "user_team_roles", "users"
   add_foreign_key "users", "sites"
   add_foreign_key "users", "users", column: "manager_id"
 end
