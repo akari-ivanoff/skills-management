@@ -30,6 +30,16 @@
 .card-text {
   height: 80px;
   overflow-y: auto;
+  margin-bottom: 5px;
+}
+
+.card-text p {
+  margin-bottom: 2px;
+}
+
+.card-text-team {
+  height: 57px;
+  overflow-y: auto;
 }
 
 .cards-wrapper {
@@ -46,6 +56,12 @@
   -webkit-flex-flow: row wrap;
   // justify-content: space-around;
   padding-top: 20px;
+}
+
+.search-function {
+  display: flex;
+  margin-bottom: 0px;
+  justify-content: space-between;
 }
 
 // OLD STUFF, but maybe used, needs to be cleaned

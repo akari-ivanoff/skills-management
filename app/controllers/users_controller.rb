@@ -5,6 +5,10 @@ class UsersController < ApplicationController
     @users = User.all.order("first_name ASC")
   end
 
+  # def fullname
+  #   return "#{user.first_name} #{user.last_name}".join
+  # end
+
   def show
   end
 
