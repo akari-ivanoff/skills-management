@@ -11,6 +11,45 @@
   padding: 20px;
 }
 
+.team-card {
+  display: flex;
+  background-color: $red;
+  color: white;
+  justify-content: space-between;
+  text-align: center;
+  align-items: center;
+  // width: 240px;
+  // margin: 15px;
+}
+
+.card_details {
+  width: 245px;
+  margin: 15px;
+}
+
+.card-text {
+  height: 80px;
+  overflow-y: auto;
+}
+
+.cards-wrapper {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  flex-wrap: wrap;
+  -webkit-flex-flow: row wrap;
+  // justify-content: space-around;
+  padding-top: 20px;
+}
+
+// OLD STUFF, but maybe used, needs to be cleaned
+
 .offer_details {
   margin-left: 30px;
   padding: 10px;
