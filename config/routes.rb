@@ -10,11 +10,11 @@ Rails.application.routes.draw do
   resources :skills
 
   resources :teams do
-    resources :team_roles, except: [:index]
+    resources :team_roles, except: [:index] do
+      resources :team_role_skills, only: [:create, :destroy]
+    end
   end
   resources :team_roles, only: [:index]
-
-  resources :team_role_skills, only: [:create, :destroy]
 end
 
 # Models and controllers generation

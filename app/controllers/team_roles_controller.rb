@@ -6,6 +6,10 @@ class TeamRolesController < ApplicationController
     @team_roles = TeamRole.all
   end
 
+  def show
+    @team_role_skill = TeamRoleSkill.new
+  end
+
   def new
     @team_role = TeamRole.new
   end
@@ -18,9 +22,6 @@ class TeamRolesController < ApplicationController
     else
       render :new
     end
-  end
-
-  def show
   end
 
   def edit
