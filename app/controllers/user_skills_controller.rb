@@ -19,7 +19,7 @@ class UserSkillsController < ApplicationController
     if @user_skill.save
       flash[:success] = "updated"
     end
-    redirect_to user_path(@user)
+    redirect_to user_user_skills_path(@user_skill.user)
   end
 
   def edit
@@ -32,7 +32,7 @@ class UserSkillsController < ApplicationController
     @user = @user_skill.user
     if @user_skill.update(userskill_params)
       flash[:success] = "updated"
-      redirect_to user_path(@user)
+      redirect_to user_user_skills_path(@user_skill.user)
     else
       render :edit
     end
@@ -41,6 +41,7 @@ class UserSkillsController < ApplicationController
   def destroy
     @user_skill = UserSkill.find(params[:id])
     @user_skill.destroy
+    redirect_to user_user_skills_path(@user_skill.user)
   end
 
 
