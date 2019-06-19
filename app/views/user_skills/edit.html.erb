@@ -1,8 +1,7 @@
 <div class="container">
   <h1>Edit skill <%= @user_skill.skill.name %> for <%= @user.first_name %> </h1>
 
-
-  <% if @user == current_user %>
+  <% if @user.is_manager %>
 
     <%= simple_form_for([@user, @user_skill], url: user_skill_path(@user_skill)) do |f| %>
       <%= f.input :experience %>
@@ -11,6 +10,17 @@
       <%= f.input :skill, as: :hidden %>
       <%= f.button :submit, class: "btn btn-primary" %>
     <% end %>
+
+  <% elsif @user == current_user %>
+
+    <%= simple_form_for([@user, @user_skill], url: user_skill_path(@user_skill)) do |f| %>
+      <%= f.input :experience %>
+      <%= f.input :self_assessment %>
+      <%= f.input :self_comment %>
+      <%= f.input :skill, as: :hidden %>
+      <%= f.button :submit, class: "btn btn-primary" %>
+    <% end %>
+
 
   <% elsif current_user.is_manager%>
 
