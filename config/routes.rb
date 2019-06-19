@@ -4,9 +4,10 @@ Rails.application.routes.draw do
 
   devise_for :users
   resources :users, except: [:new, :create, :destroy] do
-    resources :user_skills
+    resources :user_skills, only: [:new, :create, :index]
   end
-  resources :user_skills do
+
+  resources :user_skills, except: [:new, :create] do
     member do
       patch "manager_assessment_update"
     end

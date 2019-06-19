@@ -1,12 +1,15 @@
 class UserSkillsController < ApplicationController
   def index
     @user = User.find(params[:user_id])
-    @userskills = @user.user_skills
+    @userskills = UserSkill.all.select do |userskill|
+      userskill.user == @user
+    end
   end
 
   def new
     @user = User.find(params[:user_id])
     @user_skill = UserSkill.new
+    # @user_skill.user = current_user
   end
 
   def create
@@ -20,13 +23,13 @@ class UserSkillsController < ApplicationController
   end
 
   def edit
-    @user = User.find(params[:user_id])
     @user_skill = UserSkill.find(params[:id])
+    @user = @user_skill.user
   end
 
   def update
-    @user = User.find(params[:user_id])
     @user_skill = UserSkill.find(params[:id])
+    @user = @user_skill.user
     if @user_skill.update(userskill_params)
       flash[:success] = "updated"
       redirect_to user_path(@user)
@@ -40,22 +43,25 @@ class UserSkillsController < ApplicationController
     @user_skill.destroy
   end
 
+
   def manager_assessment_update
     @user_skill = UserSkill.find(params[:id])
     if @user_skill.update(userskill_params_mgr)
       flash[:success] = "updated"
-      redirect_to user_path(@user)
+      redirect_to user_user_skills_path(@user_skill.user) # user_path(@user) # user_skills_path
     else
       render :edit
     end
   end
-end
 
-private
+  private
+
   def userskill_params
     params.require(:user_skill).permit(:skill_id, :self_assessment, :self_comment, :experience)
   end
 
   def userskill_params_mgr
-    params.require(:user_skill).permit(:skill_id, :manager_assessment, :manager_comment, :experience)
+    params.require(:user_skill).permit(:skill_id, :manager_assessment, :manager_comment)
   end
+end
+
