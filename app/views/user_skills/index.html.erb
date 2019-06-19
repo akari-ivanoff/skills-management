@@ -1,15 +1,23 @@
 
-<% @userskills.all.each do |userskill| %>
+<h2>skills for <%= @user.first_name  %></h2>
+
+<% if @user == current_user %>
+<%= link_to "Add a new skill!", new_user_user_skill_path(@user) %>
+<% end %>
+
+<% @userskills.each do |userskill| %>
 
 <div class="card">
 
 
     <h5 class="card-header">
       Skill: <%= userskill.skill.name %>. Experience: <%= userskill.experience %>
-      <%= link_to edit_user_user_skill_path(@user, userskill) do %>
+
+      <%= link_to edit_user_skill_path(userskill.id) do %>
         <i class="fas fa-pen"></i>
       <% end %>
-      <%= link_to  user_user_skill_path(@user, userskill), method: :delete do %>
+
+      <%= link_to  user_skill_path(userskill), method: :delete do %>
         <i class="fas fa-trash-alt"></i>
       <% end %>
     </h5>
@@ -27,7 +35,6 @@
       </div>
     </div>
 </div>
-
-
+<hr>
 <% end %>
 
