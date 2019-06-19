@@ -20,9 +20,10 @@ class User < ApplicationRecord
   validates :chapter, presence: true
   validates :availability, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 0, less_than_or_equal_to: 100 }, allow_empty: false
   validates :is_manager, inclusion: { in: [true, false] }
-  # validates :photo, presence: true
   validates :site, presence: true
   validate :verify_manager
+
+  mount_uploader :photo, PhotoUploader
 
   pg_search_scope :search_user_by_skill,
     associated_against: { skills: [:name, :description] },

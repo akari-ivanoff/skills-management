@@ -14,7 +14,7 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.2]
       t.integer :availability
       t.boolean :is_manager
       t.references :site, foreign_key: true
-      t.string :photo, :default => "avatar.jpg"
+      t.string :photo, :default => "avatar_placeholder.jpg"
 
       ## Recoverable
       t.string   :reset_password_token

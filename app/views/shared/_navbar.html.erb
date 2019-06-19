@@ -42,7 +42,7 @@
 
         <li class="nav-item dropdown">
           <img class="avatar dropdown-toggle" id="navbarDropdown" data-toggle="dropdown" aria-haspopup="true"
-            aria-expanded="false" src="<%= image_path current_user.photo %>" />
+            aria-expanded="false" src="<%= cl_image_path current_user.photo, width: 50, height: 50, crop: :thumb, gravity: :face %>" />
         </li>
       <% else %>
         <li class="nav-item active mr-2">
