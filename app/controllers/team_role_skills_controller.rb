@@ -6,15 +6,15 @@ class TeamRoleSkillsController < ApplicationController
     @team_role_skill = TeamRoleSkill.new(team_role_skill_params)
     @team_role_skill.team_role = @team_role
     if @team_role_skill.save
-      redirect_to team_team_role_path(@team, @team_role)
+      redirect_to team_path(@team)
     else
-      redirect_to team_team_role_path(@team, @team_role), alert: "Unable to add an empty skill"
+      redirect_to team_path(@team), alert: "Unable to add an empty skill"
     end
   end
 
   def destroy
     @team_role_skill.destroy
-    redirect_to team_team_role_path(@team, @team_role)
+    redirect_to team_path(@team)
   end
 
   private

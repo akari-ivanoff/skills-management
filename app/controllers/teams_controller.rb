@@ -19,6 +19,7 @@ class TeamsController < ApplicationController
   end
 
   def show
+    @team_role_skill = TeamRoleSkill.new #check with Mike
   end
 
   def edit
