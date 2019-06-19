@@ -44,7 +44,6 @@ class UserSkillsController < ApplicationController
     redirect_to user_user_skills_path(@user_skill.user)
   end
 
-
   def manager_assessment_update
     @user_skill = UserSkill.find(params[:id])
     if @user_skill.update(userskill_params_mgr)
@@ -64,5 +63,5 @@ class UserSkillsController < ApplicationController
   def userskill_params_mgr
     params.require(:user_skill).permit(:skill_id, :manager_assessment, :manager_comment)
   end
-end
 
+end
