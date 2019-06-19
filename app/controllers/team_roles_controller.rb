@@ -7,7 +7,7 @@ class TeamRolesController < ApplicationController
   end
 
   def show
-    @team_role_skill = TeamRoleSkill.new
+    @team_role_skill = TeamRoleSkill.new #check with Mike
   end
 
   def new
@@ -18,11 +18,7 @@ class TeamRolesController < ApplicationController
     @team_role = TeamRole.new(team_role_params)
     @team_role.team = @team
     if @team_role.save
-      if @team_role.user != nil
         redirect_to team_path(@team)
-      else
-        redirect_to team_team_role_path(@team, @team_role)
-      end
     else
       render :new
     end
@@ -33,7 +29,7 @@ class TeamRolesController < ApplicationController
 
   def update
     if @team_role.update(team_role_params)
-      redirect_to team_team_role_path(@team, @team_role)
+      redirect_to team_path(@team)
     else
       render :edit
     end

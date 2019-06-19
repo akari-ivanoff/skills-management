@@ -1,7 +1,7 @@
 
 <div class="teams-banner mb-4">
   <div class="container d-flex align-items-center">
-    <div class="mr-4"><h1><em>All Teams</em></h1></div>
+    <div class="mr-4"><h3><em>All Teams</em></h3></div>
     <div class="pl-5">
       <%= link_to new_team_path do %>
       <div class="btn btn-flat btn-info text-white"><i class="fas fa-plus"></i> <strong>New team</strong> </div>
@@ -14,21 +14,24 @@
   <% @teams.each do |team| %>
   <div class="card card_details">
     <div class="card-body">
-            <h5 class="card-title text-center"><%= link_to team_path(team) do %>
-              <% if team.name.length < 30 %>
-                <%= team.name %>
-              <% else %>
-                <%= team.name[0..30] + "..." %>
-              <% end %>
-            <% end %>
-            </h5>
+      <h5 class="card-title text-center"><%= link_to team_path(team) do %>
+        <% if team.name.length < 30 %>
+          <%= team.name %>
+        <% else %>
+          <%= team.name[0..30] + "..." %>
+        <% end %>
+      <% end %>
+      </h5>
       <h6 class="card-subtitle mb-3 text-muted text-center"><em> by <%= team.owner_contact %></em></h6>
       <div class="card-text">
        <% team.users.all.each do |user| %>
-       <li><i class="fas fa-user-alt text-secondary"></i> <%= user.first_name %> <%= user.last_name %></li>
+       <%= link_to user_path(user) do %>
+          <li><i class="fas fa-user-alt text-secondary"></i> <%= user.first_name %> <%= user.last_name %></li>
        <% end %>
+        <% end %>
      </div>
-     </div>
+    </div>
+
      <div class="card-footer text-muted team-card">
       <div class="w-30">
         <%= link_to edit_team_path(team) do %>
@@ -42,9 +45,9 @@
         <% role.user == nil %>
         <% end %>
         <% if placeholders.count > 0 %>
-        <span class="badge badge-pill badge-primary"> <%= placeholders.count %></span>
+        <span class="badge badge-pill badge-info text-white font-weight-bold"> <%= placeholders.count %></span>
         <% else %>
-        <span class="badge badge-pill badge-info text-white"> <i class="fas fa-times"></i></span>
+        <span class="badge badge-pill badge-success"> <i class="fas fa-check"></i></span>
         <% end %>
       </div>
     </div>
