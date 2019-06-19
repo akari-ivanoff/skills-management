@@ -12,6 +12,12 @@
         </button>
       </div>
       <% end %>
+      <%= form_tag pages_index_path, method: :get do |f| %>
+        <%= text_field_tag(:query1) %>
+        <%= text_field_tag(:query2) %>
+        <%= text_field_tag(:query3) %>
+        <%= submit_tag("Search") %>
+      <% end %>
     </div>
     <br>
     <p>Use our smart search to find people with the skill-set you need.</p>
