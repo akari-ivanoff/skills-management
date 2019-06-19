@@ -4,7 +4,7 @@
 <% if @team_role.user != nil %>
   <p>Assignee: <%= link_to "#{@team_role.user.first_name} #{@team_role.user.last_name}", user_path(@team_role.user) %></p>
 <% else %>
-  <p>Assignee: none </p>
+  <p>Assignee: not yet </p>
 <% end %>
 <%= link_to "Edit the team role", edit_team_team_role_path(@team, @team_role), class: "btn btn-primary" %>
 <%= link_to "Delete the team role", team_team_role_path(@team, @team_role), method: :delete, data: { confirm: "Delete #{@team_role.name}?" }, class: "btn btn-danger" %>

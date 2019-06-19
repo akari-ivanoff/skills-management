@@ -1,7 +1,7 @@
 
 <div class="teams-banner mb-4">
   <div class="container d-flex align-items-center">
-    <div class="mr-4"><h1><em>All Teams</em></h1></div>
+    <div class="mr-4"><h3><em>All Teams</em></h3></div>
     <div class="pl-5">
       <%= link_to new_team_path do %>
         <div class="btn btn-flat btn-info text-white"><i class="fas fa-plus"></i> <strong>New team</strong> </div>
@@ -12,39 +12,44 @@
 
 <div class="flex-container cards-wrapper">
   <% @teams.each do |team| %>
-    <div class="card card_details">
-      <div class="card-body">
-        <h5 class="card-title text-center"><%= link_to team_path(team) do %>
-          <% if team.name.length < 30 %>
-            <%= team.name %>
-          <% else %>
-            <%= team.name[0..30] + "..." %>
-          <% end %>
+
+  <div class="card card_details">
+    <div class="card-body">
+      <h5 class="card-title text-center"><%= link_to team_path(team) do %>
+        <% if team.name.length < 30 %>
+          <%= team.name %>
+        <% else %>
+          <%= team.name[0..30] + "..." %>
         <% end %>
-        </h5>
-        <h6 class="card-subtitle mb-3 text-muted text-center"><em> by <%= team.owner_contact %></em></h6>
-        <div class="card-text">
-        <% team.users.all.each do |user| %>
-        <li><i class="fas fa-user-alt text-secondary"></i> <%= user.first_name %> <%= user.last_name %></li>
+      <% end %>
+      </h5>
+      <h6 class="card-subtitle mb-3 text-muted text-center"><em> by <%= team.owner_contact %></em></h6>
+      <div class="card-text">
+       <% team.users.all.each do |user| %>
+       <%= link_to user_path(user) do %>
+          <li><i class="fas fa-user-alt text-secondary"></i> <%= user.first_name %> <%= user.last_name %></li>
+       <% end %>
+        <% end %>
+     </div>
+    </div>
+
+     <div class="card-footer text-muted team-card">
+      <div class="w-30">
+        <%= link_to edit_team_path(team) do %>
+        <i class="fas fa-pen team-card"></i>
         <% end %>
       </div>
       </div>
-      <div class="card-footer text-muted team-card">
-        <div class="w-30">
-          <%= link_to edit_team_path(team) do %>
-            <i class="fas fa-pen team-card"></i>
-          <% end %>
-        </div>
-        <div class="w-20">
-          <% placeholders = team.team_roles.all.select do |role| %>
-            <% role.user == nil %>
-          <% end %>
-          <% if placeholders.count > 0 %>
-            <span class="badge badge-pill badge-primary"> <%= placeholders.count %></span>
-          <% else %>
-            <span class="badge badge-pill badge-info text-white"> <i class="fas fa-times"></i></span>
-          <% end %>
-        </div>
+
+      <div class="w-20">
+        <% placeholders = team.team_roles.all.select do |role| %>
+        <% role.user == nil %>
+        <% end %>
+        <% if placeholders.count > 0 %>
+        <span class="badge badge-pill badge-info text-white font-weight-bold"> <%= placeholders.count %></span>
+        <% else %>
+        <span class="badge badge-pill badge-success"> <i class="fas fa-check"></i></span>
+        <% end %>
       </div>
     </div>
   <% end %>

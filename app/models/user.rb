@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+  include PgSearch
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -23,6 +24,12 @@ class User < ApplicationRecord
   validate :verify_manager
 
   mount_uploader :photo, PhotoUploader
+
+  pg_search_scope :search_user_by_skill,
+    associated_against: { skills: [:name, :description] },
+    using: { tsearch: { any_word: true, prefix: true } }
+    # will description yield duplicate results?
+    # do we add team_roles later?
 
   def verify_manager
     if self.job_title != "Chapter Lead" && manager.nil?

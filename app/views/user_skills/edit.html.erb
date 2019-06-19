@@ -1,24 +1,42 @@
 <div class="container">
   <h1>Edit skill <%= @user_skill.skill.name %> for <%= @user.first_name %> </h1>
 
-  <%= simple_form_for([@user, @user_skill]) do |f| %>
+  <% if @user.is_manager %>
 
-    <% if @user == current_user %>
+    <%= simple_form_for([@user, @user_skill], url: user_skill_path(@user_skill)) do |f| %>
       <%= f.input :experience %>
       <%= f.input :self_assessment %>
       <%= f.input :self_comment %>
-      <%= f.association :skill, label_method: :name, value_method: :id, include_blank: false %>
+      <%= f.input :skill, as: :hidden %>
       <%= f.button :submit, class: "btn btn-primary" %>
-    <% elsif current_user.is_manager?%>
-      <%= f.input :manager_assessment %>
-      <%= f.input :manager_comment %>
-      <%= f.association :skill, label_method: :name, value_method: :id, include_blank: false %>
-      <%= f.button :submit, class: "btn btn-primary" %>
-    <% else %>
-      You can only edit your own skills.
     <% end %>
 
+  <% elsif @user == current_user %>
+
+    <%= simple_form_for([@user, @user_skill], url: user_skill_path(@user_skill)) do |f| %>
+      <%= f.input :experience %>
+      <%= f.input :self_assessment %>
+      <%= f.input :self_comment %>
+      <%= f.input :skill, as: :hidden %>
+      <%= f.button :submit, class: "btn btn-primary" %>
+    <% end %>
+
+
+  <% elsif current_user.is_manager%>
+
+    <%= simple_form_for([@user, @user_skill], url: manager_assessment_update_user_skill_path(@user_skill)) do |f| %>
+      <%= f.input :manager_assessment %>
+      <%= f.input :manager_comment %>
+      <%= f.input :skill, as: :hidden %>
+      <%= f.button :submit, class: "btn btn-primary" %>
+      <% end %>
+
+  <% else %>
+
+      You can only edit your own skills.
+
   <% end %>
+
   <hr>
   <%= link_to user_user_skills_path(@user, @user_skill) do %>
     <i class="fas fa-undo-alt"></i> Skills list
