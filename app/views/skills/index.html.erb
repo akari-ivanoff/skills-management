@@ -19,7 +19,7 @@
       <% end %>
     </div>
     <div class="p-2">
-      <%= link_to skill_path(skill), method: :delete do %>
+      <%= link_to skill_path(skill), data: { confirm: 'Are you sure?' }, method: :delete do %>
       <i class="fas fa-trash-alt"></i>
       <% end %>
     </div>
