@@ -11,6 +11,7 @@
     <%= f.input :is_manager, as: :select %>
     <%= f.association :manager, label_method: :network_id, value_method: :id, include_blank: false%>
     <%= f.input :photo %>
+    <%= f.input :photo_cache, as: :hidden %>
     <%= f.association :site, as: :select, label_method: :city, value_method: :id, include_blank: false %>
     <%= f.button :submit, class: "btn btn-primary" %>
   <% end %>
