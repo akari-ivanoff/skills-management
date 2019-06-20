@@ -1,6 +1,8 @@
-<div class="container">
   <h1>Edit "<%= @team.name %>" team</h1>
   <%= render 'team_form', task: @team %>
   <hr>
   <%= link_to "Back to the team", team_path(@team), class: "btn btn-secondary" %>
-</div>
+  <br>
+  <%= link_to team_path(@team), method: :delete, data: { confirm: "Are you sure you want to delete #{@team.name} team?" }, class: "btn btn-primary text-white" do %>
+  <i class="fas fa-trash"></i>
+  <% end %>

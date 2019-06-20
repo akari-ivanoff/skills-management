@@ -1,0 +1,81 @@
+  <% @team.team_roles.each do |team_role| %>
+      <div class="card p-3 w-100 mb-1">
+        <div class="d-flex justify-content-between align-items-center">
+            <div>
+              <% id_name = "collapseMonkey-#{team_role.id}" %>
+              <a class="btn btn-primary" data-toggle="collapse" href="#<%= id_name %>" role="button" aria-expanded="false" aria-controls="<%= id_name %>">
+                <i class="fas fa-chevron-down"></i>
+              </a>
+            </div>
+            <div>
+              <%= team_role.name %> <br>
+            </div>
+          <div>
+            <%= team_role.occupancy %> %
+          </div>
+          <div>
+            <% if team_role.user == nil %>
+              <div class="avatar border border-secondary" style="background-image: url('https://cdn.dribbble.com/users/1044993/screenshots/3106624/question-bear_dribbble.png')"></div>
+            <% else %>
+              <div class="avatar" style="background-image: url('<%= image_path team_role.user.photo %>')"></div>
+            <% end %>
+         </div>
+         <div>
+
+            <% if team_role.user == nil %>
+              <%= link_to team_team_role_path(@team, team_role), class: "btn btn-primary text-white" do %>
+              Search for<i class="fas fa-user ml-3"></i>
+              <% end %>
+            <% else %>
+              <i class="fas fa-user ml-3"></i> <%= team_role.user.first_name %> <%= team_role.user.last_name %>
+            <% end %>
+          </div>
+          <div>
+            <%= link_to edit_team_team_role_path(team_role), class: "btn btn-primary" do %>
+              <i class="fas fa-pen"></i>
+            <% end %>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="collapse" id="<%= id_name %>">
+       <div class="card p-3 w-80 mb-3">
+
+        <% if team_role.user == nil %>
+          <div class="d-flex align-items-center justify-content-between">
+            <p class="flex-start"> <strong>Required skillset</strong></p>
+            <div class="p-3">
+                <% team_role.team_role_skills.each do |team_role_skill| %>
+                  <div class="d-flex justify-content-between align-items-center mb-2">
+                    <div class="ml-5 mr-3">
+                      <%= team_role_skill.skill.name %>
+                    </div>
+                    <div >
+                      <%= link_to team_team_role_team_role_skill_path(@team, team_role, team_role_skill), method: :delete, data: { confirm: "Delete #{team_role_skill.skill.name} skill from this role?" }, class:"btn btn-secondary text-white" do %>
+                          <i class="fas fa-trash"></i>
+                        <% end %>
+                    </div>
+                  </div>
+                <% end %>
+            </div>
+            <div class="p-3">
+              <%= simple_form_for([@team, team_role, @team_role_skill]) do |f| %>
+                <%= f.association :skill, label: false %>
+                  <div class="small-3 columns">
+                    <%= button_tag type: 'submit', class: "btn btn-primary" do %>
+                        <i class="fa fa-plus" aria-hidden="true"></i> Skill need
+                    <% end %>
+                  </div>
+              <% end %>
+            </div>
+          </div>
+
+        <% else %>
+
+
+        <% end %>
+      </div>
+    </div>
+
+  <% end %>
