@@ -25,12 +25,6 @@ class User < ApplicationRecord
 
   mount_uploader :photo, PhotoUploader
 
-  pg_search_scope :search_user_by_skill,
-    associated_against: { skills: [:name, :description] },
-    using: { tsearch: { any_word: true, prefix: true } }
-    # will description yield duplicate results?
-    # do we add team_roles later?
-
   def verify_manager
     if self.job_title != "Chapter Lead" && manager.nil?
       errors.add(:manager, "This user needs a manager because he's not a Chapter Lead.")
@@ -40,4 +34,11 @@ class User < ApplicationRecord
   def employees
     is_manager ? User.where(manager_id: id) : []
   end
+
+  pg_search_scope :search_user_by_skill,
+    associated_against: { skills: [:name] }
+    # ,using: { :tsearch { prefix: true } }
+    # will description yield duplicate results?
+    # do we add team_roles later?
+
 end
