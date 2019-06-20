@@ -366,7 +366,7 @@ until specialistst.empty? || team_names.empty?
     name: team_name,
     description: Faker::Hacker.say_something_smart,
     owner_contact: Faker::Name.unique.name,
-    team_manager: users.first,
+    team_manager: User.first,
     site: sites.sample
   )
 
@@ -389,7 +389,7 @@ until specialistst.empty? || team_names.empty?
 
   # Seeding other roles and skills
   team_specialists.each do |team_specialist|
-    if Random.new.rand(1..4) == 4 # 25% chance that specialist will get 2 roles
+    if Random.new.rand(1..10) == 10 # 10% chance that specialist will get 2 roles
       2.times do
         team_role = TeamRole.create!(
           name: team_role_names.sample,
