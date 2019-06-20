@@ -17,7 +17,7 @@
             <% if team_role.user == nil %>
               <div class="avatar border border-secondary" style="background-image: url('https://cdn.dribbble.com/users/1044993/screenshots/3106624/question-bear_dribbble.png')"></div>
             <% else %>
-              <div class="avatar" style="background-image: url('<%= image_path team_role.user.photo %>')"></div>
+              <div class="avatar" style="background-image: url('<%= cl_image_path team_role.user.photo, width: 50, height: 50, crop: :thumb, gravity: :face %>')"></div>
             <% end %>
          </div>
          <div>
@@ -61,7 +61,7 @@
                       <%= team_role_skill.skill.name %>
                     </div>
                     <div >
-                      <%= link_to team_team_role_team_role_skill_path(@team, team_role, team_role_skill), method: :delete, data: { confirm: "Delete #{team_role_skill.skill.name} skill from this role?" }, class:"btn btn-secondary text-white" do %>
+                      <%= link_to team_team_role_team_role_skill_path(@team, team_role, team_role_skill), method: :delete, data: { confirm: "Are you sure you want to delete #{team_role_skill.skill.name} skill from this role?" }, class:"btn btn-secondary text-white" do %>
                           <i class="fas fa-trash"></i>
                         <% end %>
                     </div>

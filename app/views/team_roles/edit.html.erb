@@ -7,14 +7,14 @@
     <% @team_role.team_role_skills.each do |team_role_skill| %>
       <li class="list-group-item d-flex justify-content-between align-items-center">
         <%= link_to team_role_skill.skill.name, skills_path(team_role_skill.skill) %>
-        <span class="badge badge-primary badge-pill"><%= link_to "X", team_team_role_team_role_skill_path(@team, @team_role, team_role_skill), method: :delete, data: { confirm: "Delete #{team_role_skill.skill.name} skill from this role?" } %></span>
+        <span class="badge badge-primary badge-pill"><%= link_to "X", team_team_role_team_role_skill_path(@team, @team_role, team_role_skill), method: :delete, data: { confirm: "Are you sure you want to delete #{team_role_skill.skill.name} skill from this role?" } %></span>
       </li>
     <% end %>
   </ul>
   <br>
   <%= render 'team_role_skill_form' %>
   <hr>
-  <%= link_to "Delete the team role", team_team_role_path(@team, @team_role), method: :delete, data: { confirm: "Delete #{@team_role.name}?" }, class: "btn btn-danger" %>
+  <%= link_to "Delete the team role", team_team_role_path(@team, @team_role), method: :delete, data: { confirm: "Are you sure you want to delete #{@team_role.name} role from #{@team.name} team? All linked skills will be also deleted." }, class: "btn btn-danger" %>
   <hr>
   <%= link_to "Back to the team", team_path(@team), class: "btn btn-secondary" %>
 </div>

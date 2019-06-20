@@ -1,7 +1,7 @@
 class TeamRole < ApplicationRecord
   belongs_to :team
   belongs_to :user, optional: true
-  has_many :team_role_skills
+  has_many :team_role_skills, dependent: :destroy
 
   validates :name, presence: true
   validates :team, presence: true
