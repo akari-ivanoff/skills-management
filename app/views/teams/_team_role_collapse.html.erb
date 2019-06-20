@@ -25,6 +25,15 @@
             <% if team_role.user == nil %>
               <%= link_to team_team_role_path(@team, team_role), class: "btn btn-primary text-white" do %>
               Search for<i class="fas fa-user ml-3"></i>
+
+            <%= simple_form_for :query, url: pages_index_path, method: :get do |f| %>
+              <%= f.input :skill1, :as => :hidden, :input_html => { :value => team_role.team_role_skills[0].skill.name } %>
+              <%= f.input :skill2, :as => :hidden, :input_html => { :value => team_role.team_role_skills[1].skill.name } %>
+              <%= f.input :skill3, :as => :hidden, :input_html => { :value => team_role.team_role_skills[2].skill.name } %>
+              <%= f.button :submit, class: "btn btn-primary" %>
+
+            <% end %>
+
               <% end %>
             <% else %>
               <i class="fas fa-user ml-3"></i> <%= team_role.user.first_name %> <%= team_role.user.last_name %>
