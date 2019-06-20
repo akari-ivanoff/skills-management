@@ -17,19 +17,20 @@
   <div class="d-flex flex-row mt-3 mb-3 skill-inventory-card">
     <% if current_user.is_manager %>
       <div class="p-2">
+        <%= skill.name %>
+      </div>
+      <div class="p-2">
         <%= link_to edit_skill_path(skill) do %>
           <i class="fas fa-pen"></i>
         <% end %>
       </div>
       <div class="p-2">
-        <%= link_to skill_path(skill), data: { confirm: 'Are you sure?' }, method: :delete do %>
+        <%= link_to skill_path(skill), data: { confirm: "Are you sure you want to delete this skill? It will also be deleted from all linked people's profiles and groups." }, method: :delete do %>
         <i class="fas fa-trash-alt"></i>
         <% end %>
       </div>
     <% end %>
-    <div class="p-2">
-      <%= skill.name %>
-    </div>
+
   </div>
 <% end %>
 </div>

@@ -1,12 +1,6 @@
 <div class="container">
   <h1>Create new skill</h1>
-
-  <%= simple_form_for(@skill) do |f| %>
-    <%= f.input :name %>
-    <%= f.input :description %>
-    <%= f.association :skill_category, label_method: :name, value_method: :id, include_blank: false %>
-    <%= f.button :submit, class: "btn btn-primary" %>
-  <% end %>
+  <%= render 'skill_form' %>
   <hr>
   <%= link_to skills_path do %>
     <i class="fas fa-undo-alt"></i> Skills list

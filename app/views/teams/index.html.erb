@@ -34,14 +34,14 @@
     </div>
 
      <div class="card-footer text-muted team-card">
-      <div class="w-30">
+      <div class="d-flex justify-content-between">
+      <div>
         <%= link_to edit_team_path(team) do %>
         <i class="fas fa-pen team-card"></i>
         <% end %>
       </div>
       </div>
-
-      <div class="w-20">
+      <div>
         <% placeholders = team.team_roles.all.select do |role| %>
         <% role.user == nil %>
         <% end %>
@@ -50,6 +50,7 @@
         <% else %>
         <span class="badge badge-pill badge-success"> <i class="fas fa-check"></i></span>
         <% end %>
+      </div>
       </div>
     </div>
   <% end %>

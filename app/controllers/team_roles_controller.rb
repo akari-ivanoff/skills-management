@@ -1,13 +1,9 @@
 class TeamRolesController < ApplicationController
-  before_action :find_team_role, only: [:show, :edit, :update, :destroy]
-  before_action :find_team, only: [:new, :create, :show, :edit, :update, :destroy]
+  before_action :find_team_role, only: [:edit, :update, :destroy]
+  before_action :find_team, only: [:new, :create, :edit, :update, :destroy]
 
   def index
     @team_roles = TeamRole.all
-  end
-
-  def show
-    @team_role_skill = TeamRoleSkill.new #check with Mike
   end
 
   def new
@@ -18,18 +14,19 @@ class TeamRolesController < ApplicationController
     @team_role = TeamRole.new(team_role_params)
     @team_role.team = @team
     if @team_role.save
-        redirect_to team_path(@team)
+      redirect_to team_path(@team), notice: "#{@team_role.name} role has been added to the #{@team.name} team"
     else
       render :new
     end
   end
 
   def edit
+    @team_role_skill = TeamRoleSkill.new
   end
 
   def update
     if @team_role.update(team_role_params)
-      redirect_to team_path(@team)
+      redirect_to team_path(@team), notice: "#{@team_role.name} role has been updated"
     else
       render :edit
     end
@@ -37,7 +34,7 @@ class TeamRolesController < ApplicationController
 
   def destroy
     @team_role.destroy
-    redirect_to team_path(@team)
+    redirect_to team_path(@team), notice: "#{@team_role.name} role has been deleted from the #{@team.name} team"
   end
 
   private

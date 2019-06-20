@@ -18,7 +18,7 @@ Rails.application.routes.draw do
   resources :skills
 
   resources :teams do
-    resources :team_roles, except: [:index] do
+    resources :team_roles, except: [:index, :show] do
       resources :team_role_skills, only: [:create, :destroy]
     end
   end

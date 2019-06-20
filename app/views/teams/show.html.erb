@@ -1,114 +1,65 @@
 <div class="d-flex justify-content-between align-items-center mb-3">
   <h3>Team: <%= @team.name %></h3>
   <%= link_to teams_path, class: "btn btn-secondary" do %>
-    <i class="fas fa-undo-alt"></i> All teams
+  <i class="fas fa-undo-alt"></i> All teams
   <% end %>
 </div>
 
-<%= link_to edit_team_path, class: "btn btn-primary w-100" do %>
-      <i class="fas fa-pen"></i> Team
-    <% end %>
 
-<div class="d-flex justify-content-between mb-6">
-  <div class="d-flex card p-3 mb-3 mr-3 team-details">
-    <p> <strong> <i class="fas fa-users"></i> Owner: </strong> <%= @team.owner_contact %></p>
-    <p> <strong> <i class="fas fa-users"></i> Manager: </strong> <%= link_to "#{@team.team_manager.first_name} #{@team.team_manager.last_name}", user_path(@team.team_manager) %></p>
-  </div>
 
-  <div class="card p-3 mb-3 team-description">
-    <p> <strong> <i class="fas fa-building"></i> </strong> <%= @team.site.country %>, <%= @team.site.city %></p>
-    <div class="d-flex">
-    <h3><i class="fas fa-info-circle text-primary flex-start"></i></h3>
-    <p class="ml-3"> <%= @team.description %></p>
+<div class="card p-3 w-100">
+  <div class=" d-flex justify-content-between align-items-center w-100">
+    <div>
+      <p> <strong> <i class="fas fa-users"></i> Owner: </strong> <%= @team.owner_contact %></p>
+      <p> <strong> <i class="fas fa-users"></i> Manager: </strong> <%= link_to "#{@team.team_manager.first_name} #{@team.team_manager.last_name}", user_path(@team.team_manager) %></p>
+    </div>
+
+    <div>
+      <p> <strong> <i class="fas fa-building"></i> </strong> <%= @team.site.country %>, <%= @team.site.city %></p>
+      <div class="d-flex">
+        <h3><i class="fas fa-info-circle text-primary flex-start"></i></h3>
+        <p class="ml-3"> <%= @team.description %></p>
+      </div>
+    </div>
+    <div>
+      <%= link_to edit_team_path(@team), class: "btn btn-primary" do %>
+        <i class="fas fa-pen"></i>
+      <% end %>
     </div>
   </div>
 </div>
 
-<div class="d-flex justify-content-between align-items-center mt-5 mb-3">
+<div class="mt-5 mb-4">
   <h3>Team Roles</h3>
 </div>
 
-<%= link_to new_team_team_role_path(@team), class: "btn btn-primary w-100" do %>
-    <i class="fas fa-plus"></i> Team role
-  <% end %>
-
-  <% @team.team_roles.each do |team_role| %>
-      <div class="card p-3 w-100 mb-1">
-        <div class="d-flex justify-content-between align-items-center">
-            <div>
-              <% id_name = "collapseMonkey-#{team_role.id}" %>
-              <a class="btn btn-primary" data-toggle="collapse" href="#<%= id_name %>" role="button" aria-expanded="false" aria-controls="<%= id_name %>">
-                <i class="fas fa-chevron-down"></i>
-              </a>
-            </div>
-            <div>
-              <%= team_role.name %> <br>
-            </div>
-          <div>
-            <%= team_role.occupancy %> %
-          </div>
-          <div>
-            <% if team_role.user == nil %>
-              <div class="avatar border border-secondary" style="background-image: url('https://cdn.dribbble.com/users/1044993/screenshots/3106624/question-bear_dribbble.png')"></div>
-            <% else %>
-              <div class="avatar" style="background-image: url('<%= image_path team_role.user.photo %>')"></div>
-            <% end %>
-         </div>
-         <div>
-
-            <% if team_role.user == nil %>
-              <%= link_to team_team_role_path(@team, team_role), class: "btn btn-primary text-white" do %>
-              Search for<i class="fas fa-user ml-3"></i>
-              <% end %>
-            <% else %>
-              <i class="fas fa-user ml-3"></i> <%= team_role.user.first_name %> <%= team_role.user.last_name %>
-            <% end %>
-          </div>
-          <div>
-            <%= link_to edit_team_team_role_path(team_role), class: "btn btn-primary" do %>
-              <i class="fas fa-pen"></i>
-            <% end %>
-          </div>
-        </div>
-      </div>
-
-
-      <div class="collapse" id="<%= id_name %>">
-       <div class="card p-3 w-80 mb-3">
-        <% if team_role.user == nil %>
-          <div class="d-flex align-items-center justify-content-between">
-            <p class="flex-start"> <strong>Required skillset</strong></p>
-            <div>
-                <% team_role.team_role_skills.each do |team_role_skill| %>
-                  <div class="d-flex justify-content-between align-items-center mb-2">
-                    <div class="ml-5 mr-3">
-                      <%= team_role_skill.skill.name %>
-                    </div>
-                    <div>
-                      <%= link_to team_team_role_team_role_skill_path(@team, team_role, team_role_skill), method: :delete, data: { confirm: "Delete #{team_role_skill.skill.name} skill from this role?" }, class:"btn btn-secondary text-white" do %>
-                          <i class="fas fa-trash"></i>
-                        <% end %>
-                    </div>
-                  </div>
-                <% end %>
-            </div>
-            <div>
-              <%= simple_form_for([@team, team_role, @team_role_skill]) do |f| %>
-                <%= f.association :skill, label: false %>
-                <%= f.button :submit, class: "btn btn-primary" do %>
-                <i class="fas fa-plus"></i>  Skill need
-                <% end %>
-              <% end %>
-
-            </div>
-            <div>
-              <%= link_to team_team_role_path(@team, team_role), method: :delete, data: { confirm: "Delete #{team_role.name}?" }, class: "btn btn-primary text-white" do %>
-                <i class="fas fa-trash"></i>  Team role
-              <% end %>
-            </div>
-          </div>
-        <% end %>
-      </div>
+<div class="card p-3 w-100 mb-1">
+  <div class="d-flex justify-content-between align-items-center">
+    <div class="avatar border border-secondary" style="background-image: url('https://cdn.dribbble.com/users/1044993/screenshots/3106624/question-bear_dribbble.png')">
     </div>
 
-  <% end %>
+    <div>
+      <%= link_to new_team_team_role_path(@team) do %>
+        <h5 class="m-0 p-0"> Add a new role to this team </h5>
+      <% end %>
+    </div>
+
+
+    <div>
+      <%= link_to new_team_team_role_path(@team), class: "btn btn-primary" do %>
+        <i class="fas fa-plus"></i>
+      <% end %>
+    </div>
+  </div>
+</div>
+<!-- <div class="card p-3 w-100 mb-1">
+  <div class="d-flex justify-content-center align-items-center">
+    <div>
+      <%= link_to new_team_team_role_path(@team) do %>
+        <h5 class="m-0 p-0"> Add a new role to this team </h5>
+      <% end %>
+    </div>
+  </div>
+</div> -->
+
+<%= render 'team_role_collapse' %>
