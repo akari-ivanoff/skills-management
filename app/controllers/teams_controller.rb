@@ -12,7 +12,7 @@ class TeamsController < ApplicationController
   def create
     @team = Team.new(team_params)
     if @team.save
-      redirect_to teams_path
+      redirect_to teams_path, notice: "#{@team.name} team has been created"
     else
       render :new
     end
@@ -27,7 +27,7 @@ class TeamsController < ApplicationController
 
   def update
     if @team.update(team_params)
-      redirect_to team_path(@team)
+      redirect_to team_path(@team), notice: "#{@team.name} team has been updated"
     else
       render :edit
     end
@@ -35,7 +35,7 @@ class TeamsController < ApplicationController
 
   def destroy
     @team.destroy
-    redirect_to teams_path
+    redirect_to teams_path, notice: "#{@team.name} team has been deleted"
   end
 
   private

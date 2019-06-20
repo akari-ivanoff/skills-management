@@ -6,10 +6,11 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 #
-require 'pry-byebug'
+# require 'pry-byebug'
 
 SKILLS = {
   "Automated testing" => "Automated testing",
+  "JMeter" => "Automated testing",
   "Continuous deployment" => "Continuous deployment",
   "Automated infrastructure provisioning" => "Automated infrastructure provisioning",
   "Continuous monitoring & automatic operations" => "Continuous monitoring & automatic operations",
@@ -18,12 +19,17 @@ SKILLS = {
   "Experiment management" => "Experiment management",
   "Designing and carrying out secure automation processes" => "Secure automation processes",
   "Jenkins" => "Establish DevOps toolchain",
+  "Spinnaker" => "Establish DevOps toolchain",
   "AWS Code Deploy" => "Establish DevOps toolchain",
   "Selenium" => "Establish DevOps toolchain",
   "TestCompare Web" => "Establish DevOps toolchain",
   "GitLab" => "Establish DevOps toolchain",
   "AWS CloudWatch" => "Establish DevOps toolchain",
   "Google StackDriver" => "Establish DevOps toolchain",
+  "Google Cloud Platform" => "Establish DevOps toolchain",
+  "Ansible" => "Establish DevOps toolchain",
+  "Docker" => "Establish DevOps toolchain",
+  "Microsoft Azure" => "Establish DevOps toolchain",
   "Nexus repository manager" => "Establish DevOps toolchain",
   "DevOps tools for automating development lifecycles" => "Establish DevOps toolchain",
   "Python" => "General-purpose languages",
@@ -36,13 +42,14 @@ SKILLS = {
   "SQL" => "General-purpose languages",
   "Ruby/Rails" => "General-purpose languages",
   "PHP" => "Script- and Shell languages",
-  "Javascript" => "Script- and Shell languages",
+  "JavaScript" => "Script- and Shell languages",
   "JCL" => "Script- and Shell languages",
   "sh" => "Script- and Shell languages",
   "HTML" => "Web languages",
   "CSS" => "Web languages",
   "XML" => "Web languages",
-  "Android" => "Languages for mobile environments",
+  "Kotlin" => "Languages for mobile environments",
+  "Dart" => "Languages for mobile environments",
   "Java ADK" => "Languages for mobile environments",
   "Swift" => "Languages for mobile environments",
   "Xcode" => "Languages for mobile environments",
@@ -83,7 +90,9 @@ SKILLS = {
   "Visual Studio Visual Studio" => "Integrated development environments (IDE)",
   "Visual Studio Code" => "Integrated development environments (IDE)",
   "PyCharm" => "Integrated development environments (IDE)",
+  "IntelliJ Idea" => "Integrated development environments (IDE)",
   "Spyder" => "Integrated development environments (IDE)",
+  "OpenAPI" => "Systems integration",
   "API/Microservices architecture" => "Systems integration",
   "Message-oriented integration" => "Systems integration",
   "Enterprise service bus (ESB) concepts" => "Systems integration",
@@ -240,8 +249,7 @@ User.create!(
 )
 
 AVATARS_WOMEN.each do |avatar|
-  locale = ['sv', 'de', 'en'].sample
-  Faker::Config.locale = locale
+  Faker::Config.locale = ['sv', 'de', 'en'].sample
   first_name = Faker::Name.female_first_name
   last_name = Faker::Name.last_name
   email = first_name.downcase + '.' + last_name.downcase + '@ingka.ikea.com'
@@ -263,8 +271,7 @@ AVATARS_WOMEN.each do |avatar|
 end
 
 AVATARS_MEN.each do |avatar|
-  locale = ['sv', 'de', 'en'].sample
-  Faker::Config.locale = locale
+  Faker::Config.locale = ['sv', 'de', 'en'].sample
   first_name = Faker::Name.male_first_name
   last_name = Faker::Name.last_name
   email = first_name.downcase + '.' + last_name.downcase + '@ingka.ikea.com'
@@ -286,8 +293,7 @@ AVATARS_MEN.each do |avatar|
 end
 
 20.times do
-  locale = ['sv', 'de', 'en'].sample
-  Faker::Config.locale = locale
+  Faker::Config.locale = ['sv', 'de', 'en'].sample
   first_name = Faker::Name.first_name
   last_name = Faker::Name.last_name
   email = first_name.downcase + '.' + last_name.downcase + '@ingka.ikea.com'
@@ -360,7 +366,7 @@ until specialistst.empty? || team_names.empty?
     name: team_name,
     description: Faker::Hacker.say_something_smart,
     owner_contact: Faker::Name.unique.name,
-    team_manager: users.sample,
+    team_manager: User.first,
     site: sites.sample
   )
 
@@ -383,17 +389,34 @@ until specialistst.empty? || team_names.empty?
 
   # Seeding other roles and skills
   team_specialists.each do |team_specialist|
-    team_role = TeamRole.create!(
-      name: team_role_names.sample,
-      occupancy: 100,
-      user: team_specialist,
-      team: team
-    )
-    Random.new.rand(3..8).times do
-      TeamRoleSkill.create!(
-        skill: skills.sample,
-        team_role: team_role
+    if Random.new.rand(1..10) == 10 # 10% chance that specialist will get 2 roles
+      2.times do
+        team_role = TeamRole.create!(
+          name: team_role_names.sample,
+          occupancy: 50,
+          user: team_specialist,
+          team: team
+        )
+        Random.new.rand(3..8).times do
+          TeamRoleSkill.create!(
+            skill: skills.sample,
+            team_role: team_role
+          )
+        end
+      end
+    else
+      team_role = TeamRole.create!(
+        name: team_role_names.sample,
+        occupancy: 100,
+        user: team_specialist,
+        team: team
       )
+      Random.new.rand(3..8).times do
+        TeamRoleSkill.create!(
+          skill: skills.sample,
+          team_role: team_role
+        )
+      end
     end
   end
 
