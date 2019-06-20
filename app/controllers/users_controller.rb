@@ -5,11 +5,16 @@ class UsersController < ApplicationController
     @users = User.all.order("first_name ASC")
   end
 
+
   # def fullname
   #   return "#{user.first_name} #{user.last_name}".join
   # end
 
   def show
+    @user = User.find(params[:id])
+    @userskills = UserSkill.all.select do |userskill|
+      userskill.user == @user
+    end
   end
 
   def edit

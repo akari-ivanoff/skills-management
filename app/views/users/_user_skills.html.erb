@@ -1,0 +1,65 @@
+<h3 class="mb-3 mt-5">Your super powers</h3>
+
+<% if @user == current_user %>
+  <div class="card p-3 w-100 mb-1">
+    <div class="d-flex justify-content-between align-items-center">
+      <div>
+        <%= link_to new_user_user_skill_path(@user) do %>
+          <h5 class="m-0 p-0"> Add a new skill to your profile </h5>
+        <% end %>
+      </div>
+
+      <div>
+        <%= link_to new_user_user_skill_path(@user), class: "btn btn-primary" do %>
+          <i class="fas fa-plus"></i>
+        <% end %>
+      </div>
+    </div>
+  </div>
+<% end %>
+
+<% @userskills.each do |userskill| %>
+  <div class="card p-3 w-100 mb-1">
+    <div class="d-flex justify-content-between align-items-center">
+
+      <div>
+        <h5 class="mb-2"> <% userskill.self_assessment.times do %>
+          <i class="fas fa-star text-info"></i>
+        <% end %>
+        <%= userskill.skill.name %>
+        </h5>
+        <p><i class="fas fa-comment"></i>  <%= userskill.self_comment %></p>
+        <% if @user == current_user || current_user.is_manager%>
+         <p>
+          <% unless userskill.manager_assessment.nil? %>
+          <% userskill.manager_assessment.times do %>
+             <i class="fas fa-star text-info"></i>
+            <% end %>
+            <strong> Manager's perspective </strong>
+          </p>
+          <p class="m-0"><i class="fas fa-comments"></i>  <%= userskill.manager_comment %></p>
+          <% end %>
+        <% end %>
+      </div>
+
+      <div class="w-30">
+        <h5>Experience</h5>
+        <%= userskill.experience %>
+      </div>
+
+      <div class="flex-column">
+        <% if @user == current_user || current_user.is_manager %>
+          <%= link_to edit_user_skill_path(userskill.id), class: "btn btn-primary" do %>
+            <i class="fas fa-pen"></i>
+          <% end %>
+        <% end %>
+        <% if @user == current_user %>
+          <%= link_to  user_skill_path(userskill), data: { confirm: 'Are you sure?' }, method: :delete, class: "btn btn-primary" do %>
+            <i class="fas fa-trash-alt"></i>
+          <% end %>
+        <% end %>
+      </div>
+
+    </div>
+  </div>
+<% end %>

@@ -11,11 +11,11 @@
         </button>
       </div>
       <% end %>
-      <%= form_tag pages_index_path, method: :get do |f| %>
-        <%= text_field_tag(:query1) %>
-        <%= text_field_tag(:query2) %>
-        <%= text_field_tag(:query3) %>
-        <%= submit_tag("Search") %>
+      <%= simple_form_for :query, url: pages_index_path, method: :get do |f| %>
+        <%= f.input_field :skill1, collection: Skill.all.map{|skill| skill.name} %>
+        <%= f.input_field :skill2, collection: Skill.all.map{|skill| skill.name} %>
+        <%= f.input_field :skill3, collection: Skill.all.map{|skill| skill.name} %>
+        <%= f.button :submit, class: "btn btn-primary" %>
       <% end %>
     </div>
   </div>
