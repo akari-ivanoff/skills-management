@@ -19,7 +19,7 @@ class UsersController < ApplicationController
     if @user.update(user_params)
       redirect_to user_path(@user)
     else
-      render :edit
+      render :edit, notice: "#{@user.first_name} #{@user.last_name}'s profile has been updated"
     end
   end
 

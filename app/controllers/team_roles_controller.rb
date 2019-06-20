@@ -14,7 +14,7 @@ class TeamRolesController < ApplicationController
     @team_role = TeamRole.new(team_role_params)
     @team_role.team = @team
     if @team_role.save
-      redirect_to team_path(@team)
+      redirect_to team_path(@team), notice: "#{@team_role.name} role has been added to the #{@team.name} team"
     else
       render :new
     end
@@ -26,7 +26,7 @@ class TeamRolesController < ApplicationController
 
   def update
     if @team_role.update(team_role_params)
-      redirect_to team_path(@team)
+      redirect_to team_path(@team), notice: "#{@team_role.name} role has been updated"
     else
       render :edit
     end
@@ -34,7 +34,7 @@ class TeamRolesController < ApplicationController
 
   def destroy
     @team_role.destroy
-    redirect_to team_path(@team)
+    redirect_to team_path(@team), notice: "#{@team_role.name} role has been deleted from the #{@team.name} team"
   end
 
   private

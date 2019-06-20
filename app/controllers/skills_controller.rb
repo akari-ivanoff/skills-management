@@ -1,5 +1,6 @@
 class SkillsController < ApplicationController
   def index
+    @skills = Skill.all
     @skills = Skill.all.order("name ASC")
   end
 
@@ -9,7 +10,11 @@ class SkillsController < ApplicationController
 
   def create
     @skill = Skill.new(skills_params)
-    @skill.save
+    if @skill.save
+      redirect_to skills_path, notice: "#{@skill.name} skill has been added"
+    else
+      render :new
+    end
   end
 
   def edit
@@ -19,8 +24,7 @@ class SkillsController < ApplicationController
   def update
     @skill = Skill.find(params[:id])
     if @skill.update(skills_params)
-      flash[:success] = "updated"
-      redirect_to skills_path
+      redirect_to skills_path, notice: "#{@skill.name} skill has been updated"
     else
       render :edit
     end
@@ -29,14 +33,11 @@ class SkillsController < ApplicationController
   def destroy
     @skill = Skill.find(params[:id])
     @skill.destroy
-    redirect_to skills_path
+    redirect_to skills_path, notice: "#{@skill.name} skill has been deleted"
   end
 
-# def show
-# end
+  private
 
-
-private
   def skills_params
     params.require(:skill).permit(:name, :description, :skill_category_id)
   end
