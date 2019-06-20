@@ -1,7 +1,7 @@
 <div class="container">
   <h1>Create new skill for <%= @user.first_name %> </h1>
 
-  <%= simple_form_for([@user, @user_skill]) do |f| %>
+  <%= simple_form_for [@user, @user_skill] do |f| %>
     <%= f.input :experience %>
     <%= f.input :self_assessment %>
     <%= f.input :self_comment %>

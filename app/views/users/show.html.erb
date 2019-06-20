@@ -16,8 +16,7 @@
   <div class="d-flex card p-3 mb-3 mr-3 user-details">
     <div class="d-flex justify-content-between align-items-center">
       <div>
-        <%= cl_image_tag(@user.photo,
-        width: 250, height: 250, crop: :thumb, gravity: :face) %>
+        <%= cl_image_tag(@user.photo, width: 250, height: 250, crop: :thumb, gravity: :face) %>
       </div>
 
       <div>
@@ -30,10 +29,12 @@
       </div>
 
       <div>
-        <% if @user.is_manager == "true" %>
-          <p> <strong> <i class="fas fa-user-tie"></i> Manager: </strong> Yes </p>
-        <% else %>
-          <p> <strong> <i class="fas fa-user-tie"></i> Manager: </strong> <%= link_to "#{@user.manager.first_name} #{@user.manager.last_name}", user_path(@user.manager) %></p>
+        <% if @user.id != 1 %>
+          <% if @user.is_manager == "true" %>
+            <p> <strong> <i class="fas fa-user-tie"></i> Manager: </strong> Yes </p>
+          <% else %>
+            <p> <strong> <i class="fas fa-user-tie"></i> Manager: </strong> <%= link_to "#{@user.manager.first_name} #{@user.manager.last_name}", user_path(@user.manager) %></p>
+          <% end %>
         <% end %>
         <p> <strong> <i class="fas fa-building"></i> </strong> <%= @user.site.country %>, <%= @user.site.city %></p>
         <p><strong><i class="fas fa-at"></i> </strong> <%= @user.email %></p>

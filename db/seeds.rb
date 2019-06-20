@@ -309,6 +309,7 @@ end
     availability: 100,
     is_manager: false,
     manager_id: User.first.id,
+    remote_photo_url: "https://res.cloudinary.com/dlsvbebuj/image/upload/v1561036263/skill-m/avatars/avatar_placeholder_pr7mik.jpg",
     site: Site.all.sample
   )
 end

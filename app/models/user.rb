@@ -6,11 +6,11 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   belongs_to :site
   belongs_to :manager, class_name: "User", foreign_key: :manager_id, optional: true
-  has_many :managed_teams, class_name: "Team", foreign_key: :team_manager_id
-  has_many :team_roles
+  has_many :managed_teams, class_name: "Team", foreign_key: :team_manager_id, dependent: :destroy
+  has_many :team_roles, dependent: :destroy
   # has_many :team_role_skills, through: :team_roles
   has_many :teams, through: :team_roles
-  has_many :user_skills
+  has_many :user_skills, dependent: :destroy
   has_many :skills, through: :user_skills
 
   validates :first_name, presence: true

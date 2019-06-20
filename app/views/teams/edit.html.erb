@@ -3,6 +3,6 @@
   <hr>
   <%= link_to "Back to the team", team_path(@team), class: "btn btn-secondary" %>
   <br>
-  <%= link_to team_path(@team), method: :delete, data: { confirm: "Are you sure you want to delete #{@team.name} team?" }, class: "btn btn-primary text-white" do %>
+  <%= link_to team_path(@team), method: :delete, data: { confirm: "Are you sure you want to delete #{@team.name} team? All linked team roles and skills will be also deleted." }, class: "btn btn-primary text-white" do %>
   <i class="fas fa-trash"></i>
   <% end %>

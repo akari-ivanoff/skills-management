@@ -18,7 +18,7 @@
         <% end %>
       <% end %>
       <% if @user == current_user %>
-        <%= link_to  user_skill_path(userskill), data: { confirm: 'Are you sure?' }, method: :delete do %>
+        <%= link_to  user_skill_path(userskill), data: { confirm: "Are you sure you want to delete #{userskill.skill.name} skill?" }, method: :delete do %>
           <i class="fas fa-trash-alt"></i>
         <% end %>
       <% end %>
