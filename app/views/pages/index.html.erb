@@ -47,7 +47,7 @@
               <small class="card-subtitle mb-1"><em><%= user.job_title %></em></small> <br />
             <% end %>
             <small class="card-subtitle mb-3 text-muted"><em>Available for</em></small>
-            <small class="card-subtitle "><strong>20%</strong></small>
+            <small class="card-subtitle "><strong><%= user.availability %>%</strong></small>
           </div>
       </div>
       <div class="card-text-team mb-3 mt-3">
@@ -61,8 +61,11 @@
         <li><i class="fas fa-users text-secondary mb-2"></i> Test Team Name </li>
       </div>
      <div class="card-text mb-3">
-      <p><i class="fas fa-star text-info"></i> (3) Javascript</p>
-      <p><i class="fas fa-star text-info"></i> (1) React </p>
+      <% user.user_skills.each do |userskill| %>
+        <% if @queryskills.include? userskill.skill.name %>
+          <p><i class="fas fa-star text-info"></i> <%= userskill.self_assessment %> | <%= userskill.manager_assessment %> <%= userskill.skill.name %> </p>
+       <% end %>
+      <% end %>
      </div>
       <%= link_to teams_path do %>
       <p class="btn btn-primary w-100 mb-0 button-upgrade"><i class="fas fa-plus"></i> Allocate</p>
