@@ -1,4 +1,4 @@
-<h3 class="mb-3 mt-5">Your super powers</h3>
+<h3 class="mb-3 mt-5">Super powers</h3>
 
 <% if @user == current_user %>
   <div class="card p-3 w-100 mb-1">
@@ -22,7 +22,7 @@
   <div class="card p-3 w-100 mb-1">
     <div class="d-flex justify-content-between align-items-center">
 
-      <div>
+      <div class="profile-rating-width">
         <h5 class="mb-2"> <% userskill.self_assessment.times do %>
           <i class="fas fa-star text-info"></i>
         <% end %>
@@ -42,20 +42,20 @@
         <% end %>
       </div>
 
-      <div class="w-30">
+      <div class="w-30 team-name-width">
         <h5>Experience</h5>
         <%= userskill.experience %>
       </div>
 
-      <div class="flex-column">
-        <% if @user == current_user || current_user.is_manager %>
-          <%= link_to edit_user_skill_path(userskill.id), class: "btn btn-primary" do %>
-            <i class="fas fa-pen"></i>
+      <div class="flex-column text-align-right">
+        <% if @user == current_user %>
+          <%= link_to  user_skill_path(userskill), data: { confirm: 'Are you sure?' }, method: :delete, class: "btn btn-primary ml-4" do %>
+            <i class="fas fa-trash-alt"></i>
           <% end %>
         <% end %>
-        <% if @user == current_user %>
-          <%= link_to  user_skill_path(userskill), data: { confirm: 'Are you sure?' }, method: :delete, class: "btn btn-primary" do %>
-            <i class="fas fa-trash-alt"></i>
+        <% if @user == current_user || current_user.is_manager %>
+          <%= link_to edit_user_skill_path(userskill.id), class: "btn btn-primary ml-2" do %>
+            <i class="fas fa-pen"></i>
           <% end %>
         <% end %>
       </div>

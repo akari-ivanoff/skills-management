@@ -21,10 +21,36 @@
   </div>
 
 <div class="flex-container cards-wrapper">
+    <div class="card card_details">
+    <div class="card-body p-3">
+      <div class="d-flex user-head">
+          <div class="avatar border border-secondary" style="background-image: url('https://cdn.dribbble.com/users/1044993/screenshots/3106624/question-bear_dribbble.png')">
+          </div>
+      </div>
+      <div class="card-text-team mb-3 mt-3">
+        <h6 class="card-title mb-1 text-muted"> <br> No match found?</h6>
+      </div>
+     <div class="card-text mb-3">
+      <p> <strong>Required skillset</strong></p>
+      <p><i class="fas fa-star text-info"></i> (3) Javascript</p>
+      <p><i class="fas fa-star text-info"></i> (1) React </p>
+     </div>
+      <%= link_to teams_path do %>
+      <p class="btn btn-primary w-100 mb-2 button-upgrade"><i class="fas fa-plus mr-4"></i> to new team </p>
+      <% end %>
+
+      <%= link_to teams_path do %>
+      <p class="btn btn-primary w-100 mb-0 button-upgrade"><i class="fas fa-chevron-down mr-4"></i> Choose team </p>
+      <% end %>
+
+     </div>
+  </div>
+
+
   <% @users.each do |user| %>
   <div class="card card_details">
     <div class="card-body p-3">
-      <div class="d-flex">
+      <div class="d-flex user-head">
           <%= link_to user_path(user) do %>
             <div class="avatar" style="background-image: url('<%= cl_image_path user.photo, width: 50, height: 50, crop: :thumb, gravity: :face %>')"></div>
           <% end %>
@@ -47,7 +73,7 @@
               <small class="card-subtitle mb-1"><em><%= user.job_title %></em></small> <br />
             <% end %>
             <small class="card-subtitle mb-3 text-muted"><em>Available for</em></small>
-            <small class="card-subtitle "><strong>20%</strong></small>
+            <small class="card-subtitle "><strong><%= user.availability %>%</strong></small>
           </div>
       </div>
       <div class="card-text-team mb-3 mt-3">
@@ -58,11 +84,12 @@
            <li><i class="fas fa-users text-secondary mb-2"></i> <%= team.name %></li>
         <% end %>
       <% end %>
-        <li><i class="fas fa-users text-secondary mb-2"></i> Test Team Name </li>
       </div>
      <div class="card-text mb-3">
+      <% user.user_skills.each do |userskill| %>
+        <p class="mb-2"> <i class="fas fa-star text-info"></i> (<%= userskill.self_assessment %>) <%= userskill.skill.name %></p>
+      <% end %>
       <p><i class="fas fa-star text-info"></i> (3) Javascript</p>
-      <p><i class="fas fa-star text-info"></i> (1) React </p>
      </div>
       <%= link_to teams_path do %>
       <p class="btn btn-primary w-100 mb-0 button-upgrade"><i class="fas fa-plus"></i> Allocate</p>

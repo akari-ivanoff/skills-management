@@ -7,7 +7,7 @@
                 <i class="fas fa-chevron-down"></i>
               </a>
             </div>
-            <div>
+            <div class="team-role-width">
               <%= team_role.name %> <br>
             </div>
           <div>
@@ -20,38 +20,41 @@
               <div class="avatar" style="background-image: url('<%= cl_image_path team_role.user.photo, width: 50, height: 50, crop: :thumb, gravity: :face %>')"></div>
             <% end %>
          </div>
-         <div>
+         <div class="team-name-width">
 
             <% if team_role.user == nil %>
               <%= link_to team_team_role_path(@team, team_role), class: "btn btn-primary text-white" do %>
               Search for<i class="fas fa-user ml-3"></i>
 
-            <%= simple_form_for :query, url: pages_index_path, method: :get do |f| %>
+          <% = simple_form_for :query, url: pages_index_path, method: :get do |f| %>
               <%= f.input :skill1, :as => :hidden, :input_html => { :value => team_role.team_role_skills[0].skill.name } %>
               <%= f.input :skill2, :as => :hidden, :input_html => { :value => team_role.team_role_skills[1].skill.name } %>
               <%= f.input :skill3, :as => :hidden, :input_html => { :value => team_role.team_role_skills[2].skill.name } %>
               <%= f.button :submit, class: "btn btn-primary" %>
-
             <% end %>
 
               <% end %>
             <% else %>
-              <i class="fas fa-user ml-3"></i> <%= team_role.user.first_name %> <%= team_role.user.last_name %>
+              <i class="fas fa-user ml-3 text-secondary"></i> <%= team_role.user.first_name %> <%= team_role.user.last_name %>
             <% end %>
           </div>
-          <div>
-            <%= link_to edit_team_team_role_path(team_role), class: "btn btn-primary" do %>
+
+          <div class="flex-column text-align-right">
+            <%= link_to team_team_role_path(@team, team_role), method: :delete, data: { confirm: "Are you sure you want to delete #{team_role.name} role from #{@team.name} team? All linked needed skills will be also deleted." }, class: "btn btn-primary ml-4" do%>
+              <i class="fas fa-trash-alt"></i>
+            <% end %>
+            <%= link_to edit_team_team_role_path(team_role), class: "btn btn-primary ml-2" do %>
               <i class="fas fa-pen"></i>
             <% end %>
           </div>
+          </div>
         </div>
-      </div>
 
 
       <div class="collapse" id="<%= id_name %>">
        <div class="card p-3 w-80 mb-3">
 
-        <% if team_role.user == nil %>
+        <%# if team_role.user == nil %>
           <div class="d-flex align-items-center justify-content-between">
             <p class="flex-start"> <strong>Required skillset</strong></p>
             <div class="p-3">
@@ -79,12 +82,8 @@
               <% end %>
             </div>
           </div>
-
-        <% else %>
-
-
-        <% end %>
+        <%# else %>
+        <%# end %>
       </div>
     </div>
-
   <% end %>

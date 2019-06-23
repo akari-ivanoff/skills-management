@@ -1,6 +1,10 @@
 <div class="container">
   <h1>New team role</h1>
+<% if @team.nil? %>
+  <%= render 'team_form' %>
+<% else %>
   <%= render 'team_role_form' %>
+<% end %>
   <hr>
   <%= link_to "Back to the team", team_path(@team), class: "btn btn-secondary" %>
 </div>

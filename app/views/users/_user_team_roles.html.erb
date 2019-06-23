@@ -1,0 +1,49 @@
+<h3 class="mb-3 mt-5">Assignments</h3>
+
+<% if @user == current_user %>
+  <div class="card p-3 w-100 mb-1">
+    <div class="d-flex justify-content-between align-items-center">
+      <div>
+        <p> Here should be a dropdown to choose a team</p>
+        <% # link_to new_team_team_role_path(@team(:3)) do %>
+          <h5 class="m-0 p-0"> Allocate yourself to a new team (fix the link!) </h5>
+        <% # end %>
+      </div>
+
+      <div>
+        <% # link_to new_team_team_role_path, class: "btn btn-primary" do %>
+          <i class="fas fa-plus btn btn-primary"></i>
+        <% # end %>
+      </div>
+    </div>
+  </div>
+<% end %>
+
+<% @user.team_roles.each do |team_role| %>
+  <div class="card p-3 w-100 mb-1">
+    <div class="d-flex justify-content-between align-items-center">
+
+      <div class="team_role_width">
+        <%= link_to team_role.name, team_path(team_role) %>
+      </div>
+
+      <div class="team_role_width">
+        <%= link_to team_role.team.name, team_path(team_role) %>
+      </div>
+
+      <div>
+        <%= team_role.occupancy %> %
+      </div>
+
+      <div class="flex-column text-align-right">
+        <% if @user == current_user || current_user.is_manager %>
+          <%= link_to edit_team_team_role_path(team_role), class: "btn btn-primary" do %>
+              <i class="fas fa-pen"></i>
+            <% end %>
+        <% end %>
+      </div>
+
+    </div>
+  </div>
+<% end %>
+
