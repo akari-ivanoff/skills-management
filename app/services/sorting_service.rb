@@ -1,8 +1,8 @@
 class SortingService
 
-
-  def initialize(query)
-  @query = query
+#currently working for 3 inputs coming from pages#home and team_role_id search for placeholders.
+  def initialize(queryskills)
+  @query = queryskills
   end
 
   def sort
@@ -12,7 +12,6 @@ class SortingService
         queryhits << User.search_user_by_skill(value)
       end
       queryhitsflat = queryhits.flatten
-
     # create hash containing User object and amount of query hits
     userhits = {}
     queryhitsflat.each do |item|
@@ -22,7 +21,7 @@ class SortingService
 
     # sorting users on maximum skill hit
 
-    userhits.sort.to_h.keys
+    @users = userhits.sort_by{|k,v|-v}.to_h.keys
   end
   # TO DO add grouping on skill rating
 
@@ -33,4 +32,6 @@ class SortingService
     # userscores << hit.user_skills.find_by(user_skill.skill.name: "Javascript").self_assessment
     # end
     # create hash containing User ID and stars
+
+
 end

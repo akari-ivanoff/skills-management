@@ -15,6 +15,7 @@ class UsersController < ApplicationController
     @userskills = UserSkill.all.select do |userskill|
       userskill.user == @user
     end
+     @userskills = @userskills.sort_by{|userskill| - userskill.self_assessment}
   end
 
   def edit

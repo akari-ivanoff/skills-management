@@ -87,9 +87,10 @@
       </div>
      <div class="card-text mb-3">
       <% user.user_skills.each do |userskill| %>
-        <p class="mb-2"> <i class="fas fa-star text-info"></i> (<%= userskill.self_assessment %>) <%= userskill.skill.name %></p>
+        <% if @queryskills.include? userskill.skill.name %>
+          <p><i class="fas fa-star text-info"></i> <%= userskill.self_assessment %> | <%= userskill.manager_assessment %> <%= userskill.skill.name %> </p>
+       <% end %>
       <% end %>
-      <p><i class="fas fa-star text-info"></i> (3) Javascript</p>
      </div>
       <%= link_to teams_path do %>
       <p class="btn btn-primary w-100 mb-0 button-upgrade"><i class="fas fa-plus"></i> Allocate</p>
