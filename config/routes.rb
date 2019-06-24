@@ -4,6 +4,7 @@ Rails.application.routes.draw do
 
   get 'pages/index'
 
+  "www.skillm.com/allocate/32"
   devise_for :users
   resources :users, except: [:new, :create, :destroy] do
     resources :user_skills, only: [:new, :create, :index]
