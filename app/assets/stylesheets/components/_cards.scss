@@ -73,9 +73,34 @@
   min-width: 75%;
 }
 
+.profile-rating-width {
+  max-width: 60%;
+  min-width: 60%;
+}
+
+.user-head {
+  min-height: 80px;
+}
+
 .user-details {
   width: 100%;
 }
+
+.team-role-width {
+  max-width: 30%;
+  min-width: 30%;
+}
+
+.team-name-width {
+  max-width: 25%;
+  min-width: 25%;
+}
+
+.team-role-details-width {
+  max-width: 40%;
+  min-width: 40%;
+}
+
 
 // OLD STUFF, but maybe used, needs to be cleaned
 

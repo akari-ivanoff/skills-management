@@ -3,6 +3,7 @@ class TeamsController < ApplicationController
 
   def index
     @teams = Team.all
+    @team_roles = TeamRole.all
   end
 
   def new

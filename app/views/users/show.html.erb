@@ -13,14 +13,30 @@
 
       <div>
         <p> <strong> <i class="fas fa-network-wired"></i> Job title: </strong> <%= @user.job_title %></p>
-        <p> <strong> <i class="fas fa-users"></i> Chapter: </strong> <%= @user.chapter %></p>
-        <div>
-          <p> <strong> <i class="fas fa-sun"></i> Availability | <i class="fas fa-moon"></i> Occupancy </strong> </p>
-          <h3> <i class="fas fa-sun"></i> <%= @user.availability %>% | <i class="fas fa-moon"></i> 80% </h3>
+        <div class="d-flex mt-5">
+          <div class="mr-4">
+            <% total_occupancy = 0 %>
+            <% @user.team_roles.each do |team| %>
+             <% total_occupancy += team.occupancy %>
+            <% end %>
+            <p class="text-center mb-0"> <strong> Availability </strong> </p>
+            <h3 class="text-center"> <i class="fas fa-sun"></i> <%= @user.availability %>% </h3>
+          </div>
+          <div>
+            <p class="text-center mb-0"> <strong>  Occupancy </strong> </p>
+            <h3 class="text-center"> <i class="fas fa-moon"></i> <%= total_occupancy %>% </h3>
+          </div>
+        </div>
+        <div class="d-flex">
+          <% if @user.availability < total_occupancy %>
+          <h4 class="text-center text-primary mt-4"><i class="fas fa-exclamation-circle"></i> <%= total_occupancy - @user.availability %>% overload</h4>
+          <% end %>
         </div>
       </div>
 
       <div>
+        <p> <strong> <i class="fas fa-users"></i> Chapter: </strong> <%= @user.chapter %></p>
+
         <% if @user.id != 1 %>
           <% if @user.is_manager == "true" %>
             <p> <strong> <i class="fas fa-user-tie"></i> Manager: </strong> Yes </p>
@@ -42,7 +58,12 @@
     </div>
   </div>
 
-    <%= render 'user_skills' %>
+<%= render 'user_team_roles' %>
+
+<%= render 'user_skills' %>
+
+
+
 
 
 

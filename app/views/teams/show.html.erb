@@ -8,21 +8,40 @@
 
 
 <div class="card p-3 w-100">
+  <div class="d-flex pl-3 justify-content-center mb-4">
+    <h2>
+      <% placeholders = @team.team_roles.all.select do |role| %>
+        <% role.user == nil %>
+      <% end %>
+      <% if placeholders.count > 0 %>
+        <span class="badge badge-pill badge-info text-white mr-4"> <%= placeholders.count %></span>
+      <% else %>
+        <span class="badge badge-pill badge-success mr-4"> <i class="fas fa-check"></i></span>
+      <% end %>
+
+      <% o_sum = 0 %>
+      <% @team.team_roles.all.select do |role| %>
+       <% o_sum += role.occupancy %>
+      <% end %>
+      <strong class="text-secondary"><i class="fas fa-users text-secondary"></i> <%= @team.team_roles.count %> ( <%= o_sum %>% )</strong>
+    </h2>
+  </div>
+
   <div class=" d-flex justify-content-between align-items-center w-100">
-    <div>
-      <p> <strong> <i class="fas fa-users"></i> Owner: </strong> <%= @team.owner_contact %></p>
-      <p> <strong> <i class="fas fa-users"></i> Manager: </strong> <%= link_to "#{@team.team_manager.first_name} #{@team.team_manager.last_name}", user_path(@team.team_manager) %></p>
+    <div class="team-name-width">
+      <p> <strong> <i class="fas fa-users text-secondary"></i> Owner: </strong> <%= @team.owner_contact %></p>
+      <p class="mb-0"> <strong> <i class="fas fa-users text-secondary"></i> Manager: </strong> <%= link_to "#{@team.team_manager.first_name} #{@team.team_manager.last_name}", user_path(@team.team_manager) %></p>
     </div>
 
-    <div>
-      <p> <strong> <i class="fas fa-building"></i> </strong> <%= @team.site.country %>, <%= @team.site.city %></p>
+    <div class="profile-rating-width">
+      <p> <strong> <i class="fas fa-building text-secondary"></i> </strong> <%= @team.site.country %>, <%= @team.site.city %></p>
       <div class="d-flex">
         <h3><i class="fas fa-info-circle text-primary flex-start"></i></h3>
-        <p class="ml-3"> <%= @team.description %></p>
+        <p class="ml-3 mb-0"> <%= @team.description %></p>
       </div>
     </div>
     <div>
-      <%= link_to edit_team_path(@team), class: "btn btn-primary" do %>
+      <%= link_to edit_team_path(@team), class: "btn btn-primary ml-3" do %>
         <i class="fas fa-pen"></i>
       <% end %>
     </div>

@@ -5,6 +5,7 @@ class PagesController < ApplicationController
   end
 
   def index
+
   if params[:query][:team_role_id].present? # if search is done via placeholder
     query = TeamRole.find(params[:query][:team_role_id])
     @queryskills = query.skills.map {|skill| skill.name}
@@ -17,6 +18,6 @@ class PagesController < ApplicationController
     else
       @users = User.all # otherwise, show all users
 
+    @team = Team.new # added in order to choose a team, when a match was found on results page (pages/index)
   end
-end
 end
