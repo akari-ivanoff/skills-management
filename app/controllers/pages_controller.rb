@@ -19,6 +19,7 @@ class PagesController < ApplicationController
       @users = User.all # otherwise, show all users
       @team = Team.new # added in order to choose a team, when a match was found on results page (pages/index)
     end
+
   end
 
 
