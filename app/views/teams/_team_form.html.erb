@@ -5,5 +5,6 @@
   <%= f.association :team_manager, label_method: :network_id, value_method: :id, include_blank: false%>
   <%= f.association :site, as: :select, label_method: :city, value_method: :id, include_blank: false %>
   <%= hidden_field_tag :user_id, @user.id if @user%>
+  <%= hidden_field_tag :placeholder, @placeholder if @placeholder%>
   <%= f.button :submit, class: "btn btn-primary" %>
 <% end %>
