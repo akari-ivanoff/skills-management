@@ -28,12 +28,12 @@
 
       <div class="card-text mb-3">
       <p> <strong>Required skillset</strong></p>
-      <% @queryskills.each do |key| %>
-        <p> <%= key %> </p>
+      <% @queryskills.each do |value| %>
+        <p> <%= value %> </p>
        <% end %>
      </div>
 
-      <%= link_to teams_path(placeholder: true) do %>
+      <%= link_to teams_path(placeholder: true, query_array: @queryskills ) do %>
       <p class="btn btn-primary w-100 mb-2 button-upgrade"><i class="fas fa-plus mr-4"></i> Allocate </p>
       <% end %>
      </div>

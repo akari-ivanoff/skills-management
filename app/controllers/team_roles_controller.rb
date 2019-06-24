@@ -8,6 +8,7 @@ class TeamRolesController < ApplicationController
 
   def new
     @team_role = TeamRole.new
+    @query_array = params[:query_array]
     if params[:user_id].present?
       @user = User.find(params[:user_id])
       @team_role.user = @user
@@ -18,7 +19,14 @@ class TeamRolesController < ApplicationController
     @team_role = TeamRole.new(team_role_params)
     @team_role.team = @team
     if @team_role.save
-      redirect_to team_path(@team), notice: "#{@team_role.name} role has been added to the #{@team.name} team"
+
+      if params[:query_array].present?
+        params[:query_array].split("\%\%\%").each do |searched_skill|
+          skill = Skill.find_by(name: searched_skill)
+          TeamRoleSkill.create(team_role: @team_role, skill: skill)
+        end
+      end
+      redirect_to team_path(@team, query_array: params[:query_array]), notice: "#{@team_role.name} role has been added to the #{@team.name} team"
     else
       render :new
     end
