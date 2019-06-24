@@ -61,12 +61,12 @@
     html,
     body {
       position: relative;
-      background: white;
       min-height: 100%;
       width: 100%;
       display: flex;
       align-items: center;
       justify-content: center;
+      font-family: arial, sans-serif;
     }
 
     .Container {
@@ -76,14 +76,13 @@
 
     .MainTitle {
       display: block;
-      font-size: 2rem;
+      font-size: 4rem;
       font-weight: lighter;
       text-align: center;
     }
 
     .MainDescription {
-      max-width: 50%;
-      font-size: 1.2rem;
+      font-size: 2rem;
       font-weight: lighter;
     }
 
@@ -92,8 +91,9 @@
     }
 
     .Cog {
-      width: 10rem;
-      height: 10rem;
+      width: 15rem;
+      height: 15rem;
+      fill: #7D1128;
       transition: easeInOutQuint();
       animation: CogAnimation 5s infinite;
     }
@@ -133,7 +133,7 @@
     <h1 class="MainTitle">
       Oops! It seems like 500
     </h1>
-    <p class="Main Description">
+    <p class="MainDescription">
       Something went wrong...
     </p>
     <br>
