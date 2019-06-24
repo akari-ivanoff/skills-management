@@ -94,7 +94,7 @@ ActiveRecord::Schema.define(version: 2019_06_14_125123) do
     t.integer "availability"
     t.boolean "is_manager"
     t.bigint "site_id"
-    t.string "photo", default: "avatar.jpg"
+    t.string "photo"
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
