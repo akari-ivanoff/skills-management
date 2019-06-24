@@ -26,13 +26,6 @@
         </h5>
         <h6 class="card-subtitle mb-3 text-muted text-center"><em> by <%= team.owner_contact %></em></h6>
       </div>
-      <div class="card-text">
-       <% team.users.all.each do |user| %>
-       <%= link_to user_path(user) do %>
-          <li><i class="fas fa-user-alt text-secondary"></i> <%= user.first_name %> <%= user.last_name %></li>
-       <% end %>
-        <% end %>
-     </div>
     </div>
 
      <div class="card-body p-0">
