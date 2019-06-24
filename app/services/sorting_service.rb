@@ -30,35 +30,20 @@ class SortingService
             counter += userskill.self_assessment
           end
         end
-
       userratings[key] = counter
     end
 
     # merge hashes
-    userstats = {}
-    userhits.values
-    userratings.values
+    resultsarray = []
 
-    # prio 2: sort users on total self-assessment rating
-    userssorted = userhits.sort_by { |k, v| -userratings[k] }.to_h
+    userhits.keys.each do |key|
+      resultsarray << [key, userhits[key], userratings[key]]
+    end
 
-    # prio 1: sort users on number of skills that match query'
+    # below works, could also group
+    resultsarraysorted = resultsarray.sort_by { |a| [-a[2]] }
+    resultsarraysorted2 = resultsarraysorted.sort_by { |a| [-a[1]] }
 
-    @users = userssorted.sort_by { |k, v| -v }.to_h.keys
-  end
+    @users = resultsarraysorted2.map {|column| column[0]}
+    end
 end
-
- #   end
-
-  # TO DO add grouping on skill rating
-
-    # fetch User self-assessment for query hits (or all queries)
-   # userscores_skill1 = []
-   # userhits.keys.each do |hit| #CHANGE TO HASH
-   # UserSkill.where(user_id: hit.id, skill_id: Skill.find_by(name: params[:query][:skill1]).id).first.self_assessment
-   # userscores << hit.user_skills.find_by(user_skill.skill.name: "Javascript").self_assessment
-   # end
-   # create hash containing User ID and stars
-
-
-

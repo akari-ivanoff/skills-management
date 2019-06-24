@@ -4,7 +4,7 @@
     <div id="search_bar">
       <h5>Continue your search:</h5>
        <form action= "/pages/index" method="GET">
-        <select class="js-example-basic-multiple" name="query[]" multiple="multiple">
+        <select class="query-select-boxes" name="query[]" multiple="multiple" style="width: 500px">
           <% @skills.each do |skill| %>
             <option value="<%= skill.name %>"><%= skill.name %></option>
           <% end %>
@@ -28,12 +28,12 @@
 
       <div class="card-text mb-3">
       <p> <strong>Required skillset</strong></p>
-      <% @queryskills.each do |key| %>
-        <p> <%= key %> </p>
+      <% @queryskills.each do |value| %>
+        <p> <%= value %> </p>
        <% end %>
      </div>
 
-      <%= link_to teams_path(placeholder: true) do %>
+      <%= link_to teams_path(placeholder: true, query_array: @queryskills ) do %>
       <p class="btn btn-primary w-100 mb-2 button-upgrade"><i class="fas fa-plus mr-4"></i> Allocate </p>
       <% end %>
      </div>
@@ -81,7 +81,7 @@
      <div class="card-text mb-3">
       <% user.user_skills.each do |userskill| %>
         <% if @queryskills.include? userskill.skill.name %>
-          <p><i class="fas fa-star text-info"></i> <%= userskill.self_assessment %> | <%= userskill.manager_assessment %> <%= userskill.skill.name %> </p>
+          <p><i class="fas fa-star text-info"></i> <%= userskill.self_assessment %> <%= " | " if current_user.is_manager %><%= userskill.manager_assessment if current_user.is_manager %> <%= userskill.skill.name %> </p>
        <% end %>
       <% end %>
      </div>

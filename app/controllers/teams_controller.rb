@@ -4,6 +4,7 @@ class TeamsController < ApplicationController
   def index
     @teams = Team.order(name: :asc)
     @placeholder = true
+    @skill_query = @queryskills
     @team_roles = TeamRole.all
     if params[:user_id].present?
       @user = User.find(params[:user_id])
@@ -16,6 +17,7 @@ class TeamsController < ApplicationController
       @user = User.find(params[:user_id])
     elsif params[:placeholder]
       @placeholder = true
+      @skill_query = @queryskills
     end
   end
 
@@ -25,7 +27,7 @@ class TeamsController < ApplicationController
       if params[:user_id].present?
         redirect_to teams_path(user_id: User.find(params[:user_id]), notice: "#{@team.name} team has been created")
       elsif params[:placeholder]
-        redirect_to teams_path(placeholder: true, notice: "#{@team.name} team has been created")
+        redirect_to teams_path(placeholder: true, skill_query: @queryskills, notice: "#{@team.name} team has been created")
       else
         redirect_to teams_path, notice: "#{@team.name} team has been created"
       end
@@ -36,6 +38,7 @@ class TeamsController < ApplicationController
 
   def show
     @team_role_skill = TeamRoleSkill.new #check with Mike
+    @skills = params[:query_array]
   end
 
   def edit
