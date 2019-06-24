@@ -25,19 +25,17 @@
       <div class="card-text-team mb-3 mt-3">
         <h6 class="card-title mb-1 text-muted"> <br> No match found?</h6>
       </div>
-     <div class="card-text mb-3">
+
+      <div class="card-text mb-3">
       <p> <strong>Required skillset</strong></p>
-      <p><i class="fas fa-star text-info"></i> (3) Javascript</p>
-      <p><i class="fas fa-star text-info"></i> (1) React </p>
+      <% @queryskills.each do |key| %>
+        <p> <%= key %> </p>
+       <% end %>
      </div>
-      <%= link_to teams_path do %>
-      <p class="btn btn-primary w-100 mb-2 button-upgrade"><i class="fas fa-plus mr-4"></i> to new team </p>
-      <% end %>
 
-      <%= link_to teams_path do %>
-      <p class="btn btn-primary w-100 mb-0 button-upgrade"><i class="fas fa-chevron-down mr-4"></i> Choose team </p>
+      <%= link_to teams_path(placeholder: true) do %>
+      <p class="btn btn-primary w-100 mb-2 button-upgrade"><i class="fas fa-plus mr-4"></i> Allocate </p>
       <% end %>
-
      </div>
   </div>
 
