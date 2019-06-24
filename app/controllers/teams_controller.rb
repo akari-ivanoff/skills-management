@@ -2,18 +2,28 @@ class TeamsController < ApplicationController
   before_action :find_team, only: [:show, :edit, :update, :destroy]
 
   def index
-    @teams = Team.all
+    @teams = Team.order(name: :asc)
     @team_roles = TeamRole.all
+    if params[:user_id].present?
+      @user = User.find(params[:user_id])
+    end
   end
 
   def new
     @team = Team.new
+    if params[:user_id].present?
+      @user = User.find(params[:user_id])
+    end
   end
 
   def create
     @team = Team.new(team_params)
     if @team.save
-      redirect_to teams_path, notice: "#{@team.name} team has been created"
+      if params[:user_id].present?
+        redirect_to teams_path(user_id: User.find(params[:user_id]), notice: "#{@team.name} team has been created")
+      else
+        redirect_to teams_path, notice: "#{@team.name} team has been created"
+      end
     else
       render :new
     end

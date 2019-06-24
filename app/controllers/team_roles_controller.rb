@@ -8,6 +8,10 @@ class TeamRolesController < ApplicationController
 
   def new
     @team_role = TeamRole.new
+    if params[:user_id].present?
+      @user = User.find(params[:user_id])
+      @team_role.user = @user
+    end
   end
 
   def create
