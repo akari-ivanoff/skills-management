@@ -33,6 +33,9 @@ Rails.application.routes.draw do
     get "most_common_skills"
     get "least_common_skills"
     get "occupation"
+    get "empty_positions"
+    get "most_needed_skills"
+    get "less_needed_skills"
   end
 end
 

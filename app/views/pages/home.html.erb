@@ -1,43 +1,40 @@
 <div class="home-wrapper">
 
-<div class="banner">
-  <div class="container">
-    <div id="search_bar">
-      <h1>Find the perfect match to your skill needs.</h1>
-      <br>
-    </div>
+  <div class="banner">
+    <div class="container">
+      <div id="search_bar">
+        <h1>Find the perfect match to your skill needs.</h1>
+        <br>
+      </div>
 
-    <form action= "/pages/index" method="GET">
+      <form action="/pages/index" method="GET">
         <select class="query-select-boxes" name="query[]" multiple="multiple" style="width: 75%">
           <% @skills.each do |skill| %>
-            <option value="<%= skill.name %>"><%= skill.name %></option>
+          <option value="<%= skill.name %>"><%= skill.name %></option>
           <% end %>
         </select>
-        <input type="submit" value = "Submit">
+        <input type="submit" value="Submit">
       </form>
-    <br>
-    <p>Use our smart search to find people with the skill-set you need.</p>
-  </div>
+      <br>
+      <p>Use our smart search to find people with the skill-set you need.</p>
+    </div>
 
-  <div class="container">
-    <div class="w-100 bg-light">
-      <br>
-      <br>
-      <div class="container">
-        <h2> Find experts in most relevant skills </h2>
-        <div class="flex-container category-cards">
-          <div class="card-category"
-            style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(https://images.unsplash.com/photo-1515879218367-8466d910aaa4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80)">
-            React </div>
-  
+    <div class="container">
+      <div class="w-100 bg-light">
+        <br>
+        <br>
+        <div class="container">
+          <h2> Find experts in most relevant skills </h2>
+          <div class="flex-container category-cards">
+            <div class="card-category"
+              style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(https://images.unsplash.com/photo-1515879218367-8466d910aaa4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80)">
+              React </div>
+
+          </div>
         </div>
       </div>
     </div>
+
   </div>
 
 </div>
-<<<<<<< HEAD
-=======
-</div>
->>>>>>> master
-
