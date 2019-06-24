@@ -30,6 +30,7 @@ class SortingService
             counter += userskill.self_assessment
           end
         end
+
       userratings[key] = counter
     end
 
@@ -39,10 +40,11 @@ class SortingService
     userratings.values
 
     # prio 2: sort users on total self-assessment rating
-    userhits2 = userhits.sort_by { |k, v| -userratings[k] }.to_h
+    userssorted = userhits.sort_by { |k, v| -userratings[k] }.to_h
 
-    # prio 1: sort users on number of skills that match query
-    @users = userhits2.sort_by { |k, v| -v }.to_h.keys
+    # prio 1: sort users on number of skills that match query'
+
+    @users = userssorted.sort_by { |k, v| -v }.to_h.keys
   end
 end
 
