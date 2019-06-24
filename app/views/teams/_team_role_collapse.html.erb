@@ -45,7 +45,7 @@
             <%= link_to team_team_role_path(@team, team_role), method: :delete, data: { confirm: "Are you sure you want to delete #{team_role.name} role from #{@team.name} team? All linked needed skills will be also deleted." }, class: "btn btn-primary ml-4" do%>
               <i class="fas fa-trash-alt"></i>
             <% end %>
-            <%= link_to edit_team_team_role_path(team_role), class: "btn btn-primary ml-2" do %>
+            <%= link_to edit_team_team_role_path(@team, team_role), class: "btn btn-primary ml-2" do %>
               <i class="fas fa-pen"></i>
             <% end %>
           </div>

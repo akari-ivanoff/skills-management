@@ -1,7 +1,9 @@
 <%= simple_form_for [@team, @team_role] do |f| %>
   <%= f.error :base %>
   <%= f.input :name, label: "Give the new role a name, e.g. Lead Backend Programmer" %>
-  <%= f.association :user, label_method: :network_id, value_method: :id, label: "Either choose a co-worker or leave it for later, creating a placeholder for now"%>
+  <% unless params[:placeholder] && params[:user].present? %>
+    <%= f.association :user, label_method: :network_id, value_method: :id, label: "Either choose a co-worker or leave it for later, creating a placeholder for now"%>
+  <% end %>
   <%= f.input :occupancy, input_html: { min: 10, max: 100 } %>
   <%= f.button :submit, class: "btn btn-primary" %>
 <% end %>

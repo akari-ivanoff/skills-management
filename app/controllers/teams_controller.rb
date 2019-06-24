@@ -3,6 +3,7 @@ class TeamsController < ApplicationController
 
   def index
     @teams = Team.order(name: :asc)
+    @placeholder = true
     @team_roles = TeamRole.all
     if params[:user_id].present?
       @user = User.find(params[:user_id])
@@ -13,6 +14,8 @@ class TeamsController < ApplicationController
     @team = Team.new
     if params[:user_id].present?
       @user = User.find(params[:user_id])
+    elsif params[:placeholder]
+      @placeholder = true
     end
   end
 
@@ -21,6 +24,8 @@ class TeamsController < ApplicationController
     if @team.save
       if params[:user_id].present?
         redirect_to teams_path(user_id: User.find(params[:user_id]), notice: "#{@team.name} team has been created")
+      elsif params[:placeholder]
+        redirect_to teams_path(placeholder: true, notice: "#{@team.name} team has been created")
       else
         redirect_to teams_path, notice: "#{@team.name} team has been created"
       end
