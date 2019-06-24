@@ -8,7 +8,8 @@
     <link href="https://fonts.googleapis.com/css?family=Averia+Gruesa+Libre|Concert+One|Courgette|Crafty+Girls|Nova+Mono|Sofia&display=swap" rel="stylesheet">
     <%= csrf_meta_tags %>
     <%= action_cable_meta_tag %>
-    <%= stylesheet_link_tag 'application', media: 'all' %>
+    <%= stylesheet_link_tag 'application', media: 'all' %>\
+    <%= javascript_include_tag 'application' %>
     <%#= stylesheet_pack_tag 'application', media: 'all' %> <!-- Uncomment if you import CSS in app/javascript/packs/application.js -->
   </head>
   <body>
@@ -17,7 +18,6 @@
     <div class="container home-wrapper pb-5 pt-4" style="background-color: rgba(255, 255, 255, 0.4);">
     <%= yield %>
     </div>
-    <%= javascript_include_tag 'application' %>
     <%= javascript_pack_tag 'application' %>
   </body>
 </html>
