@@ -1,19 +1,23 @@
-
-
-<div class="container">
-    <div id="search_bar">
-      <h5 class="mr-2">Continue your search:</h5>
-       <form action= "/pages/index" method="GET">
-        <select class="query-select-boxes" name="query[]" multiple="multiple" style="width: 500px">
-          <% @skills.each do |skill| %>
+<div class="teams-banner mb-4">
+  <div class="container d-flex align-items-center">
+    <div class="mr-4"><h3><em>All Teams</em></h3></div>
+      <div class="pl-5">
+        <div id="search_bar">
+         <form action="/pages/index" method="GET">
+          <select class="query-select-boxes" name="query[]" multiple="multiple" style="width: 40vw" id="select2Selector2">
+            <% @skills.each do |skill| %>
             <option value="<%= skill.name %>"><%= skill.name %></option>
-          <% end %>
-        </select>
-        <input type="submit" value = "Submit">
-      </form>
-
+            <% end %>
+          </select>
+          <button id = "searchbutton" name="button" type="submit" class="btn btn-flat btn-dark">
+            <i class="fas fa-search"></i>
+          </button>
+        </form>
+      </div>
     </div>
   </div>
+</div>
+
 
 <div class="flex-container cards-wrapper">
 
@@ -25,7 +29,7 @@
           </div>
       </div>
       <div class="card-text-team mb-3 mt-3">
-        <h6 class="card-title mb-1 text-muted"> <br> No match found?</h6>
+        <h6 class="card-title mb-1 text-muted"> <br> No match found? </h6>
       </div>
 
       <div class="card-text mb-3">
@@ -67,8 +71,13 @@
             <% else %>
               <small class="card-subtitle mb-1"><em><%= user.job_title %></em></small> <br />
             <% end %>
-            <small class="card-subtitle mb-3 text-muted"><em>Available for</em></small>
-            <small class="card-subtitle "><strong><%= user.availability %>%</strong></small>
+            <small class="card-subtitle mb-3 text-muted"><em>Allocatable for</em></small>
+            <% total_occupancy = 0 %>
+            <% user.team_roles.each do |team| %>
+              <% total_occupancy += team.occupancy %>
+            <% end %>
+            <small class="card-subtitle "><strong><%= user.availability - total_occupancy %>% </strong></small>
+
           </div>
       </div>
       <div class="card-text-team mb-3 mt-3">

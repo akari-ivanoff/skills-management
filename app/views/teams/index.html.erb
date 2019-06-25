@@ -1,3 +1,4 @@
+<div class="teams-banner mb-4 mr-0 mt-0 ml-0">
 <% if @user.present? || params[:placeholder]%>
   <div class="mb-4 mt-4">
     <div class="container d-flex align-items-center justify-content-between">
@@ -10,8 +11,7 @@
     </div>
   </div>
 <% else %>
-  <div class="teams-banner mb-4">
-    <div class="container d-flex align-items-center">
+  <div class="container d-flex align-items-center">
       <div class="mr-4"><h3>All Teams</h3></div>
       <div class="pl-5">
         <%= link_to new_team_path(user_id: @user, placeholder: params[:placeholder], skill_query: params[:skill_query]) do %>
@@ -19,8 +19,8 @@
         <% end %>
       </div>
     </div>
-  </div>
-<% end %>
+  <% end %>
+</div>
 
 
 
