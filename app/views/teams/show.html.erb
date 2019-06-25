@@ -19,11 +19,8 @@
         <span class="badge badge-pill badge-success mr-4"> <i class="fas fa-check"></i></span>
       <% end %>
 
-      <% o_sum = 0 %>
-      <% @team.team_roles.all.select do |role| %>
-       <% o_sum += role.occupancy %>
-      <% end %>
-      <strong class="text-secondary"><i class="fas fa-users text-secondary"></i> <%= @team.team_roles.count %> ( <%= o_sum %>% )</strong>
+      <% occupation = @team.occupation %>
+      <strong class="text-secondary"><i class="fas fa-users text-secondary"></i> <%= @team.team_roles.count %> ( <%= occupation %>% )</strong>
     </h2>
   </div>
 

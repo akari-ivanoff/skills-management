@@ -15,21 +15,18 @@
         <p> <strong> <i class="fas fa-network-wired"></i> Job title: </strong> <%= @user.job_title %></p>
         <div class="d-flex mt-5">
           <div class="mr-4">
-            <% total_occupancy = 0 %>
-            <% @user.team_roles.each do |team| %>
-             <% total_occupancy += team.occupancy %>
-            <% end %>
+            <% total_occupation = @user.occupation %>
             <p class="text-center mb-0"> <strong> Availability </strong> </p>
             <h3 class="text-center"> <i class="fas fa-sun"></i> <%= @user.availability %>% </h3>
           </div>
           <div>
-            <p class="text-center mb-0"> <strong>  Occupancy </strong> </p>
-            <h3 class="text-center"> <i class="fas fa-moon"></i> <%= total_occupancy %>% </h3>
+            <p class="text-center mb-0"> <strong>  Occupation </strong> </p>
+            <h3 class="text-center"> <i class="fas fa-moon"></i> <%= total_occupation %>% </h3>
           </div>
         </div>
         <div class="d-flex">
-          <% if @user.availability < total_occupancy %>
-          <h4 class="text-center text-primary mt-4"><i class="fas fa-exclamation-circle"></i> <%= total_occupancy - @user.availability %>% overload</h4>
+          <% if @user.availability < total_occupation %>
+          <h4 class="text-center text-primary mt-4"><i class="fas fa-exclamation-circle"></i> <%= total_occupation - @user.availability %>% overload</h4>
           <% end %>
         </div>
       </div>

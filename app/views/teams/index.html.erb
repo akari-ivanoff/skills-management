@@ -57,11 +57,8 @@
             <span class="badge badge-pill badge-success mr-4"> <i class="fas fa-check"></i></span>
             <% end %>
           </div>
-          <% o_sum = 0 %>
-          <% team.team_roles.all.select do |role| %>
-          <% o_sum += role.occupancy %>
-          <% end %>
-          <p><strong><i class="fas fa-users"></i> <%= team.team_roles.count %> ( <%= o_sum %>% )</strong></p>
+          <% occupation = team.occupation %>
+          <p><strong><i class="fas fa-users"></i> <%= team.team_roles.count %> ( <%= occupation %>% )</strong></p>
         </div>
         <div>
           <% if @user.present? || params[:placeholder]%>

@@ -10,4 +10,12 @@ class Team < ApplicationRecord
   validates :owner_contact, presence: true
   validates :site_id, presence: true
   # validates :description, presence: true
+
+  def occupation
+    occupation_sum = 0
+    team_roles.each do |team_role|
+      occupation_sum += team_role.occupancy
+    end
+    return occupation_sum
+  end
 end
