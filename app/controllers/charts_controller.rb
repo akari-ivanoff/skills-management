@@ -12,10 +12,7 @@ class ChartsController < ApplicationController
   def occupation
     hash = {}
     User.all.each do |user|
-      occupation = 0
-      TeamRole.all.select { |team_role| team_role.user == user }.each do |user_role|
-        occupation += user_role.occupancy
-      end
+      occupation = user.occupation
       counter(hash, occupation)
     end
     render json: hash

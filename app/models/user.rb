@@ -27,7 +27,7 @@ class User < ApplicationRecord
 
   def verify_manager
     if self.job_title != "Chapter Lead" && manager.nil?
-      errors.add(:manager, "This user needs a manager because he's not a Chapter Lead.")
+      errors.add(:manager, "This user needs a manager because the job title is different from the 'Chapter Lead'.")
     end
   end
 
@@ -37,6 +37,14 @@ class User < ApplicationRecord
 
   def employees
     is_manager ? User.where(manager_id: id) : []
+  end
+
+  def occupation
+    occupation_sum = 0
+    team_roles.each do |user_role|
+      occupation_sum += user_role.occupancy
+    end
+    return occupation_sum
   end
 
   pg_search_scope :search_user_by_skill,
