@@ -36,7 +36,8 @@
       <div>
         <p> <strong> <i class="fas fa-users"></i> Chapter: </strong> <%= @user.chapter %></p>
 
-        <% if @user.id != 1 %>
+        <%# Dirty hack to fix the manager issue for 1st person in the database %>
+        <% if @user.job_title != "Chapter Lead" %>
           <% if @user.is_manager == "true" %>
             <p> <strong> <i class="fas fa-user-tie"></i> Manager: </strong> Yes </p>
           <% else %>

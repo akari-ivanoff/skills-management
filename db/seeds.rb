@@ -34,13 +34,15 @@ SKILLS = {
   "DevOps tools for automating development lifecycles" => "Establish DevOps toolchain",
   "Python" => "General-purpose languages",
   "Java" => "General-purpose languages",
-  "C/C++/C#" => "General-purpose languages",
+  "C/C++" => "General-purpose languages",
+  "C#" => "General-purpose languages",
   "R" => "General-purpose languages",
   "Cobol" => "General-purpose languages",
   "Scala" => "General-purpose languages",
   ".NET" => "General-purpose languages",
   "SQL" => "General-purpose languages",
   "Ruby/Rails" => "General-purpose languages",
+  "Go" => "General-purpose languages",
   "PHP" => "Script- and Shell languages",
   "JavaScript" => "Script- and Shell languages",
   "JCL" => "Script- and Shell languages",
@@ -155,7 +157,17 @@ TEAM_NAMES = [
   'Easy Assembly',
   'EV Slide',
   'IKEA Together',
-  'Classified AR project'
+  'Classified AR project',
+  'Enkelt',
+  'Gooda',
+  'Gem',
+  'Service Desk improvements',
+  'CyberIKEA game',
+  'Great Furniture AI',
+  'Team 404',
+  'Personal Data is awesome',
+  'Breathtaking project',
+  'Robo helper'
 ]
 
 TEAM_ROLE_NAMES = [
@@ -234,6 +246,28 @@ skills = Skill.all
 
 puts 'Creating Users...'
 
+def create_email(first_name, last_name)
+  emails = User.all.map { |user| user.email }
+  email = first_name.downcase + '.' + last_name.downcase + '@ingka.ikea.com'
+  i = 1
+  while emails.include?(email)
+    email = "#{first_name.downcase}.#{last_name.downcase}#{i}@ingka.ikea.com"
+    i += 1
+  end
+  return email
+end
+
+def create_network_id(first_name, last_name)
+  network_ids = User.all.map { |user| user.network_id }
+  network_id = first_name[0..1].upcase + last_name[0..2].upcase
+  i = 1
+  while network_ids.include?(network_id)
+    network_id = "#{first_name[0..1].upcase}.#{last_name[0..2].upcase}#{i}"
+    i += 1
+  end
+  return network_id
+end
+
 User.create!(
   email: 'brigitte.lindholm@ingka.ikea.com',
   password: '1',
@@ -251,9 +285,9 @@ User.create!(
 AVATARS_WOMEN.each do |avatar|
   Faker::Config.locale = ['sv', 'de', 'en'].sample
   first_name = Faker::Name.female_first_name
-  last_name = Faker::Name.last_name
-  email = first_name.downcase + '.' + last_name.downcase + '@ingka.ikea.com'
-  network_id = first_name[0..1].upcase + last_name[0..2].upcase
+  last_name = Faker::Name.unique.last_name
+  email = create_email(first_name, last_name)
+  network_id = create_network_id(first_name, last_name)
   User.create!(
     email: email,
     password: '1',
@@ -270,12 +304,14 @@ AVATARS_WOMEN.each do |avatar|
   )
 end
 
+Faker::UniqueGenerator.clear
+
 AVATARS_MEN.each do |avatar|
   Faker::Config.locale = ['sv', 'de', 'en'].sample
   first_name = Faker::Name.male_first_name
-  last_name = Faker::Name.last_name
-  email = first_name.downcase + '.' + last_name.downcase + '@ingka.ikea.com'
-  network_id = first_name[0..1].upcase + last_name[0..2].upcase
+  last_name = Faker::Name.unique.last_name
+  email = create_email(first_name, last_name)
+  network_id = create_network_id(first_name, last_name)
   User.create!(
     email: email,
     password: '1',
@@ -292,12 +328,14 @@ AVATARS_MEN.each do |avatar|
   )
 end
 
+Faker::UniqueGenerator.clear
+
 30.times do
   Faker::Config.locale = ['sv', 'de', 'en'].sample
   first_name = Faker::Name.first_name
-  last_name = Faker::Name.last_name
-  email = first_name.downcase + '.' + last_name.downcase + '@ingka.ikea.com'
-  network_id = first_name[0..1].upcase + last_name[0..2].upcase
+  last_name = Faker::Name.unique.last_name
+  email = create_email(first_name, last_name)
+  network_id = create_network_id(first_name, last_name)
   User.create!(
     email: email,
     password: '1',
@@ -314,6 +352,8 @@ end
   )
 end
 
+Faker::UniqueGenerator.clear
+
 puts 'Users created!'
 
 users = User.all.reject { |user| user.job_title == 'Chapter Lead' }
@@ -321,7 +361,7 @@ users = User.all.reject { |user| user.job_title == 'Chapter Lead' }
 puts 'Creating UserSkills...'
 
 users.each do |user|
-  user_skills = skills.sample(Random.new.rand(3..10))
+  user_skills = skills.sample(Random.new.rand(5..12))
   user_skills.each do |user_skill|
     self_assessment = Random.new.rand(1..5)
     if Random.new.rand(1..4) == 4   # 25% chance that manager_assessment will not be the same as self_assessment
@@ -357,7 +397,25 @@ users = User.all.reject { |user| user.job_title == 'Chapter Lead' }
 
 puts 'Creating Teams, TeamRoles and TeamRoleSkills...'
 
-specialistst = users
+def create_team_role_skills(team_role)
+  Random.new.rand(3..8).times do
+    TeamRoleSkill.create!(
+      skill: Skill.all.sample,
+      team_role: team_role
+    )
+  end
+end
+
+def create_team_role(team_role_names, occupancy, team_specialist, team)
+  TeamRole.create!(
+    name: team_role_names.sample,
+    occupancy: occupancy,
+    user: team_specialist,
+    team: team
+  )
+end
+
+specialistst = users.clone
 team_names = TEAM_NAMES.clone
 team_role_names = TEAM_ROLE_NAMES.clone
 
@@ -378,47 +436,18 @@ until specialistst.empty? || team_names.empty?
     team_specialists = specialistst
   end
 
-  # Every team should have a Scrum master
-  TeamRole.create!(
-    name: team_role_names.first,
-    occupancy: 100,
-    user: team_specialists.first,
-    team: team
-  )
-  team_role_names.delete_at(0)
-  team_specialists.delete_at(0)
-
   # Seeding other roles and skills
   team_specialists.each do |team_specialist|
     if Random.new.rand(1..10) == 10 # 10% chance that specialist will get 2 roles
-      2.times do
-        team_role = TeamRole.create!(
-          name: team_role_names.sample,
-          occupancy: 50,
-          user: team_specialist,
-          team: team
-        )
-        Random.new.rand(3..8).times do
-          TeamRoleSkill.create!(
-            skill: skills.sample,
-            team_role: team_role
-          )
-        end
-      end
+      occupancy = 50
+      team_role = create_team_role(team_role_names, occupancy, team_specialist, team)
+      create_team_role_skills(team_role)
+      team_role = create_team_role(team_role_names, occupancy, team_specialist, Team.all.sample)
     else
-      team_role = TeamRole.create!(
-        name: team_role_names.sample,
-        occupancy: 100,
-        user: team_specialist,
-        team: team
-      )
-      Random.new.rand(3..8).times do
-        TeamRoleSkill.create!(
-          skill: skills.sample,
-          team_role: team_role
-        )
-      end
+      Random.new.rand(1..5) == 5 ? occupancy = 80 : occupancy = 100 # 20% chance that specialist will get 80% occupancy
+      team_role = create_team_role(team_role_names, occupancy, team_specialist, team)
     end
+    create_team_role_skills(team_role)
   end
 
   # Seeding empty roles and skills
