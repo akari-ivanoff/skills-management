@@ -16,7 +16,10 @@
         <div class="d-flex mt-5">
           <div class="mr-4">
 
-            <%= render "user_availability", team: team, user: @user%>
+            <% total_occupancy = 0 %>
+            <% @user.team_roles.each do |team| %>
+              <% total_occupancy += team.occupancy %>
+            <% end %>
 
             <p class="text-center mb-0"> <strong> Availability </strong> </p>
             <h3 class="text-center"> <i class="fas fa-sun"></i> <%= @user.availability %>% </h3>

@@ -31,6 +31,10 @@ class User < ApplicationRecord
     end
   end
 
+  def fullname
+    "#{first_name} #{last_name}"
+  end
+
   def employees
     is_manager ? User.where(manager_id: id) : []
   end
