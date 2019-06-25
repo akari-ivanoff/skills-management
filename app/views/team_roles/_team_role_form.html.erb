@@ -5,5 +5,6 @@
     <%= f.association :user, label_method: :network_id, value_method: :id, label: "Either choose a co-worker or leave it for later, creating a placeholder for now"%>
   <% end %>
   <%= f.input :occupancy, input_html: { min: 10, max: 100 } %>
+  <%= hidden_field_tag :query_array, @query_array.join("\%\%\%") if @query_array%>
   <%= f.button :submit, class: "btn btn-primary" %>
 <% end %>

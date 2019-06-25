@@ -292,7 +292,7 @@ AVATARS_MEN.each do |avatar|
   )
 end
 
-20.times do
+30.times do
   Faker::Config.locale = ['sv', 'de', 'en'].sample
   first_name = Faker::Name.first_name
   last_name = Faker::Name.last_name
