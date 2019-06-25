@@ -12,6 +12,15 @@
 @import "components/index";
 @import "pages/index";
 
+
+body {
+  // background-color: $light-gray;
+  // background-color: $gray;
+  background-size: cover;
+  background-position: center;
+  // background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), asset-url('banner03.jpg');
+}
+
 a {
   text-decoration: none;
   color: $gray;
@@ -23,6 +32,65 @@ a:hover {
   color: $red;
 }
 
-body {
-  background-color: $light-gray;
+.select2-search__field{
+  color: white !important;
+}
+
+.select2-results__option {
+  background-color: transparent !important;
+}
+
+/* dropdown list options */
+.select2-results__option[aria-selected] {
+  background-color: transparent !important;
+  color: $light-gray;
+}
+
+.select2-results {
+  background-color: $gray !important; /* SHOULD DIFFER? */
+  color: $light-gray;
+  opacity: 0.6;
+}
+
+/* dropdown options on mouseover */
+.select2-results__option--highlighted {
+  background-color: transparent !important;
+  color: white !important;
+}
+
+/* style this one, if not working, the one above */
+.select2-dropdown {
+  background-color: transparent !important;
+  color: $light-gray !important;
+}
+
+.select2-results__options {
+  background-color: transparent !important;
+}
+
+ /* whole search box */
+.select2-container--default .select2-selection--multiple {
+  background-color: transparent !important;
+  border-radius: 20px !important;
+  height: 70px;
+  vertical-align: middle !important;
+}
+
+.select2-container--default.select2-container--focus .select2-selection--multiple {
+  border: solid white 1px !important;
+}
+
+/* the boxes with selected queries */
+.select2-selection__choice {
+  color: $light-gray;
+  background-color: transparent !important;
+  border-radius: 20px !important;
+}
+
+.select2-selection select2-selection--multiple {
+  vertical-align: middle !important;
+}
+
+.select2-results__message {
+  display: none;
 }

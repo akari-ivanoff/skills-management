@@ -1,19 +1,24 @@
 
-
-<div class="container">
-    <div id="search_bar">
-      <h5>Continue your search:</h5>
-       <form action= "/pages/index" method="GET">
-        <select class="query-select-boxes" name="query[]" multiple="multiple" style="width: 500px">
-          <% @skills.each do |skill| %>
+<div class="teams-banner mb-4">
+  <div class="container d-flex align-items-center">
+    <div class="mr-4"><h3><em>All Teams</em></h3></div>
+      <div class="pl-5">
+        <div id="search_bar">
+         <form action="/pages/index" method="GET">
+          <select class="query-select-boxes" name="query[]" multiple="multiple" style="width: 40vw" id="select2Selector2">
+            <% @skills.each do |skill| %>
             <option value="<%= skill.name %>"><%= skill.name %></option>
-          <% end %>
-        </select>
-        <input type="submit" value = "Submit">
-      </form>
-
+            <% end %>
+          </select>
+          <button id = "searchbutton" name="button" type="submit" class="btn btn-flat btn-dark">
+            <i class="fas fa-search"></i>
+          </button>
+        </form>
+      </div>
     </div>
   </div>
+</div>
+
 
 <div class="flex-container cards-wrapper">
     <div class="card card_details">
