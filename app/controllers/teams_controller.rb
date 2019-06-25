@@ -39,6 +39,8 @@ class TeamsController < ApplicationController
   def show
     @team_role_skill = TeamRoleSkill.new #check with Mike
     @skills = params[:query_array]
+    @skills_for_form = Skill.order(name: :asc)
+    @order_team_roles = @team.team_roles.order(updated_at: :desc)
   end
 
   def edit

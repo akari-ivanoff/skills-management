@@ -1,0 +1,12 @@
+<div class="d-flex justify-content-between align-items-center mb-2">
+  <div style="width: 300px">
+    <%= team_role_skill.skill.name %>
+  </div>
+  <div >
+    <% team_role = team_role_skill.team_role %>
+    <% team = team_role_skill.team_role.team %>
+    <%= link_to team_team_role_team_role_skill_path(team, team_role, team_role_skill), method: :delete, data: { confirm: "Are you sure you want to delete #{team_role_skill.skill.name} skill from this role?" }, class:"btn btn-secondary text-white" do %>
+    <i class="fas fa-trash"></i>
+    <% end %>
+  </div>
+</div>

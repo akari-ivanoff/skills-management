@@ -6,7 +6,11 @@ class TeamRoleSkillsController < ApplicationController
     @team_role_skill = TeamRoleSkill.new(team_role_skill_params)
     @team_role_skill.team_role = @team_role
     if @team_role_skill.save
-      redirect_to team_path(@team), notice: "#{@team_role_skill.skill.name} skill has been added to the #{@team_role.name} role"
+      respond_to do |format|
+        format.html { redirect_to team_path(@team), notice: "#{@team_role_skill.skill.name} skill has been added to the #{@team_role.name} role" }
+        format.js  # <-- will render `app/views/reviews/create.js.erb`
+      end
+
     else
       redirect_to team_path(@team), alert: "Unable to add an empty skill"
     end
