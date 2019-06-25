@@ -8,7 +8,8 @@
 
 .skills-banner {
   background-size: cover;
-  background-position: center;
+  background-position: 50% 70%;
+  height: 150px;
   padding: 40px 0;
   background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), asset-url('banner01.jpg');
   color: white
@@ -17,14 +18,16 @@
 .people-banner {
   background-size: cover;
   background-position: center;
+  height: 150px;
   padding: 40px 0;
-  background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), asset-url('banner02.jpg');
+  background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), asset-url('banner04.jpg');
   color: white
 }
 
 .teams-banner {
   background-size: cover;
   background-position: center;
+  height: 150px;
   padding: 40px 0;
   background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), asset-url('banner03.jpg');
   color: white
@@ -33,6 +36,7 @@
 .stats-banner {
   background-size: cover;
   background-position: center;
+  height: 150px;
   padding: 40px 0;
   background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), asset-url('banner06.jpg');
   color: white

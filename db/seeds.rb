@@ -109,7 +109,7 @@ SKILLS = {
   "DevOps methods and processes" => "DevOps methodology",
   "Asana" => "Work management tools",
   "Jira" => "Work management tools",
-  "Trello" => "Work management tools"
+  "Angular" => "Script- and Shell languages"
 }
 
 AVATARS_WOMEN = [

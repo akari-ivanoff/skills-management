@@ -1,37 +1,41 @@
 
-<div class="skills-banner mb-4">
+<div class="container skills-banner home-wrapper">
   <div class="container d-flex align-items-center">
-      <div class="mr-4"><h1><em>Skills Inventory</em></h1></div>
+      <div class="ml-4"><h3>Skills Inventory</h3></div>
+  </div>
+</div>
+
+<div class="container pb-5 pt-4 mt-0 container-background">
+
+  <% if current_user.is_manager %>
+    <div class="pl-3 mb-4">
+      <%= link_to new_skill_path do %>
+        <div class="btn btn-flat btn-info text-white"><i class="fas fa-plus"></i> <strong>New skill</strong> </div>
+      <% end %>
+    </div>
+  <% end %>
+
+  <div class="d-flex flex-wrap">
+  <% @skills.each do |skill|%>
+    <div class="d-flex flex-row mt-3 mb-3 skill-inventory-card">
       <% if current_user.is_manager %>
-        <div class="pl-5">
-          <%= link_to new_skill_path do %>
-            <div class="btn btn-flat btn-info text-white"><i class="fas fa-plus"></i> <strong>New skill</strong> </div>
+        <div class="p-2">
+          <%= skill.name %>
+        </div>
+        <div class="p-2">
+          <%= link_to edit_skill_path(skill) do %>
+            <i class="fas fa-pen"></i>
+          <% end %>
+        </div>
+        <div class="p-2">
+          <%= link_to skill_path(skill), data: { confirm: "Are you sure you want to delete #{skill.name} skill? It will also be deleted from all profiles and teams." }, method: :delete do %>
+          <i class="fas fa-trash-alt"></i>
           <% end %>
         </div>
       <% end %>
+
+    </div>
+  <% end %>
   </div>
+
 </div>
-
-<div class="d-flex flex-wrap">
-<% @skills.each do |skill|%>
-  <div class="d-flex flex-row mt-3 mb-3 skill-inventory-card">
-    <% if current_user.is_manager %>
-      <div class="p-2">
-        <%= skill.name %>
-      </div>
-      <div class="p-2">
-        <%= link_to edit_skill_path(skill) do %>
-          <i class="fas fa-pen"></i>
-        <% end %>
-      </div>
-      <div class="p-2">
-        <%= link_to skill_path(skill), data: { confirm: "Are you sure you want to delete #{skill.name} skill? It will also be deleted from all profiles and teams." }, method: :delete do %>
-        <i class="fas fa-trash-alt"></i>
-        <% end %>
-      </div>
-    <% end %>
-
-  </div>
-<% end %>
-</div>
-

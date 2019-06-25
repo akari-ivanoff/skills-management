@@ -28,7 +28,7 @@
         <% end %>
         <%= userskill.skill.name %>
         </h5>
-        <p><i class="fas fa-comment"></i>  <%= userskill.self_comment %></p>
+        <p><i class="fas fa-comment text-secondary"></i>  <%= userskill.self_comment %></p>
         <% if @user == current_user || current_user.is_manager%>
          <p>
           <% unless userskill.manager_assessment.nil? %>
@@ -37,7 +37,7 @@
             <% end %>
             <strong> Manager's perspective </strong>
           </p>
-          <p class="m-0"><i class="fas fa-comments"></i>  <%= userskill.manager_comment %></p>
+          <p class="m-0"><i class="fas fa-comments text-secondary"></i>  <%= userskill.manager_comment %></p>
           <% end %>
         <% end %>
       </div>

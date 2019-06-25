@@ -1,6 +1,10 @@
 <div class="container">
-  <h3>Add a team role to <%= @team.name %></h3>
+  <div class="d-flex justify-content-between align-items-center">
+    <h3 class="mb-4">Add new team role to "<%= @team.name %>"</h3>
+    <%= link_to team_path(@team), class: "btn btn-secondary" do %>
+      <i class="fas fa-undo-alt mr-2"></i> Team
+    <% end %>
+  </div>
+
   <%= render 'team_role_form' %>
-  <hr>
-  <%= link_to "Back to the team", team_path(@team), class: "btn btn-secondary" %>
 </div>
