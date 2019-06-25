@@ -45,11 +45,16 @@ class TeamRolesController < ApplicationController
   end
 
   def update
-    if @team_role.update(team_role_params)
-      redirect_to team_path(@team), notice: "#{@team_role.name} role has been updated"
-    else
-      render :edit
-    end
+    @user = User.find(params.dig(:team_role, :user_id))
+    # if @team_role.occupancy > 100 - @user.occupation
+    #   render :edit, alert: "#{@user.first_name} #{@user.last_name} is available only for #{100 - @user.occupation}% of time which is less than needed for this role (#{@team_role.occupancy}%). Please choose another specialist or remove some roles from this one."
+    # else
+      if @team_role.update(team_role_params)
+        redirect_to team_path(@team), notice: "#{@team_role.name} role has been updated"
+      else
+        render :edit
+      end
+    # end
   end
 
   def destroy
