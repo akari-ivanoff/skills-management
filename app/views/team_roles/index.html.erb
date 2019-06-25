@@ -1,40 +1,44 @@
 <div class="people-banner mb-4">
   <div class="container d-flex align-items-center">
-    <div class="mr-4"><h3>Open Positions</h3></div>
+    <div class="mr-4">
+      <h3>Open Positions</h3>
+    </div>
   </div>
 </div>
 
 <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
   <li class="nav-item">
-    <a class="nav-link active" id="pills-open-tab" data-toggle="pill" href="#pills-open" role="tab" aria-controls="pills-open" aria-selected="true">Open</a>
+    <a class="nav-link active" id="pills-open-tab" data-toggle="pill" href="#pills-open" role="tab"
+      aria-controls="pills-open" aria-selected="true">Open</a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" id="pills-filled-tab" data-toggle="pill" href="#pills-filled" role="tab" aria-controls="pills-filled" aria-selected="false">Filled</a>
+    <a class="nav-link" id="pills-filled-tab" data-toggle="pill" href="#pills-filled" role="tab"
+      aria-controls="pills-filled" aria-selected="false">Filled</a>
   </li>
 </ul>
+
 <div class="tab-content" id="pills-tabContent">
   <div class="tab-pane fade show active" id="pills-open" role="tabpanel" aria-labelledby="pills-open-tab">
 
-<ul class="list-group">
-  <% @team_roles.each do |team_role| %>
-    <% if team_role.user.nil? %>
-      <%= render "team_role_list_open", team_role: team_role %>
-    <% end %>
-  <% end %>
-</ul>
+    <ul class="list-group">
+      <% @team_roles.each do |team_role| %>
+        <% if team_role.user.nil? %>
+          <%= render "team_role_list_open", team_role: team_role %>
+        <% end %>
+      <% end %>
+    </ul>
 
   </div>
 
   <div class="tab-pane fade" id="pills-filled" role="tabpanel" aria-labelledby="pills-filled-tab">
 
-<ul class="list-group">
-  <% @team_roles.each do |team_role| %>
-    <% if team_role.user != nil %>
-      <%= render "team_role_list_filled", team_role: team_role %>
-    <% end %>
-  <% end %>
-</ul>
+    <ul class="list-group">
+      <% @team_roles.each do |team_role| %>
+        <% if team_role.user != nil %>
+          <%= render "team_role_list_filled", team_role: team_role %>
+        <% end %>
+      <% end %>
+    </ul>
 
   </div>
 </div>
-
