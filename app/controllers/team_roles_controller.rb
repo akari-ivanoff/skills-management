@@ -3,7 +3,15 @@ class TeamRolesController < ApplicationController
   before_action :find_team, only: [:new, :create, :edit, :update, :destroy]
 
   def index
-    @team_roles = TeamRole.all
+    @team_roles = TeamRole.all.order(updated_at: :desc)
+  end
+
+  def replace
+    @team_role = TeamRole.find(params[:id])
+    @user = User.find(params[:user_id])
+    @team_role.user = @user
+    @team_role.save
+    redirect_to team_path(@team_role.team)
   end
 
   def new

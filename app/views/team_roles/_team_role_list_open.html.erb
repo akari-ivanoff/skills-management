@@ -1,0 +1,12 @@
+<li class="list-group-item d-flex justify-content-between align-items-center">
+  <p class="mb-0 team-name-width"> <%= link_to team_role.name, team_path(team_role) %> <br>( <%= team_role.occupancy%> %) </p>
+  <p class="mb-0 team-name-width"> <%= link_to team_role.team.name, team_path(team_role) %> </p>
+
+  <div class="p-3 team-role-details-width ">
+    <% team_role.team_role_skills.each do |team_role_skill| %>
+    * <%= team_role_skill.skill.name %>
+    <% end %>
+  </div>
+
+  <span class="badge badge-danger badge-pill"> Open </span>
+</li>

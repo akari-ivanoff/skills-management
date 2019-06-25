@@ -1,29 +1,65 @@
-<h2 class="my-5">15 most common skills</h2>
-<%= column_chart charts_most_common_skills_path, colors: ["#FFA524", "#333333"] %>
-
-<h2 class="my-5">15 least common skills</h2>
-<%= column_chart charts_least_common_skills_path, colors: ["#A4243B", "#333333"] %>
-
-<div class="d-flex justify-content-between my-5">
-  <div class="m-5">
-    <h2>Staff occupation</h2>
-    <%= pie_chart charts_occupation_path, colors: ["#A4243B", "#167FFB", "#7D1128", "#FFA524", "#0A8A00", "#F5F5F5", "#333333" ] %>
-  </div>
-  
-  <div class="m-5">
-    <h2>Empty / taken positions</h2>
-    <%= pie_chart charts_empty_positions_path, colors: ["#A4243B", "#167FFB", "#7D1128", "#FFA524", "#0A8A00", "#F5F5F5", "#333333" ] %>
+<div class="stats-banner mb-4">
+  <div class="container d-flex align-items-center">
+    <div class="mr-4"><h3>Charts and data</h3></div>
   </div>
 </div>
 
-<div class="d-flex justify-content-between my-5">
-  <div class="m-5">
-    <h2>10 most needed skills for empty roles</h2>
-    <%= column_chart charts_most_needed_skills_path, colors: ["#A4243B", "#333333"] %>
+<div class="row">
+  <div class="col">
+    <div class="card my-3">
+      <div class="card-body">
+        <h3 class="card-title">Most common skills</h3>
+        <%= column_chart charts_most_common_skills_path, colors: ["#FFA524", "#333333"] %>
+      </div>
+    </div>
   </div>
-  
-  <div class="m-5">
-    <h2>10 less needed skills for empty roles</h2>
-    <%= column_chart charts_less_needed_skills_path, colors: ["#FFA524", "#333333"] %>
+</div>
+
+<div class="row">
+  <div class="col">
+    <div class="card my-3">
+      <div class="card-body">
+        <h3 class="card-title">Least common skills</h3>
+        <%= column_chart charts_least_common_skills_path, colors: ["#A4243B", "#333333"] %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col">
+    <div class="card my-3">
+      <div class="card-body">
+        <h3 class="card-title">Staff occupation</h3>
+        <%= pie_chart charts_occupation_path, colors: ["#167FFB", "#FFA524", "#0A8A00", "#F5F5F5", "#333333","#A4243B", "#7D1128" ] %>
+      </div>
+    </div>
+  </div>
+  <div class="col">
+    <div class="card my-3">
+      <div class="card-body">
+        <h3 class="card-title">Empty and taken positions</h3>
+        <%= pie_chart charts_empty_positions_path, colors: ["#167FFB", "#FFA524", "#0A8A00", "#F5F5F5", "#333333","#A4243B", "#7D1128" ] %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col">
+    <div class="card my-3">
+      <div class="card-body">
+        <h3 class="card-title">10 most needed skills for empty roles</h3>
+        <%= column_chart charts_most_needed_skills_path, colors: ["#A4243B", "#333333"] %>
+      </div>
+    </div>
+  </div>
+  <div class="col">
+    <div class="card my-3">
+      <div class="card-body">
+        <h3 class="card-title">10 less needed skills for empty roles</h3>
+        <%= column_chart charts_less_needed_skills_path, colors: ["#FFA524", "#333333"] %>
+      </div>
+    </div>
   </div>
 </div>

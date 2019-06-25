@@ -9,6 +9,8 @@ Rails.application.routes.draw do
 
   # "www.skillm.com/allocate/32" # No idea what this is. Added by Nick.
 
+  get 'users/:user_id/replace_team_role/:id', to: 'team_roles#replace', as: :replace_team_role
+
   devise_for :users
   resources :users, except: [:new, :create, :destroy] do
     resources :user_skills, only: [:new, :create, :index]

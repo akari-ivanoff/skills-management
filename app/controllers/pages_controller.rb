@@ -7,11 +7,16 @@ class PagesController < ApplicationController
   def index
     @skills = Skill.all.order(name: :asc)
 
+    # if params.dig(:query, :team_role_id).present?
+    #   @team_role = TeamRole.find(params.dig(:query, :team_role_id))
+    # end
+    # raise
+
     if params["query"].kind_of?(Array)
       @queryskills = params[:query]
     elsif params[:query][:team_role_id].present? # if search is done via placeholder
-      query = TeamRole.find(params[:query][:team_role_id])
-      @queryskills = query.skills.map { |skill| skill.name }
+      @team_role = TeamRole.find(params[:query][:team_role_id])
+      @queryskills = @team_role.skills.map { |skill| skill.name }
     end
 
     if @queryskills.present? # if search is done in any way, fire up the SortingService
@@ -22,6 +27,8 @@ class PagesController < ApplicationController
       @users = User.all # otherwise, show all users
       @team = Team.new # added in order to choose a team, when a match was found on results page (pages/index)
     end
+
+
 
   end
 

@@ -1,37 +1,44 @@
 <div class="people-banner mb-4">
   <div class="container d-flex align-items-center">
-      <div class="mr-4"><h1><em>Team Roles</em></h1></div>
+    <div class="mr-4">
+      <h3>Open Positions</h3>
+    </div>
   </div>
 </div>
 
-<ul class="list-group">
-  <% @team_roles.each do |team_role| %>
-    <li class="list-group-item d-flex justify-content-between align-items-center">
-      <p class="mb-0 team-name-width"> <%= link_to team_role.name, team_path(team_role) %> <br>( <%= team_role.occupancy%> %) </p>
-      <p class="mb-0 team-name-width"> <%= link_to team_role.team.name, team_path(team_role) %> </p>
-      <% if team_role.user.nil? %>
-
-        <div class="p-3 team-role-details-width ">
-          <% team_role.team_role_skills.each do |team_role_skill| %>
-            * <%= team_role_skill.skill.name %>
-          <% end %>
-        </div>
-
-        <span class="badge badge-danger badge-pill"> Open </span>
-
-      <% else %>
-
-        <div class="d-flex team-role-details-width align-items-center">
-          <div class="avatar mr-2" style="background-image: url('<%= cl_image_path team_role.user.photo, width: 50, height: 50, crop: :thumb, gravity: :face %>')"></div>
-
-          <div class="d-flex align-items-center">
-              <%= team_role.user.first_name %> <%= team_role.user.last_name %>
-          </div>
-        </div>
-
-        <span class="badge badge-success badge-pill"> Filled </span>
-
-      <% end %>
-    </li>
-  <% end %>
+<ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+  <li class="nav-item">
+    <a class="nav-link active" id="pills-open-tab" data-toggle="pill" href="#pills-open" role="tab"
+      aria-controls="pills-open" aria-selected="true">Open</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" id="pills-filled-tab" data-toggle="pill" href="#pills-filled" role="tab"
+      aria-controls="pills-filled" aria-selected="false">Filled</a>
+  </li>
 </ul>
+
+<div class="tab-content" id="pills-tabContent">
+  <div class="tab-pane fade show active" id="pills-open" role="tabpanel" aria-labelledby="pills-open-tab">
+
+    <ul class="list-group">
+      <% @team_roles.each do |team_role| %>
+        <% if team_role.user.nil? %>
+          <%= render "team_role_list_open", team_role: team_role %>
+        <% end %>
+      <% end %>
+    </ul>
+
+  </div>
+
+  <div class="tab-pane fade" id="pills-filled" role="tabpanel" aria-labelledby="pills-filled-tab">
+
+    <ul class="list-group">
+      <% @team_roles.each do |team_role| %>
+        <% if team_role.user != nil %>
+          <%= render "team_role_list_filled", team_role: team_role %>
+        <% end %>
+      <% end %>
+    </ul>
+
+  </div>
+</div>
