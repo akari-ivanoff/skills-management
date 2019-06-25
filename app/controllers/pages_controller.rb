@@ -10,6 +10,7 @@ class PagesController < ApplicationController
     # if params.dig(:query, :team_role_id).present?
     #   @team_role = TeamRole.find(params.dig(:query, :team_role_id))
     # end
+    # raise
 
     if params["query"].kind_of?(Array)
       @queryskills = params[:query]
