@@ -79,9 +79,11 @@
       <% end %>
       </div>
      <div class="card-text mb-3">
-      <% user.user_skills.each do |userskill| %>
+      <% user.user_skills.sort_by{|userskill| -userskill.self_assessment}.each do |userskill| %>
         <% if @queryskills.include? userskill.skill.name %>
           <p><i class="fas fa-star text-info"></i> <%= userskill.self_assessment %> <%= " | " if current_user.is_manager %><%= userskill.manager_assessment if current_user.is_manager %> <%= userskill.skill.name %> </p>
+          <% elsif @queryskills_pg.include? userskill.skill.name %>
+          <p class="text-secondary"><i class="fas fa-star text-info"></i> <%= userskill.self_assessment %> <%= " | " if current_user.is_manager %><%= userskill.manager_assessment if current_user.is_manager %> <%= userskill.skill.name %> </p>
        <% end %>
       <% end %>
      </div>
