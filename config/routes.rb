@@ -2,11 +2,15 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   root to: 'pages#home'
 
-  get 'pages/index'
+  namespace :pages do
+    get "index"
+    get "stats"
+  end
+
+  # "www.skillm.com/allocate/32" # No idea what this is. Added by Nick.
 
   get 'users/:user_id/replace_team_role/:id', to: 'team_roles#replace', as: :replace_team_role
 
-  "www.skillm.com/allocate/32"
   devise_for :users
   resources :users, except: [:new, :create, :destroy] do
     resources :user_skills, only: [:new, :create, :index]
@@ -26,6 +30,15 @@ Rails.application.routes.draw do
     end
   end
   resources :team_roles, only: [:index]
+
+  namespace :charts do
+    get "most_common_skills"
+    get "least_common_skills"
+    get "occupation"
+    get "empty_positions"
+    get "most_needed_skills"
+    get "less_needed_skills"
+  end
 end
 
 # Models and controllers generation
