@@ -1,8 +1,9 @@
 .banner {
   background-size: cover;
   background-position: center;
-  padding: 100px 0;
-  background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), asset-url('banner05.jpg');
+  padding: 300px 0;
+  height: 100vh;
+  background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), asset-url('banner03.jpg');
 }
 
 .skills-banner {
@@ -26,6 +27,14 @@
   background-position: center;
   padding: 40px 0;
   background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), asset-url('banner03.jpg');
+  color: white
+}
+
+.stats-banner {
+  background-size: cover;
+  background-position: center;
+  padding: 40px 0;
+  background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), asset-url('banner06.jpg');
   color: white
 }
 
