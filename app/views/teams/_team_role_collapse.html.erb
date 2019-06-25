@@ -1,4 +1,4 @@
-  <% @team.team_roles.each do |team_role| %>
+  <% @order_team_roles.each do |team_role| %>
   <div class="card p-3 w-100 mb-1">
     <div class="d-flex justify-content-between align-items-center">
       <div>
@@ -32,7 +32,7 @@
         <%#= f.input :skill2, :as => :hidden, :input_html => { :value => team_role.team_role_skills[1].skill.name } %>
         <%#= f.input :skill3, :as => :hidden, :input_html => { :value => team_role.team_role_skills[2].skill.name } %>
 
-        <%= f.button :submit, class: "btn btn-info text-white w-100", value: "Search!" %>
+        <%= f.button :submit, class: "btn btn-info text-white w-100", value: " Search to fill open position" %>
         <% end %>
 
 
@@ -54,48 +54,38 @@
 
 
   <div class="collapse" id="<%= id_name %>">
-   <div class="card p-3 w-80 mb-3">
+   <div class="card border-0 p-3 w-80 mb-3">
 
     <%# if team_role.user == nil %>
-    <div class="d-flex align-items-center justify-content-between">
+    <div class="d-flex align-items-center justify-content-around">
       <p class="flex-start"> <strong>Required skillset</strong></p>
+
       <div class="p-3">
-        <% team_role.team_role_skills.each do |team_role_skill| %>
-        <div class="d-flex justify-content-between align-items-center mb-2">
-          <div class="ml-5 mr-3">
-            <%= team_role_skill.skill.name %>
-          </div>
-          <div >
-            <%= link_to team_team_role_team_role_skill_path(@team, team_role, team_role_skill), method: :delete, data: { confirm: "Are you sure you want to delete #{team_role_skill.skill.name} skill from this role?" }, class:"btn btn-secondary text-white" do %>
-            <i class="fas fa-trash"></i>
+        <p class="mb-2">Choose & add a skill you need: </p>
+
+        <%= render "team_role_skill_form_ajax", team_role: team_role %>
+
+
+        <div class="mt-3">
+          <div id="team-role-<%= team_role.id %>-skills-container">
+            <% team_role.team_role_skills.each do |team_role_skill| %>
+              <%= render "team_role_skill_card", team_role_skill: team_role_skill %>
             <% end %>
           </div>
-        </div>
-        <% end %>
 
         <%= simple_form_for :query, url: pages_index_path, method: :get do |f| %>
-        <%= f.input :team_role_id, :as => :hidden, :input_html => { :value => team_role.id }%>
-        <%= f.button :submit, class: "btn btn-info text-white w-100", value: "Search!" %>
-        <% end %>
-
-      </div>
-      <div class="p-3 d-flex form-inline">
-        <%= simple_form_for([@team, team_role, @team_role_skill]) do |f| %>
-        <div class="form-inline">
-            <%= f.association :skill, :input_html => {:maxlength =>2,:style=> 'width: 200px'}, label: "Choose & add a skill:" %>
-            </div>
-            <div class="small-3 columns">
-            <%= button_tag type: 'submit', class: "btn btn-primary form-inline" do %>
-            <i class="fa fa-plus" aria-hidden="true"></i>
-            <% end %>
-            </div>
+          <%= f.input :team_role_id, :as => :hidden, input_html: { value: team_role.id }%>
+          <%= f.input :team_id, :as => :hidden, input_html: { value: params[:id] }%>
+          <% if team_role.user.nil? %>
+            <%= f.button :submit, class: "btn btn-info text-white w-100", value: "Search to fill open position", style: 'width: 400px' %>
+          <% else %>
+          <%= f.button :submit, class: "btn btn-info text-white w-100", value: "Search to replace #{team_role.user.first_name}", style: 'width: 400px' %>
           <% end %>
+        <% end %>
         </div>
 
-
       </div>
-      <%# else %>
-      <%# end %>
+      </div>
+      </div>
     </div>
-  </div>
   <% end %>

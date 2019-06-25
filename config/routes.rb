@@ -4,6 +4,8 @@ Rails.application.routes.draw do
 
   get 'pages/index'
 
+  get 'users/:user_id/replace_team_role/:id', to: 'team_roles#replace', as: :replace_team_role
+
   "www.skillm.com/allocate/32"
   devise_for :users
   resources :users, except: [:new, :create, :destroy] do

@@ -1,0 +1,12 @@
+function refreshForm(innerHTML, teamRoleId) {
+  const newSkillForm = document.querySelector(`.new_team_role_skill_${teamRoleId}`);
+  newSkillForm.innerHTML = innerHTML;
+}
+
+function addSkill(skillHTML, teamRoleId) {
+  const reviews = document.getElementById(`team-role-${teamRoleId}-skills-container`);
+  reviews.insertAdjacentHTML('beforeend', skillHTML);
+}
+
+addSkill('<%= j render "teams/team_role_skill_card", team_role_skill: @team_role_skill %>', <%= @team_role.id %>);
+refreshForm('<%= j render "teams/team_role_skill_form_ajax", team_role: @team_role %>', <%= @team_role.id %>);
