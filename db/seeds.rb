@@ -278,7 +278,7 @@ User.create!(
   chapter: 'Software Engineering',
   availability: 100,
   is_manager: true,
-  remote_photo_url: 'https://res.cloudinary.com/dlsvbebuj/image/upload/v1560948621/skill-m/avatars/avatar_cl_u6wolw.jpg',
+  remote_photo_url: 'https://res.cloudinary.com/dlsvbebuj/image/upload/v1561564089/skill-m/avatars/avatar_brigitte_bcm4rs.png',
   site: Site.first
 )
 
