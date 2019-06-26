@@ -5,20 +5,20 @@
 <%= link_to "Add a new skill!", new_user_user_skill_path(@user) %>
 <% end %>
 
-<% @userskills.each do |userskill| %>
+<% @user_skills.each do |user_skill| %>
 
 <div class="card">
 
 
     <h5 class="card-header">
-      <%= userskill.skill.name %> - experience: <%= userskill.experience %>
+      <%= user_skill.skill.name %> - experience: <%= user_skill.experience %>
       <% if @user == current_user || current_user.is_manager %>
-        <%= link_to edit_user_skill_path(userskill.id) do %>
+        <%= link_to edit_user_skill_path(user_skill.id) do %>
           <i class="fas fa-pen"></i>
         <% end %>
       <% end %>
       <% if @user == current_user %>
-        <%= link_to  user_skill_path(userskill), data: { confirm: "Are you sure you want to delete #{userskill.skill.name} skill?" }, method: :delete do %>
+        <%= link_to  user_skill_path(user_skill), data: { confirm: "Are you sure you want to delete #{user_skill.skill.name} skill?" }, method: :delete do %>
           <i class="fas fa-trash-alt"></i>
         <% end %>
       <% end %>
@@ -26,8 +26,8 @@
     <div class="row">
       <div class="card-body">
         <h5>User assessment</h5>
-        <h5 class="card-title"><%= userskill.self_assessment %></h5>
-        <p class="card-text"><%= userskill.self_comment %></p>
+        <h5 class="card-title"><%= user_skill.self_assessment %></h5>
+        <p class="card-text"><%= user_skill.self_comment %></p>
       </div>
       <% if @user.is_manager %>
         <div class="card-body">
@@ -39,8 +39,8 @@
       <% elsif @user == current_user || current_user.is_manager %>
         <div class="card-body">
           <h5>Manager assessment</h5>
-          <h5 class="card-title"><%= userskill.manager_assessment %></h5>
-          <p class="card-text"><%= userskill.manager_comment %></p>
+          <h5 class="card-title"><%= user_skill.manager_assessment %></h5>
+          <p class="card-text"><%= user_skill.manager_comment %></p>
         </div>
       <% end %>
     </div>

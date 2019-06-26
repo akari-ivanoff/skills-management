@@ -1,27 +1,24 @@
 class UserSkillsController < ApplicationController
   def index
     @user = User.find(params[:user_id])
-    @userskills = UserSkill.all.select do |userskill|
-      userskill.user == @user
-    end
-    @userskills = @userskills.sort_by{|userskill| -userskill.self_assessment}
+    @user_skills = @user.user_skills.sort_by { |user_skill| -user_skill.self_assessment }
   end
 
   def new
     @user = User.find(params[:user_id])
     @user_skill = UserSkill.new
-    # @user_skill.user = current_user
   end
 
   def create
     @user = User.find(params[:user_id])
-    @user_skill = UserSkill.new(userskill_params) # add on here
+    @user_skill = UserSkill.new(user_skill_params) # add on here
     @user_skill.user = @user
     if @user_skill.save
-      flash[:success] = "updated"
+      redirect_to user_path(@user), notice: "The skill has been added"
+    else
+      flash[:alert] = 'Unable to add the skill'
+      render :new
     end
-    raise
-    redirect_to user_path(@user)
   end
 
   def edit
@@ -32,38 +29,39 @@ class UserSkillsController < ApplicationController
   def update
     @user_skill = UserSkill.find(params[:id])
     @user = @user_skill.user
-    if @user_skill.update(userskill_params)
-      flash[:success] = "updated"
-      redirect_to user_user_skills_path(@user_skill.user)
+    if @user_skill.update(user_skill_params)
+      redirect_to user_path(@user), notice: "The skill has been updated"
     else
+      flash[:alert] = 'Unable to update the skill'
       render :edit
     end
   end
 
   def destroy
     @user_skill = UserSkill.find(params[:id])
+    @user = @user_skill.user
     @user_skill.destroy
-    redirect_to user_user_skills_path(@user_skill.user)
+    redirect_to user_path(@user), notice: "The skill has been deleted"
   end
 
   def manager_assessment_update
     @user_skill = UserSkill.find(params[:id])
-    if @user_skill.update(userskill_params_mgr)
-      flash[:success] = "updated"
-      redirect_to user_user_skills_path(@user_skill.user) # user_path(@user) # user_skills_path
+    @user = @user_skill.user
+    if @user_skill.update(user_skill_params_mgr)
+      redirect_to user_path(@user), notice: "The manager's assesment of the skill has been updated"
     else
+      flash[:alert] = 'Unable to update the skill'
       render :edit
     end
   end
 
   private
 
-  def userskill_params
+  def user_skill_params
     params.require(:user_skill).permit(:skill_id, :self_assessment, :self_comment, :experience)
   end
 
-  def userskill_params_mgr
+  def user_skill_params_mgr
     params.require(:user_skill).permit(:skill_id, :manager_assessment, :manager_comment)
   end
-
 end
