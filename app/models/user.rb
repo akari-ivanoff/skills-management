@@ -22,7 +22,7 @@ class User < ApplicationRecord
   validates :is_manager, inclusion: { in: [true, false] }
   validates :site, presence: true
   validate :verify_manager
-  validates :gender, inclusion: { in: ["M", "F"]}
+  validates :gender, inclusion: { in: [nil, "M", "F"]}
 
   mount_uploader :photo, PhotoUploader
 
