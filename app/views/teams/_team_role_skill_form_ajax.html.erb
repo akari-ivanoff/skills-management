@@ -1,7 +1,7 @@
 <% team = team_role.team %>
 <%= simple_form_for([team, team_role, TeamRoleSkill.new], remote: true, html: { class: "new_team_role_skill_#{team_role.id}"}) do |f| %>
 <div class="form-inline">
-  <%= f.association :skill, collection: @skills_for_form, input_html: {style: 'width: 400px'}, label: false %>
+  <%= f.association :skill, collection: skills, input_html: {style: 'width: 400px'}, label: false %>
   <div class="small-3 columns">
     <%= button_tag type: 'submit', class: "btn btn-primary form-inline" do %>
     <i class="fa fa-plus" aria-hidden="true"></i>

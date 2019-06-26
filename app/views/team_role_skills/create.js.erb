@@ -9,4 +9,4 @@ function addSkill(skillHTML, teamRoleId) {
 }
 
 addSkill('<%= j render "teams/team_role_skill_card", team_role_skill: @team_role_skill %>', <%= @team_role.id %>);
-refreshForm('<%= j render "teams/team_role_skill_form_ajax", team_role: @team_role %>', <%= @team_role.id %>);
+refreshForm('<%= j render "teams/team_role_skill_form_ajax", team_role: @team_role, skills: Skill.order(name: :asc) %>', <%= @team_role.id %>);

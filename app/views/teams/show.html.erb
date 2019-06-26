@@ -20,7 +20,7 @@
       <% end %>
 
       <% occupation = @team.occupation %>
-      <strong class="text-secondary"><i class="fas fa-users text-secondary"></i> <%= @team.team_roles.count %> ( <%= occupation %>% )</strong>
+      <strong class="text-secondary"><i class="fas fa-users text-secondary"></i> <%= @team.team_roles.count %> ( <%= occupation/@team.team_roles.count %>% )</strong>
     </h2>
   </div>
 
@@ -51,8 +51,7 @@
 
 <div class="card p-3 w-100 mb-1">
   <div class="d-flex justify-content-between align-items-center">
-    <div class="avatar border border-secondary" style="background-image: url('https://cdn.dribbble.com/users/1044993/screenshots/3106624/question-bear_dribbble.png')">
-    </div>
+    <%= image_tag "avatar_placeholder2", alt: "placeholder", class: "avatar" %>
 
     <div>
       <%= link_to new_team_team_role_path(@team) do %>

@@ -2,9 +2,9 @@
   <%= f.error :base %>
   <%= f.input :name, label: "Give the new role a name, e.g. Lead Backend Programmer" %>
   <% unless params[:placeholder] && params[:user].present? %>
-    <%= f.association :user, label_method: :fullname, label: "Either choose a co-worker or leave it for later, creating a placeholder for now"%>
+    <%= f.association :user, label_method: :fullname, label: "OPTIONAL: Choose co-worker or leave it for later, creating a open spot for now"%>
   <% end %>
-  <%= f.input :occupancy, input_html: { min: 10, max: 100 } %>
+  <%= f.input :occupancy, collection: TeamRole.occupancy_rates, label: "Add allocation percentage (size in \%)" %>
   <%= hidden_field_tag :query_array, @query_array.join("\%\%\%") if @query_array%>
-  <%= f.button :submit, class: "btn btn-primary", value: "Add new team role" %>
+  <%= f.button :submit, class: "btn btn-primary", value: "Save" %>
 <% end %>
