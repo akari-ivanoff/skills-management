@@ -33,6 +33,7 @@ class TeamsController < ApplicationController
         redirect_to teams_path, notice: "#{@team.name} team has been created"
       end
     else
+      flash[:alert] = 'Unable to create the team'
       render :new
     end
   end
@@ -51,6 +52,7 @@ class TeamsController < ApplicationController
     if @team.update(team_params)
       redirect_to team_path(@team), notice: "#{@team.name} team has been updated"
     else
+      flash[:alert] = 'Unable to update the team'
       render :edit
     end
   end

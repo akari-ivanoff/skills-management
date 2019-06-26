@@ -14,6 +14,7 @@ class TeamRolesController < ApplicationController
     @team_role.save
     redirect_to team_path(@team_role.team)
   end
+
   def new
     @team_role = TeamRole.new
     @query_array = params[:query_array]
@@ -25,18 +26,24 @@ class TeamRolesController < ApplicationController
 
   def create
     @team_role = TeamRole.new(team_role_params)
+    @user = User.find(params.dig(:team_role, :user_id))
     @team_role.team = @team
-    if @team_role.save
-
-      if params[:query_array].present?
-        params[:query_array].split("\%\%\%").each do |searched_skill|
-          skill = Skill.find_by(name: searched_skill)
-          TeamRoleSkill.create(team_role: @team_role, skill: skill)
-        end
-      end
-      redirect_to team_path(@team, query_array: params[:query_array]), notice: "#{@team_role.name} role has been added to the #{@team.name} team"
-    else
+    if @team_role.occupancy > 100 - @user.occupation
+      flash[:alert] = "#{@user.first_name} #{@user.last_name} is available only for #{100 - @user.occupation}% of time."
       render :new
+    else
+      if @team_role.save
+        if params[:query_array].present?
+          params[:query_array].split("\%\%\%").each do |searched_skill|
+            skill = Skill.find_by(name: searched_skill)
+            TeamRoleSkill.create(team_role: @team_role, skill: skill)
+          end
+        end
+        redirect_to team_path(@team, query_array: params[:query_array]), notice: "#{@team_role.name} role has been added to the #{@team.name} team"
+      else
+        flash[:alert] = 'Unable to create the role'
+        render :new
+      end
     end
   end
 
@@ -46,15 +53,17 @@ class TeamRolesController < ApplicationController
 
   def update
     @user = User.find(params.dig(:team_role, :user_id))
-    # if @team_role.occupancy > 100 - @user.occupation
-    #   render :edit, alert: "#{@user.first_name} #{@user.last_name} is available only for #{100 - @user.occupation}% of time which is less than needed for this role (#{@team_role.occupancy}%). Please choose another specialist or remove some roles from this one."
-    # else
+    if @team_role.occupancy > 100 - @user.occupation
+      flash[:alert] = "#{@user.first_name} #{@user.last_name} is available only for #{100 - @user.occupation}% of time."
+      render :edit
+    else
       if @team_role.update(team_role_params)
         redirect_to team_path(@team), notice: "#{@team_role.name} role has been updated"
       else
+        flash[:alert] = 'Unable to update the role'
         render :edit
       end
-    # end
+    end
   end
 
   def destroy
