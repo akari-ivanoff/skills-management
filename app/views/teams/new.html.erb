@@ -1,6 +1,12 @@
 <div class="container">
-  <h1>New team</h1>
-    <%= render 'team_form', task: @team %>
-  <hr>
-  <%= link_to "Back to the teams list", teams_path, class: "btn btn-secondary" %>
+  <div class="d-flex justify-content-between align-items-center">
+    <h3 class="mb-4">Create a new team</h3>
+
+    <%= link_to teams_path, class: "btn btn-secondary" do %>
+      <i class="fas fa-undo-alt mr-2"></i> all teams
+    <% end %>
+  </div>
+
+  <%= render 'team_form', task: @team %>
+
 </div>
