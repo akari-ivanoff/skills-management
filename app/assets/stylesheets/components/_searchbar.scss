@@ -1,9 +1,5 @@
 _searchbar.scss
 
-.select2-search__field {
-  color: white !important;
-}
-
 .select2-results__option {
   background-color: transparent !important;
 }
@@ -20,10 +16,13 @@ _searchbar.scss
   opacity: 0.8;
 }
 
+
+
 /* dropdown options on mouseover */
 .select2-results__option--highlighted {
   background-color: transparent !important;
   color: white !important;
+  font-size: 25px;
 }
 
 /* style this one, if not working, the one above */
@@ -34,16 +33,25 @@ _searchbar.scss
 
 .select2-results__options {
   background-color: transparent !important;
+  width: 900px;
+  font-size: 24px;
 }
 
  /* whole search box */
 .select2-container--default .select2-selection--multiple {
-  background-color: transparent !important;
+  color: $light-gray !important;
+  background-color: $gray !important;
+  opacity: 0.9;
   border-radius: 3px !important;
   border-color: $light-gray !important;
-
-  height: 70px;
+  padding-top: 12px;
+  padding-bottom: 12px;
+  padding-left: 12px;
+  padding-right: 12px;
+  font-size: 16px;
+  height: auto;
   vertical-align: middle !important;
+  width: 900px;
 }
 
 .select2-container--default.select2-container--focus .select2-selection--multiple {
@@ -52,13 +60,15 @@ _searchbar.scss
 
 /* the boxes with selected queries */
 .select2-selection__choice {
-  color: $light-gray;
+  color: $light-gray !important;
   background-color: transparent !important;
   border-radius: 3px !important;
   border-color: $light-gray !important;
+  font-size: 24px;
 }
 
 .select2-selection select2-selection--multiple {
+  color: $light-gray !important;
   vertical-align: middle !important;
 }
 
@@ -67,20 +77,43 @@ _searchbar.scss
 }
 
 #search_bar {
-  width: 100%;
+  position: absolute;
+  width: auto;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-#searchbutton {
+#searchbutton_index{
+  position: absolute;
+  left: 828px;
   background: transparent;
   color: $light-gray;
   border: none;
   font-size: 28px;
+  z-index: 1;
+  padding-top: 14px;
 }
 
-#searchbutton:hover {
+#searchbutton_index:hover {
   color: $white;
 }
 
+#searchbutton_home{
+  position: absolute;
+  background: transparent;
+  color: $light-gray;
+  border: none;
+  font-size: 28px;
+  z-index: 1;
+  padding-top: 14px;
+}
+
+#searchbutton_home:hover {
+  color: $white;
+}
+
+.select2-search__field {
+  color: $white !important;
+  font-size: 20px !important;
+}

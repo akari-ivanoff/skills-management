@@ -1,26 +1,26 @@
 <div class="container people-banner home-wrapper">
-  <div class="container d-flex align-items-center">
-    <div class="ml-4 mr-4"><h3>People with searched super powers</h3></div>
-      <div class="pl-5">
-        <div id="search_bar">
-         <form action="/pages/index" method="GET">
-          <select class="query-select-boxes" name="query[]" multiple="multiple" style="width: 40vw" id="select2Selector2">
-            <% @skills.each do |skill| %>
+  <div class="container">
+
+    <div class="pl-5">
+      <div id="search_bar">
+        <form action="/pages/index" method="GET" class="">
+          <select class="query-select-boxes" name="query[]" multiple="multiple" style="width: 75%" id="select2Selector">
+           <% @skills.each do |skill| %>
             <option value="<%= skill.name %>"><%= skill.name %></option>
-            <% end %>
-          </select>
-          <button id = "searchbutton" name="button" type="submit" class="btn btn-flat btn-dark">
-            <i class="fas fa-search"></i>
-          </button>
-        </form>
+           <% end %>
+           </select>
+           <button id = "searchbutton_index" name="button" type="submit" class="btn btn-flat btn-dark">
+              <i class="fas fa-search"></i>
+           </button>
+          </form>
       </div>
     </div>
   </div>
 </div>
 
 <div class="container pb-5 mt-0 container-background">
+  <h5 class="pt-4 pl-3"> <%= pluralize(@users.count, 'person')  %> found: </h5>
   <div class="flex-container cards-wrapper">
-
   <% if params[:query].present? %>
     <% unless !params[:query].is_a?(Array) && params.dig(:query, :team_role_id)  %>
       <div class="card card_placeholder">
