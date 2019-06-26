@@ -4,6 +4,7 @@ class TeamRolesController < ApplicationController
 
   def index
     @team_roles = TeamRole.all.order(updated_at: :desc)
+    render layout: "home"
   end
 
   def replace
@@ -13,7 +14,6 @@ class TeamRolesController < ApplicationController
     @team_role.save
     redirect_to team_path(@team_role.team)
   end
-
   def new
     @team_role = TeamRole.new
     @query_array = params[:query_array]

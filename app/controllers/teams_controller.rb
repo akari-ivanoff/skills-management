@@ -9,6 +9,7 @@ class TeamsController < ApplicationController
     if params[:user_id].present?
       @user = User.find(params[:user_id])
     end
+    render layout: "home"
   end
 
   def new

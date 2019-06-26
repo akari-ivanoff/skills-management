@@ -20,7 +20,8 @@ class UserSkillsController < ApplicationController
     if @user_skill.save
       flash[:success] = "updated"
     end
-    redirect_to user_user_skills_path(@user_skill.user)
+    raise
+    redirect_to user_path(@user)
   end
 
   def edit

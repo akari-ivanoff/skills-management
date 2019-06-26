@@ -27,12 +27,8 @@ class PagesController < ApplicationController
       @users = User.all # otherwise, show all users
       @team = Team.new # added in order to choose a team, when a match was found on results page (pages/index)
     end
-
-
-
+    render layout: "home"
   end
-
-
 
   def index2 # to be deleted if all works
     if params[:query][:team_role_id].present? # if search is done via placeholder

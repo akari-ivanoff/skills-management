@@ -3,8 +3,8 @@ class UsersController < ApplicationController
 
   def index
     @users = User.all.order("first_name ASC")
+    render layout: "home"
   end
-
 
   # def fullname
   #   return "#{user.first_name} #{user.last_name}".join

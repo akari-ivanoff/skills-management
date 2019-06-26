@@ -1,78 +1,72 @@
-<div class="teams-banner mb-4 mr-0 mt-0 ml-0">
+<div class="container teams-banner home-wrapper">
 <% if @user.present? || params[:placeholder]%>
   <div class="mb-4 mt-4">
     <div class="container d-flex align-items-center justify-content-between">
-      <div class="mr-4"><h3>Choose an existing team or add a new one: </h3></div>
-      <div class="pl-5">
-        <%= link_to new_team_path(user_id: @user, placeholder: params[:placeholder], skill_query: params[:skill_query]) do %>
-        <div class="btn btn-flat btn-info text-white mr-2"><i class="fas fa-plus mr-3"></i> <strong>New team</strong> </div>
-        <% end %>
-      </div>
+      <div class="ml-4"><h3>Choose existing team or add a new one first </h3></div>
     </div>
   </div>
 <% else %>
-  <div class="container d-flex align-items-center">
-      <div class="mr-4"><h3>All Teams</h3></div>
-      <div class="pl-5">
-        <%= link_to new_team_path(user_id: @user, placeholder: params[:placeholder], skill_query: params[:skill_query]) do %>
-        <div class="btn btn-flat btn-info text-white"><i class="fas fa-plus"></i> <strong>New team</strong> </div>
-        <% end %>
-      </div>
+  <div class="container align-items-center">
+      <div class="ml-4"><h3>Teams</h3></div>
     </div>
   <% end %>
 </div>
 
+<div class="container pb-5 pt-4 mt-0 container-background">
+  <div class="pl-3">
+    <%= link_to new_team_path(user_id: @user, placeholder: params[:placeholder], skill_query: params[:skill_query]) do %>
+    <div class="btn btn-flat btn-info text-white mr-2"><i class="fas fa-plus mr-3"></i> <strong>New team</strong> </div>
+    <% end %>
+  </div>
 
+  <div class="flex-container cards-wrapper">
+    <% @teams.each do |team| %>
 
-
-
-<div class="flex-container cards-wrapper">
-  <% @teams.each do |team| %>
-
-  <div class="card card_details">
-    <div class="card-body">
-      <div class="user-head">
-        <h5 class="card-title text-center mb-4"><%= link_to team_path(team) do %>
-          <% if team.name.length < 20 %>
-          <%= team.name %>
-          <% else %>
-          <%= team.name[0..20] + "..." %>
-          <% end %>
-          <% end %>
-        </h5>
-        <h6 class="card-subtitle mb-3 text-muted text-center"><em> by <%= team.owner_contact %></em></h6>
-      </div>
-    </div>
-
-    <div class="card-body p-0">
-      <div class="d-flex justify-content-between">
-        <div class="d-flex pl-3">
-          <div>
-            <% placeholders = team.team_roles.all.select do |role| %>
-            <% role.user == nil %>
-            <% end %>
-            <% if placeholders.count > 0 %>
-            <span class="badge badge-pill badge-info text-white mr-4"> <%= placeholders.count %></span>
+    <div class="card card_details">
+      <div class="card-body">
+        <div class="user-head">
+          <h5 class="card-title text-center mb-4"><%= link_to team_path(team) do %>
+            <% if team.name.length < 20 %>
+            <%= team.name %>
             <% else %>
-            <span class="badge badge-pill badge-success mr-4"> <i class="fas fa-check"></i></span>
+            <%= team.name[0..20] + "..." %>
+            <% end %>
+            <% end %>
+          </h5>
+          <h6 class="card-subtitle mb-3 text-muted text-center"><em> by <%= team.owner_contact %></em></h6>
+        </div>
+      </div>
+
+      <div class="card-body p-0">
+        <div class="d-flex justify-content-between">
+          <div class="d-flex pl-3">
+            <div>
+              <% placeholders = team.team_roles.all.select do |role| %>
+              <% role.user == nil %>
+              <% end %>
+              <% if placeholders.count > 0 %>
+              <span class="badge badge-pill badge-info text-white mr-4"> <%= placeholders.count %></span>
+              <% else %>
+              <span class="badge badge-pill badge-success mr-4"> <i class="fas fa-check"></i></span>
+              <% end %>
+            </div>
+            <% occupation = team.occupation %>
+            <p><strong><i class="fas fa-users"></i> <%= team.team_roles.count %> ( <%= occupation/team.team_roles.count %>% )</strong></p>
+          </div>
+          <div>
+            <% if @user.present? || params[:placeholder]%>
+            <%= link_to new_team_team_role_path(team, user_id: @user, placeholder: params[:placeholder], query_array: params[:query_array]), class: "btn btn-primary bottom-button" do %>
+            <i class="fas fa-plus"></i>
+            <% end %>
+            <% else %>
+            <%= link_to edit_team_path(team), class: "btn btn-secondary bottom-button" do %>
+            <i class="fas fa-pen"></i>
+            <% end %>
             <% end %>
           </div>
-          <% occupation = team.occupation %>
-          <p><strong><i class="fas fa-users"></i> <%= team.team_roles.count %> ( <%= occupation %>% )</strong></p>
-        </div>
-        <div>
-          <% if @user.present? || params[:placeholder]%>
-          <%= link_to new_team_team_role_path(team, user_id: @user, placeholder: params[:placeholder], query_array: params[:query_array]), class: "btn btn-primary bottom-button" do %>
-          <i class="fas fa-plus"></i>
-          <% end %>
-          <% else %>
-          <%= link_to edit_team_path(team), class: "btn btn-primary bottom-button" do %>
-          <i class="fas fa-pen"></i>
-          <% end %>
-          <% end %>
         </div>
       </div>
     </div>
+    <% end %>
   </div>
-  <% end %>
 </div>
