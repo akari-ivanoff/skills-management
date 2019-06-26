@@ -14,6 +14,7 @@ class SkillsController < ApplicationController
     if @skill.save
       redirect_to skills_path, notice: "#{@skill.name} skill has been added"
     else
+      flash[:alert] = 'Unable to create the skill'
       render :new
     end
   end
@@ -27,6 +28,7 @@ class SkillsController < ApplicationController
     if @skill.update(skills_params)
       redirect_to skills_path, notice: "#{@skill.name} skill has been updated"
     else
+      flash[:notice] = 'Unable to update the skill'
       render :edit
     end
   end

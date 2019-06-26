@@ -23,9 +23,10 @@ class UsersController < ApplicationController
 
   def update
     if @user.update(user_params)
-      redirect_to user_path(@user)
+      redirect_to user_path(@user), notice: "The profile has been updated"
     else
-      render :edit, notice: "#{@user.first_name} #{@user.last_name}'s profile has been updated"
+      flash[:alert] = 'Unable to update the profile'
+      render :edit
     end
   end
 
