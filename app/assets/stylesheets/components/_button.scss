@@ -29,4 +29,10 @@ background-color: $gray;
 
 #searchbutton {
   background: transparent;
+  border: none;
+  font-size: 30px;
+}
+
+#searchbutton:focus {
+  outline: none;
 }
