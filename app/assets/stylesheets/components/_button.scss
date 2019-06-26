@@ -20,7 +20,6 @@ background-color: $gray;
   max-width: 211px;
 }
 
-
 .bottom-button {
   position:absolute;
   bottom:0;
@@ -29,10 +28,11 @@ background-color: $gray;
 
 #searchbutton {
   background: transparent;
-  border: none;
-  font-size: 30px;
 }
 
-#searchbutton:focus {
-  outline: none;
+#searchbutton:hover {
+  color: $light-gray;
+  border: none;
+  font-size: 28px;
 }
+
