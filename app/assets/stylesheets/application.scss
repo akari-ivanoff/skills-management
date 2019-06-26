@@ -63,7 +63,7 @@ body {
 .select2-results {
   background-color: $gray !important; /* SHOULD DIFFER? */
   color: $light-gray;
-  opacity: 0.6;
+  opacity: 0.8;
 }
 
 /* dropdown options on mouseover */
@@ -85,7 +85,7 @@ body {
  /* whole search box */
 .select2-container--default .select2-selection--multiple {
   background-color: transparent !important;
-  border-radius: 20px !important;
+  border-radius: 3px !important;
   height: 70px;
   vertical-align: middle !important;
 }
@@ -98,7 +98,8 @@ body {
 .select2-selection__choice {
   color: $light-gray;
   background-color: transparent !important;
-  border-radius: 20px !important;
+  border-radius: 3px !important;
+  border-color: $light-gray !important;
 }
 
 .select2-selection select2-selection--multiple {

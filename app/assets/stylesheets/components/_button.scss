@@ -29,4 +29,12 @@ background-color: $gray;
 
 #searchbutton {
   background: transparent;
+  color: $light-gray;
+  border: none;
+  font-size: 28px;
+}
+
+#searchbutton:hover {
+  background: transparent;
+  color: $white;
 }
