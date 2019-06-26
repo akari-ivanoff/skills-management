@@ -67,7 +67,7 @@ class ChartsController < ApplicationController
   def empty_team_role_skills
     team_role_skills = []
     TeamRole.all.select { |team_role| team_role.user.nil? }.each do |team_role|
-      team_role_skills += TeamRoleSkill.select { |team_role_skill| team_role_skill.team_role == team_role }
+      team_role_skills += team_role.team_role_skills
     end
     return team_role_skills
   end
