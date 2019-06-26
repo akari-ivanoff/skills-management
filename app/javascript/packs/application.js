@@ -9,21 +9,15 @@ $(".alert-dismissible").fadeTo(2500, 500).slideUp(500, function(){
 });
 
 document.addEventListener("DOMContentLoaded", function(){
-  $('.query-select-boxes').select2()
+  $('.query-select-boxes').select2({dropdownAutoWidth: true})
 })
 
-document.addEventListener("DOMContentLoaded", function(){
-  $("#select2Selector").select2({
-      placeholder: 'Enter requested skills here',
-      minimumInputLength: 1,
-/*      tags: true*/
-    });
-})
 
-document.addEventListener("DOMContentLoaded", function(){
+/*document.addEventListener("DOMContentLoaded", function(){
   $("#select2Selector2").select2({
       placeholder: 'Continue your search here',
-      minimumInputLength: 1,
-/*      tags: true*/
+      minimumInputLength: 2,
     });
-})
+})*/
+
+
