@@ -51,7 +51,9 @@
               <% end %>
             </div>
             <% occupation = team.occupation %>
+            <% if team.team_roles.count > 0 %>
             <p><strong><i class="fas fa-users"></i> <%= team.team_roles.count %> ( <%= occupation/team.team_roles.count %>% )</strong></p>
+            <% end %>
           </div>
           <div>
             <% if @user.present? || params[:placeholder]%>

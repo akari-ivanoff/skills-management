@@ -1,0 +1,6 @@
+function removeSkill(skillCardId) {
+  const skillCard = document.getElementById(`skill-card-container-${skillCardId}`);
+  skillCard.remove();
+}
+
+removeSkill(<%= @team_role_skill.id %>);

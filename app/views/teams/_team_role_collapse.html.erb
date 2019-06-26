@@ -4,7 +4,7 @@
       <div>
         <% id_name = "collapseMonkey-#{team_role.id}" %>
         <a class="btn btn-secondary" data-toggle="collapse" href="#<%= id_name %>" role="button" aria-expanded="false" aria-controls="<%= id_name %>">
-          <i class="fas fa-chevron-down"></i>
+          <i class="fas fa-chevron-down"></i> Saved skill set
         </a>
       </div>
       <div class="team-role-width">
@@ -15,9 +15,12 @@
       </div>
       <div>
         <% if team_role.user == nil %>
-        <div class="avatar border border-secondary" style="background-image: url('https://cdn.dribbble.com/users/1044993/screenshots/3106624/question-bear_dribbble.png')"></div>
+          <%= image_tag "avatar_placeholder2", alt: "placeholder", class: "avatar" %>
         <% else %>
-        <div class="avatar" style="background-image: url('<%= cl_image_path team_role.user.photo, width: 50, height: 50, crop: :thumb, gravity: :face %>')"></div>
+          <%= link_to user_path(team_role.user) do  %>
+          <div class="avatar" style="background-image: url('<%= cl_image_path team_role.user.photo, width: 50, height: 50, crop: :thumb, gravity: :face %>')"></div>
+          <div></div>
+          <% end %>
         <% end %>
       </div>
       <div class="team-name-width mb-3">
@@ -26,18 +29,13 @@
         <%= simple_form_for :query, url: pages_index_path, method: :get do |f| %>
 
         <%= f.input :team_role_id, :as => :hidden, :input_html => { :value => team_role.id }%>
-
-        <%# = simple_form_for :query, url: pages_index_path, method: :get do |f| %>
-        <%#= f.input :skill1, :as => :hidden, :input_html => { :value => team_role.team_role_skills[0].skill.name } %>
-        <%#= f.input :skill2, :as => :hidden, :input_html => { :value => team_role.team_role_skills[1].skill.name } %>
-        <%#= f.input :skill3, :as => :hidden, :input_html => { :value => team_role.team_role_skills[2].skill.name } %>
-
         <%= f.button :submit, class: "btn btn-info text-white w-100", value: " Search to fill open position" %>
         <% end %>
 
-
         <% else %>
-        <i class="fas fa-user ml-3 text-secondary"></i> <%= team_role.user.first_name %> <%= team_role.user.last_name %>
+          <%= link_to user_path(team_role.user) do %>
+            <%= team_role.user.first_name %> <%= team_role.user.last_name %>
+          <% end %>
         <% end %>
       </div>
 
@@ -54,16 +52,16 @@
 
 
   <div class="collapse" id="<%= id_name %>">
-   <div class="card border-0 p-3 w-80 mb-3">
+   <div class="card border-0 p-3 w-50 mb-3">
 
     <%# if team_role.user == nil %>
-    <div class="d-flex align-items-center justify-content-around">
-      <p class="flex-start"> <strong>Required skillset</strong></p>
+    <div class="d-flex">
+      <!-- <p class="flex-start"> <strong>Required skill set</strong></p> -->
 
       <div class="p-3">
         <p class="mb-2">Choose & add a skill you need: </p>
 
-        <%= render "team_role_skill_form_ajax", team_role: team_role %>
+        <%= render "team_role_skill_form_ajax", team_role: team_role, skills: @skills_for_form %>
 
 
         <div class="mt-3">

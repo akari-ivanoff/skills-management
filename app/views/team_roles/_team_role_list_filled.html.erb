@@ -1,14 +1,17 @@
 <li class="list-group-item d-flex justify-content-between align-items-center">
-  <p class="mb-0 team-name-width"> <%= link_to team_role.name, team_path(team_role) %> <br>( <%= team_role.occupancy%> %) </p>
-  <p class="mb-0 team-name-width"> <%= link_to team_role.team.name, team_path(team_role) %> </p>
+  <p class="mb-0 team-name-width"> <%= link_to team_role.name, team_path(team_role.team) %> <br>( <%= team_role.occupancy%> %) </p>
+  <p class="mb-0 team-name-width"> <%= link_to team_role.team.name, team_path(team_role.team) %> </p>
 
   <div class="d-flex team-role-details-width align-items-center">
+    <%= link_to user_path(team_role.user) do%>
     <div class="avatar mr-2" style="background-image: url('<%= cl_image_path team_role.user.photo, width: 50, height: 50, crop: :thumb, gravity: :face %>')"></div>
+    <% end %>
 
+    <%= link_to user_path(team_role.user) do%>
     <div class="d-flex align-items-center">
       <%= team_role.user.first_name %> <%= team_role.user.last_name %>
     </div>
   </div>
-
+<% end %>
   <span class="badge badge-success badge-pill"> Filled </span>
 </li>

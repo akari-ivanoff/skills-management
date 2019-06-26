@@ -18,7 +18,10 @@ class TeamRoleSkillsController < ApplicationController
 
   def destroy
     @team_role_skill.destroy
-    redirect_to team_path(@team), notice: "#{@team_role_skill.skill.name} skill has been deleted from the #{@team_role.name} role"
+    respond_to do |format|
+      format.html { redirect_to team_path(@team), notice: "#{@team_role_skill.skill.name} skill has been deleted from the #{@team_role.name} role" }
+      format.js  # <-- will render `app/views/reviews/create.js.erb`
+    end
   end
 
   private
