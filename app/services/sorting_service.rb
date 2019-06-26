@@ -41,18 +41,33 @@ class SortingService
       userratings[key] = counter
     end
 
+    # create hash containing User object and
+    # occupation_sum = availability - occupancy
+
+    useroccupations = {}
+    queryhitsflat.each do |user|
+      key = user
+      useroccupations[key] = user.availability - user.occupation
+    end
+
     # merge hashes
     resultsarray = []
 
     userhits.keys.each do |key|
-      resultsarray << [key, userhits[key], userratings[key]]
+      resultsarray << [key, userhits[key], userratings[key], useroccupations[key]]
     end
 
-    # below works, could also group
-    resultsarraysorted = resultsarray.sort_by { |a| [-a[2]] }
-    resultsarraysorted2 = resultsarraysorted.sort_by { |a| [-a[1]] }
+    # sort on userratings = prio 3
+    resultsarraysorted = resultsarray.sort_by {|a| [-a[2]] }
 
-    @users = resultsarraysorted2.map {|column| column[0]}
-    array = [@users, queryskills_pg]
+    # sort on useroccupation = prio 2
+    resultsarraysorted2 = resultsarraysorted.sort_by { |a| [-a[3]] }
+
+    # sort on userhits = prio 1
+    resultsarraysorted3 = resultsarraysorted2.sort_by { |a| [-a[1]] }
+
+    @users = resultsarraysorted3.map {|column| column[0]}
+
+    return [@users, queryskills_pg]
     end
 end
