@@ -26,11 +26,14 @@ class TeamRolesController < ApplicationController
 
   def create
     @team_role = TeamRole.new(team_role_params)
-    @user = User.find(params.dig(:team_role, :user_id))
     @team_role.team = @team
-    if @team_role.occupancy > 100 - @user.occupation
-      flash[:alert] = "#{@user.first_name} #{@user.last_name} is available only for #{100 - @user.occupation}% of time."
-      render :new
+
+    if params[:team_role][:user_id].present?
+      @user = User.find(params.dig(:team_role, :user_id))
+      if @team_role.occupancy > 100 - @user.occupation
+        flash[:alert] = "#{@user.first_name} #{@user.last_name} is available only for #{100 - @user.occupation}% of time."
+        render :new
+      end
     else
       if @team_role.save
         if params[:query_array].present?
@@ -72,6 +75,7 @@ class TeamRolesController < ApplicationController
   end
 
   private
+
 
   def team_role_params
     params.require(:team_role).permit(:name, :occupancy, :user_id)
