@@ -47,4 +47,8 @@ class PagesController < ApplicationController
       @team = Team.new # added in order to choose a team, when a match was found on results page (pages/index)
     end
   end
+
+  def stats
+    
+  end
 end
