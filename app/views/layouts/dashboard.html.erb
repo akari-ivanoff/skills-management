@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <%= render 'shared/header' %>
+  </head>
+  <body>
+    <%= render 'shared/flashes' %>
+    <%= render 'shared/navbar' %>
+
+    <%= yield %>
+    <%= javascript_pack_tag 'application' %>
+  </body>
+</html>

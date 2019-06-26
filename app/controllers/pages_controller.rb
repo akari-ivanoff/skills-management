@@ -49,6 +49,7 @@ class PagesController < ApplicationController
   end
 
   def stats
-    
+    render layout: "dashboard"
+
   end
 end
