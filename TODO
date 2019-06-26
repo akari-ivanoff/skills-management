@@ -1,14 +1,120 @@
-TODO
+<div class="mx-5 home-wrapper pt-4 px-4 container-background">
+  <%# <div class="stats-banner mb-4">
+    <div class="container d-flex align-items-center">
+      <div class="mr-4"><h2>Charts and data</h2></div>
+    </div>
+  </div> %>
 
-skills in search dropdown are not ordered
-Fix Navbar, no white background and aligned to left
-re-direct to user skills view when I create a new user skill
-Search results page --> Available for --> fixs skill
-Hover over skill and see description & Amount of people with this skill
-sort people by skill
-Search results, exclude occupied people
-team roles index, add link to assigned person (link to user profile)
-sort team roles, for open / filled
-Edit a team should be consistent, maybe just a popup.
-Introduce more popups for the editing parts.
+  <div class="row">
+    <div class="col-3">
+      <div class="card my-2 border-0" style="height: 25rem;">
+        <div class="card-body">
+          <h4 class="card-title text-center mb-4 text-primary">People</h4>
+          <div class="d-flex flex-column justify-content-around">
+            <h3 class="text-center">60</h3>
+            <p class="text-center">Specialists</p>
+            <h3 class="text-center">3</h3>
+            <p class="text-center">Sites</p>
+            <h3 class="text-center">95%</h3>
+            <p class="text-center">Average FTE per person</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-3">
+      <div class="card my-2 border-0" style="height: 25rem;">
+        <div class="card-body">
+          <h4 class="card-title text-center text-primary">Staff occupation</h4>
+          <%= pie_chart charts_occupation_path, colors: ["#7C1B2D", "#606060", "#964050", "#7C7C7C", "#A8253D", "#AFAFAF"] %>
+          <%#= pie_chart charts_occupation_path, colors: ["#dark pink", "#dark gray", "#pink", "#gray", "#light pink", "#light gray"] %>
+          <%#= pie_chart charts_occupation_path, colors: ["#A4243B", "#FFA524", "#7D1128", "#606060", "#0A8A00"] %>
+          <%#= pie_chart charts_occupation_path, colors: ["#pink", "#yellow", "#red", "#gray", "#green"] %>
 
+
+
+        </div>
+      </div>
+    </div>
+    <div class="col-3">
+      <div class="card my-2 border-0" style="height: 25rem;">
+        <div class="card-body">
+          <h4 class="card-title text-center mb-4 text-primary">Skills</h4>
+          <div class="d-flex flex-column justify-content-around">
+            <h3 class="text-center">80</h3>
+            <p class="text-center">total</p>
+            <h3 class="text-center">7</h3>
+            <p class="text-center">Average skill / specialist</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-3">
+      <div class="card my-2 border-0" style="height: 25rem;">
+        <div class="card-body">
+          <h4 class="card-title text-center mb-4 text-primary">Teams</h4>
+          <div class="d-flex flex-column justify-content-around">
+            <h3 class="text-center">15</h3>
+            <p class="text-center">Total</p>
+            <h3 class="text-center">5</h3>
+            <p class="text-center">Average user / team</p>
+            <h3 class="text-center">14</h3>
+            <p class="text-center">Empty positions</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col">
+      <div class="card my-3 border-0">
+        <div class="card-body">
+          <h4 class="card-title text-primary">Top 10 common skills</h4>
+          <%= column_chart charts_most_common_skills_path, colors: ["#606060", "#333333"] %>
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="card my-3 border-0">
+        <div class="card-body">
+          <h4 class="card-title text-primary">Top 10 needed skills for open positions</h4>
+            <%= column_chart charts_most_needed_skills_path, colors: ["#A4243B", "#333333"] %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+<%
+=begin %>
+  <div class="row">
+    <div class="col">
+      <div class="card my-3">
+        <div class="card-body">
+          <h4 class="card-title">Least common skills</h4>
+          <%= column_chart charts_least_common_skills_path, colors: ["#A4243B", "#333333"] %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col">
+    <div class="card my-3">
+      <div class="card-body">
+        <h4 class="card-title">10 less needed skills for empty roles</h4>
+        <%= column_chart charts_less_needed_skills_path, colors: ["#FFA524", "#333333"] %>
+      </div>
+    </div>
+  </div>
+
+  <div class="col">
+    <div class="card my-3">
+      <div class="card-body">
+        <h4 class="card-title">Empty and taken positions</h4>
+        <%= pie_chart charts_empty_positions_path, colors: ["#167FFB", "#FFA524", "#0A8A00", "#F5F5F5", "#333333","#A4243B", "#7D1128" ] %>
+      </div>
+    </div>
+  </div>
+<%
+=end %>
+</div>

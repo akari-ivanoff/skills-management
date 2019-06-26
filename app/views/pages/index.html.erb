@@ -90,9 +90,17 @@
        <div class="card-text mb-3">
         <% user.user_skills.sort_by{|userskill| -userskill.self_assessment}.each do |userskill| %>
           <% if @queryskills.include? userskill.skill.name %>
-            <p><i class="fas fa-star text-info"></i> <%= userskill.self_assessment %> <%= " | " if current_user.is_manager %><%= userskill.manager_assessment if current_user.is_manager %> <%= userskill.skill.name %> </p>
-            <% elsif @queryskills_pg.include? userskill.skill.name %>
-            <p class="text-secondary"><i class="fas fa-star text-info"></i> <%= userskill.self_assessment %> <%= " | " if current_user.is_manager %><%= userskill.manager_assessment if current_user.is_manager %> <%= userskill.skill.name %> </p>
+            <p><i class="fas fa-star text-info"></i> <%= userskill.self_assessment %>
+              <% if current_user.is_manager %>
+                (<i class="fas fa-user-tie text-secondary"></i> <%= userskill.manager_assessment%>)
+              <% end %>
+              <%= userskill.skill.name %> </p>
+          <% elsif @queryskills_pg.include? userskill.skill.name %>
+            <p class="text-secondary"><i class="fas fa-star text-info"></i> <%= userskill.self_assessment %>
+              <% if current_user.is_manager %>
+                (<i class="fas fa-user-tie"></i> <%= userskill.manager_assessment%>)
+              <% end %>
+              <%= userskill.skill.name %> </p>
          <% end %>
         <% end %>
        </div>
@@ -103,7 +111,7 @@
           <% end %>
         <% else %>
           <%= link_to teams_path(user_id: user) do %>
-            <p class="btn btn-primary w-100 mb-0 button-upgrade"><i class="fas fa-plus"></i> Allocate</p>
+            <p class="btn btn-primary w-100 mb-0 button-upgrade"><i class="fas fa-plus mr-2"></i> Allocate</p>
           <% end %>
         <% end %>
 
