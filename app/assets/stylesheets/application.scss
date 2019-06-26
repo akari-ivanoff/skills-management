@@ -35,7 +35,6 @@ a:hover {
 
 body {
   background-color: $light-gray;
-  // background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), asset-url('background13.jpg');
   background-image: linear-gradient(rgba(240,240,240,0.5),rgba(240,240,240,0.5)), asset-url('background06.jpg');
   background-size: cover;
   background-position: center;
@@ -46,7 +45,7 @@ body {
   background-color: rgba(247, 247, 246, 0.8);
 }
 
-.select2-search__field{
+.select2-search__field {
   color: white !important;
 }
 
@@ -86,6 +85,8 @@ body {
 .select2-container--default .select2-selection--multiple {
   background-color: transparent !important;
   border-radius: 3px !important;
+  border-color: $light-gray !important;
+
   height: 70px;
   vertical-align: middle !important;
 }
@@ -109,3 +110,4 @@ body {
 .select2-results__message {
   display: none;
 }
+

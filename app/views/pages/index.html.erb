@@ -21,27 +21,28 @@
 <div class="container pb-5 mt-0 container-background">
   <div class="flex-container cards-wrapper">
 
+  <% if params[:query].present? %>
     <% unless !params[:query].is_a?(Array) && params.dig(:query, :team_role_id)  %>
       <div class="card card_placeholder">
-      <div class="card-body p-3">
-        <div class="d-flex user-head">
-          <%= image_tag "avatar_placeholder2", alt: "placeholder", class: "avatar" %>
-        </div>
-        <div><h5 class="card-title"> <br> No match found? </h5></div>
+        <div class="card-body p-3">
+          <div class="d-flex user-head">
+            <%= image_tag "avatar_placeholder2", alt: "placeholder", class: "avatar" %>
+          </div>
+          <div><h5 class="card-title"> <br> No match found? </h5></div>
 
-        <div class="card-text mb-3">
-        <p class="mb-2"> <strong>Your need:</strong></p>
-        <% @queryskills.each do |value| %>
-          <p class="ml-2"> <i class="fas fa-search"></i> <%= value %> </p>
-         <% end %>
-       </div>
-         <%= link_to teams_path(placeholder: true, query_array: @queryskills ) do %>
-           <p class="btn btn-info text-white w-100 mb-2 btn-placeholder"><i class="fas fa-plus mr-2"></i> Save search </p>
-         <% end %>
-       </div>
-    </div>
+          <div class="card-text mb-3">
+          <p class="mb-2"> <strong>Your need:</strong></p>
+          <% @queryskills.each do |value| %>
+            <p class="ml-2"> <i class="fas fa-search"></i> <%= value %> </p>
+           <% end %>
+         </div>
+           <%= link_to teams_path(placeholder: true, query_array: @queryskills ) do %>
+             <p class="btn btn-info text-white w-100 mb-2 btn-placeholder"><i class="fas fa-plus mr-2"></i> Save search </p>
+           <% end %>
+         </div>
+      </div>
     <% end %>
-
+  <% end %>
 
     <% @users.each do |user| %>
     <div class="card card_details">
