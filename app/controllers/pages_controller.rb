@@ -29,7 +29,7 @@ class PagesController < ApplicationController
       @queryskills = Skill.all.map { |skill| skill.name }
       @queryskills_pg = []
     end
-    render layout: "home"
+    render layout: "index"
   end
 
   def index2 # to be deleted if all works
@@ -56,6 +56,5 @@ class PagesController < ApplicationController
     @empty_count = TeamRole.all.select { |team_role| team_role.user.nil? }.count
     @allocation_rate
     @skills_pp = UserSkill.all.count / User.all.count
-    render layout: "dashboard"
   end
 end
