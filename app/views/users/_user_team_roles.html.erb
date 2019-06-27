@@ -4,7 +4,7 @@
     <div class="d-flex justify-content-between align-items-center">
       <div>
         <%= link_to teams_path(user_id: @user) do %>
-          <h5> Allocate yourself to a new team </h5>
+          <h5> Allocate <%= @user.first_name %> to a new team </h5>
         <% end %>
       </div>
 
@@ -21,11 +21,11 @@
     <div class="d-flex justify-content-between align-items-center">
 
       <div class="team_role_width">
-        <%= link_to team_role.name, team_path(team_role) %>
+        <%= link_to team_role.name, team_path(team_role.team) %>
       </div>
 
       <div class="team_role_width">
-        <%= link_to team_role.team.name, team_path(team_role) %>
+        <%= link_to team_role.team.name, team_path(team_role.team) %>
       </div>
 
       <div>
