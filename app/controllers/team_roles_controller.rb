@@ -28,25 +28,25 @@ class TeamRolesController < ApplicationController
     @team_role = TeamRole.new(team_role_params)
     @team_role.team = @team
 
-    if params[:team_role][:user_id].present?
-      @user = User.find(params.dig(:team_role, :user_id))
-      if @team_role.occupancy > 100 - @user.occupation
-        flash[:alert] = "#{@user.first_name} #{@user.last_name} is available only for #{100 - @user.occupation}% of time."
-        render :new
-      end
-    else
-      if @team_role.save
-        if params[:query_array].present?
-          params[:query_array].split("\%\%\%").each do |searched_skill|
-            skill = Skill.find_by(name: searched_skill)
-            TeamRoleSkill.create(team_role: @team_role, skill: skill)
-          end
+    # if params[:team_role][:user_id].present?
+    #   @user = User.find(params.dig(:team_role, :user_id))
+    #   if @team_role.occupancy > 100 - @user.occupation
+    #     flash[:alert] = "#{@user.first_name} #{@user.last_name} is available only for #{100 - @user.occupation}% of time."
+    #     render :new
+    #     return
+    #   end
+    # end
+    if @team_role.save
+      if params[:query_array].present?
+        params[:query_array].split("\%\%\%").each do |searched_skill|
+          skill = Skill.find_by(name: searched_skill)
+          TeamRoleSkill.create(team_role: @team_role, skill: skill)
         end
-        redirect_to team_path(@team, query_array: params[:query_array]), notice: "#{@team_role.name} role has been added to the #{@team.name} team"
-      else
-        flash[:alert] = 'Unable to create the role'
-        render :new
       end
+      redirect_to team_path(@team, query_array: params[:query_array]), notice: "#{@team_role.name} role has been added to the #{@team.name} team"
+    else
+      flash[:alert] = 'Unable to create the role'
+      render :new
     end
   end
 
@@ -55,18 +55,19 @@ class TeamRolesController < ApplicationController
   end
 
   def update
-    @user = User.find(params.dig(:team_role, :user_id))
-    if @team_role.occupancy > 100 - @user.occupation
-      flash[:alert] = "#{@user.first_name} #{@user.last_name} is available only for #{100 - @user.occupation}% of time."
-      render :edit
-    else
+    # @user = User.find(params.dig(:team_role, :user_id))
+    # if @team_role.occupancy > 100 - @user.occupation
+    #   flash[:alert] = "#{@user.first_name} #{@user.last_name} is available only for #{100 - @user.occupation}% of time."
+    #   render :edit
+    #   return
+    # else
       if @team_role.update(team_role_params)
         redirect_to team_path(@team), notice: "#{@team_role.name} role has been updated"
       else
         flash[:alert] = 'Unable to update the role'
         render :edit
       end
-    end
+    # end
   end
 
   def destroy
