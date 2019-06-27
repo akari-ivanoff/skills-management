@@ -18,21 +18,21 @@
   </div>
 </div>
 
-<div class="container pb-5 mt-0 container-background">
-  <h5 class="pt-4 pl-3"> <%= pluralize(@users.count, 'person')  %> found: </h5>
-  <div class="flex-container cards-wrapper">
+<div class="container pb-5 mb-0 container-background">
+  <h5 class="pt-4 mb-0 pl-3"> <%= pluralize(@users.count, 'person')  %> found: </h5>
+  <div class="flex-container cards-wrapper mt-0">
   <% if params[:query].present? %>
     <% unless !params[:query].is_a?(Array) && params.dig(:query, :team_role_id)  %>
       <div class="card card_placeholder">
         <div class="card-body p-3">
-          <div class="d-flex user-head">
+          <div class="d-flex user-head-placeholder">
             <%= image_tag "avatar_placeholder2", alt: "placeholder", class: "avatar" %>
           </div>
           <div><h5 class="card-title"> <br> No match found? </h5></div>
-
-          <div class="card-text mb-3">
           <p class="mb-2"> <strong>Your need:</strong></p>
-          <% @queryskills.each do |value| %>
+
+          <div class="card-text mb-2">
+            <% @queryskills.each do |value| %>
             <p class="ml-2"> <i class="fas fa-search"></i> <%= value %> </p>
            <% end %>
          </div>
@@ -78,7 +78,7 @@
 
             </div>
         </div>
-        <div class="card-text-team mb-3 mt-3">
+        <div class="card-text-team mb-2 mt-2">
         <% user.teams.each do |team| %>
             <% if team.name.length > 18 %>
              <li><i class="fas fa-users text-secondary mb-2"></i> <%= team.name[0...16] %>...</li>

@@ -35,7 +35,7 @@
 }
 
 .card-text {
-  height: 80px;
+  height: 100px;
   overflow-y: auto;
   margin-bottom: 5px;
 }
@@ -45,7 +45,7 @@
 }
 
 .card-text-team {
-  height: 57px;
+  height: 35px;
   overflow-y: auto;
 }
 
@@ -87,6 +87,10 @@
 
 .user-head {
   min-height: 80px;
+}
+
+.user-head-placeholder {
+  min-height: 50px;
 }
 
 .user-details {
