@@ -1,0 +1,61 @@
+<div class="navbar navbar-expand-sm navbar-light navbar-lewagon fixed-top">
+
+  <%= link_to root_path, class: "navbar-brand" do %>
+    <%= image_tag "logo02.png" %>
+  <% end %>
+
+  <%= link_to root_path do %>
+    <div class="navbar-brandtext">
+      <p><em><strong>Skill<span>M</span></strong></em></p>
+    </div>
+  <% end %>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+    <ul class="navbar-nav mr-auto">
+
+      <li class="nav-item mr-2">
+        <%= link_to "People", users_path, class: "nav-link" %>
+      </li>
+
+      <li class="nav-item mr-2">
+        <%= link_to "Teams", teams_path, class: "nav-link" %>
+      </li>
+
+      <li class="nav-item mr-2">
+        <%= link_to "Open positions", team_roles_path, class: "nav-link" %>
+      </li>
+
+      <li class="nav-item mr-2">
+        <%= link_to "Skills", skills_path, class: "nav-link" %>
+      </li>
+
+      <li class="nav-item mr-2">
+        <%= link_to "Stats", pages_stats_path, class: "nav-link" %>
+      </li>
+
+      <% if user_signed_in? %>
+        <li class="nav-item dropdown">
+          <img class="avatar dropdown-toggle" id="navbarDropdown" data-toggle="dropdown" aria-haspopup="true"
+            aria-expanded="false" style="cursor: pointer;" src="<%= cl_image_path current_user.photo, width: 50, height: 50, crop: :thumb, gravity: :face %>" />
+          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+            <%= link_to "Profile", user_path(current_user), class: "dropdown-item" %>
+            <%= link_to "Log Out", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
+          </div>
+        </li>
+      <% else %>
+        <li class="nav-item active mr-2">
+        <%= link_to "Sign in", new_user_session_path, class:"btn btn-primary" %>
+        </li>
+      <% end %>
+
+    </ul>
+
+  </div>
+
+</div>
