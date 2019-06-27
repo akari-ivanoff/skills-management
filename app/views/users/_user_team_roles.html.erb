@@ -34,12 +34,11 @@
 
       <div class="flex-column text-align-right">
         <% if @user == current_user || current_user.is_manager %>
-          <%= link_to edit_team_team_role_path(team_role), class: "btn btn-primary" do %>
+          <%= link_to edit_team_team_role_path(team_role.team), class: "btn btn-primary" do %>
               <i class="fas fa-pen"></i>
             <% end %>
         <% end %>
       </div>
-
     </div>
   </div>
 <% end %>
