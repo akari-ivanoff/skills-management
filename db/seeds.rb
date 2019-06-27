@@ -88,7 +88,8 @@ SKILLS = {
   "IntelliJ Idea" => "Integrated development environments (IDE)",
   "Spyder" => "Integrated development environments (IDE)",
   "OpenAPI" => "Systems integration",
-  "API/Microservices architecture" => "Systems integration",
+  "API" => "Systems integration",
+  "Microservices architecture" => "Systems integration",
   "Message-oriented integration" => "Systems integration",
   "Enterprise service bus (ESB) concepts" => "Systems integration",
   "UX/UI engineering for Mac OS platform desktop environment" => "UX/UI",
@@ -478,7 +479,7 @@ eva_skills = [
 
 steven_skills = [
   [
-    Skill.where(name: 'API/Microservices architecture')[0],
+    Skill.where(name: 'API')[0],
     4,
     "I worked intensively with APIs for 2 years in the Performance Monitoring team
 Automated testing skills",
