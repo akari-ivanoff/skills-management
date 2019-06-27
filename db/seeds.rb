@@ -119,7 +119,22 @@ AVATARS_WOMEN = [
   'https://res.cloudinary.com/dlsvbebuj/image/upload/v1560948639/skill-m/avatars/avatar_w_12_ts9rml.jpg',
   'https://res.cloudinary.com/dlsvbebuj/image/upload/v1560948643/skill-m/avatars/avatar_w_13_bpxvqc.jpg',
   'https://res.cloudinary.com/dlsvbebuj/image/upload/v1560948642/skill-m/avatars/avatar_w_14_l5ebyq.jpg',
-  'https://res.cloudinary.com/dlsvbebuj/image/upload/v1560948644/skill-m/avatars/avatar_w_15_iian7x.jpg'
+  'https://res.cloudinary.com/dlsvbebuj/image/upload/v1560948644/skill-m/avatars/avatar_w_15_iian7x.jpg',
+  'https://res.cloudinary.com/dlsvbebuj/image/upload/v1561635734/skill-m/avatars/avatar_w_16_hdaif8.jpg',
+  'https://res.cloudinary.com/dlsvbebuj/image/upload/v1561635733/skill-m/avatars/avatar_w_17_qguqar.jpg',
+  'https://res.cloudinary.com/dlsvbebuj/image/upload/v1561635736/skill-m/avatars/avatar_w_18_ariihh.jpg',
+  'https://res.cloudinary.com/dlsvbebuj/image/upload/v1561635735/skill-m/avatars/avatar_w_19_fwis6y.jpg',
+  'https://res.cloudinary.com/dlsvbebuj/image/upload/v1561635736/skill-m/avatars/avatar_w_20_azkbyp.jpg',
+  'https://res.cloudinary.com/dlsvbebuj/image/upload/v1561635734/skill-m/avatars/avatar_w_21_tguoro.jpg',
+  'https://res.cloudinary.com/dlsvbebuj/image/upload/v1561635736/skill-m/avatars/avatar_w_22_rnlu2u.jpg',
+  'https://res.cloudinary.com/dlsvbebuj/image/upload/v1561635718/skill-m/avatars/avatar_w_23_zgplas.jpg',
+  'https://res.cloudinary.com/dlsvbebuj/image/upload/v1561635718/skill-m/avatars/avatar_w_24_vpv4q7.jpg',
+  'https://res.cloudinary.com/dlsvbebuj/image/upload/v1561635721/skill-m/avatars/avatar_w_25_gqlh8n.jpg',
+  'https://res.cloudinary.com/dlsvbebuj/image/upload/v1561635724/skill-m/avatars/avatar_w_26_yuuwov.jpg',
+  'https://res.cloudinary.com/dlsvbebuj/image/upload/v1561635726/skill-m/avatars/avatar_w_27_kdmkrd.jpg',
+  'https://res.cloudinary.com/dlsvbebuj/image/upload/v1561635727/skill-m/avatars/avatar_w_28_gi1klr.jpg',
+  'https://res.cloudinary.com/dlsvbebuj/image/upload/v1561635729/skill-m/avatars/avatar_w_29_ngukp2.jpg',
+  'https://res.cloudinary.com/dlsvbebuj/image/upload/v1561635731/skill-m/avatars/avatar_w_30_tyrn9o.jpg'
 ]
 AVATARS_MEN = [
   'https://res.cloudinary.com/dlsvbebuj/image/upload/v1560948623/skill-m/avatars/avatar_m_1_vp6wzr.jpg',
@@ -136,7 +151,22 @@ AVATARS_MEN = [
   'https://res.cloudinary.com/dlsvbebuj/image/upload/v1560948632/skill-m/avatars/avatar_m_12_uo9t9c.jpg',
   'https://res.cloudinary.com/dlsvbebuj/image/upload/v1560948633/skill-m/avatars/avatar_m_13_bze7n4.jpg',
   'https://res.cloudinary.com/dlsvbebuj/image/upload/v1560948632/skill-m/avatars/avatar_m_14_jz3zpc.jpg',
-  'https://res.cloudinary.com/dlsvbebuj/image/upload/v1560948633/skill-m/avatars/avatar_m_15_lrpnuz.jpg'
+  'https://res.cloudinary.com/dlsvbebuj/image/upload/v1560948633/skill-m/avatars/avatar_m_15_lrpnuz.jpg',
+  'https://res.cloudinary.com/dlsvbebuj/image/upload/v1561635717/skill-m/avatars/avatar_m_16_wshccb.jpg',
+  'https://res.cloudinary.com/dlsvbebuj/image/upload/v1561635717/skill-m/avatars/avatar_m_17_bo1qlb.jpg',
+  'https://res.cloudinary.com/dlsvbebuj/image/upload/v1561635720/skill-m/avatars/avatar_m_18_n5fwhw.jpg',
+  'https://res.cloudinary.com/dlsvbebuj/image/upload/v1561635718/skill-m/avatars/avatar_m_19_yebmk1.jpg',
+  'https://res.cloudinary.com/dlsvbebuj/image/upload/v1561635718/skill-m/avatars/avatar_m_20_ybiuka.jpg',
+  'https://res.cloudinary.com/dlsvbebuj/image/upload/v1561635722/skill-m/avatars/avatar_m_21_yyi928.jpg',
+  'https://res.cloudinary.com/dlsvbebuj/image/upload/v1561635724/skill-m/avatars/avatar_m_22_krswum.jpg',
+  'https://res.cloudinary.com/dlsvbebuj/image/upload/v1561635724/skill-m/avatars/avatar_m_23_ozlymf.jpg',
+  'https://res.cloudinary.com/dlsvbebuj/image/upload/v1561635724/skill-m/avatars/avatar_m_24_rmt1su.jpg',
+  'https://res.cloudinary.com/dlsvbebuj/image/upload/v1561635726/skill-m/avatars/avatar_m_25_csihjv.jpg',
+  'https://res.cloudinary.com/dlsvbebuj/image/upload/v1561635728/skill-m/avatars/avatar_m_26_vbdivw.jpg',
+  'https://res.cloudinary.com/dlsvbebuj/image/upload/v1561635729/skill-m/avatars/avatar_m_27_zini7i.jpg',
+  'https://res.cloudinary.com/dlsvbebuj/image/upload/v1561635731/skill-m/avatars/avatar_m_28_ztcxri.jpg',
+  'https://res.cloudinary.com/dlsvbebuj/image/upload/v1561635731/skill-m/avatars/avatar_m_29_vqczun.jpg',
+  'https://res.cloudinary.com/dlsvbebuj/image/upload/v1561635731/skill-m/avatars/avatar_m_30_qtizfe.jpg'
 ]
 
 TEAM_NAMES = [
@@ -322,29 +352,29 @@ end
 
 Faker::UniqueGenerator.clear
 
-30.times do
-  Faker::Config.locale = ['sv', 'de', 'en'].sample
-  first_name = Faker::Name.first_name
-  last_name = Faker::Name.unique.last_name
-  email = create_email(first_name, last_name)
-  network_id = create_network_id(first_name, last_name)
-  User.create!(
-    email: email,
-    password: '1',
-    first_name: first_name,
-    last_name: last_name,
-    network_id: network_id,
-    job_title: 'Software Engineer',
-    chapter: 'Software Engineering',
-    availability: 100,
-    is_manager: false,
-    manager_id: User.first.id,
-    remote_photo_url: "https://res.cloudinary.com/dlsvbebuj/image/upload/v1561036263/skill-m/avatars/avatar_placeholder_pr7mik.jpg",
-    site: Site.all.sample
-  )
-end
+# 30.times do
+#   Faker::Config.locale = ['sv', 'de', 'en'].sample
+#   first_name = Faker::Name.first_name
+#   last_name = Faker::Name.unique.last_name
+#   email = create_email(first_name, last_name)
+#   network_id = create_network_id(first_name, last_name)
+#   User.create!(
+#     email: email,
+#     password: '1',
+#     first_name: first_name,
+#     last_name: last_name,
+#     network_id: network_id,
+#     job_title: 'Software Engineer',
+#     chapter: 'Software Engineering',
+#     availability: 100,
+#     is_manager: false,
+#     manager_id: User.first.id,
+#     remote_photo_url: "https://res.cloudinary.com/dlsvbebuj/image/upload/v1561036263/skill-m/avatars/avatar_placeholder_pr7mik.jpg",
+#     site: Site.all.sample
+#   )
+# end
 
-Faker::UniqueGenerator.clear
+# Faker::UniqueGenerator.clear
 
 puts 'Users created!'
 
@@ -430,15 +460,15 @@ until specialistst.empty? || team_names.empty?
 
   # Seeding other roles and skills
   team_specialists.each do |team_specialist|
-    if Random.new.rand(1..10) == 10 # 10% chance that specialist will get 2 roles
-      occupancy = 50
-      team_role = create_team_role(team_role_names, occupancy, team_specialist, team)
-      create_team_role_skills(team_role)
-      team_role = create_team_role(team_role_names, occupancy, team_specialist, Team.all.sample)
-    else
+    # if Random.new.rand(1..10) == 10 # 10% chance that specialist will get 2 roles
+    #   occupancy = 50
+    #   team_role = create_team_role(team_role_names, occupancy, team_specialist, team)
+    #   create_team_role_skills(team_role)
+    #   team_role = create_team_role(team_role_names, occupancy, team_specialist, Team.all.sample)
+    # else
       Random.new.rand(1..5) == 5 ? occupancy = 80 : occupancy = 100 # 20% chance that specialist will get 80% occupancy
       team_role = create_team_role(team_role_names, occupancy, team_specialist, team)
-    end
+    # end
     create_team_role_skills(team_role)
   end
 
