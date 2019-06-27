@@ -409,6 +409,7 @@ Faker::UniqueGenerator.clear
 # end
 
 # Faker::UniqueGenerator.clear
+Faker::Config.locale = 'en'
 
 puts 'Users created!'
 
@@ -538,7 +539,7 @@ until specialistst.empty? || team_names.empty?
   team = Team.create!(
     name: team_name,
     description: Faker::Hacker.say_something_smart,
-    owner_contact: Faker::Name.unique.name,
+    owner_contact: "#{Faker::Name.first_name} #{Faker::Name.last_name}",
     team_manager: User.first,
     site: sites.sample
   )
