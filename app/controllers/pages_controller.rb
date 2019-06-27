@@ -49,7 +49,13 @@ class PagesController < ApplicationController
   end
 
   def stats
+    @people = User.all.count
+    @skills = Skill.all.count
+    @team_roles = TeamRole.all.count
+    @teams = Team.all.count
+    @empty_count = TeamRole.all.select { |team_role| team_role.user.nil? }.count
+    @allocation_rate
+    @skills_pp = UserSkill.all.count / User.all.count
     render layout: "dashboard"
-
   end
 end

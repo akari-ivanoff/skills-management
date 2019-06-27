@@ -1,6 +1,9 @@
 class ChartsController < ApplicationController
+
+
+
   def most_common_skills
-    result = user_skills_hash.sort_by { |_name, counter| counter }.reverse.take(20)
+    result = user_skills_hash.sort_by { |_name, counter| counter }.reverse.take(10)
     render json: result
   end
 
@@ -21,7 +24,7 @@ class ChartsController < ApplicationController
   def empty_positions
     empty_count = TeamRole.all.select { |team_role| team_role.user.nil? }.count
     taken_count = TeamRole.all.count - empty_count
-    hash = { "Empty positions" => empty_count, "Taken positions" => taken_count }
+    hash = { "Open" => empty_count, "Filled" => taken_count }
     render json: hash
   end
 
@@ -31,7 +34,7 @@ class ChartsController < ApplicationController
       skill_name = team_roles_skill.skill.name
       counter(hash, skill_name)
     end
-    result = hash.sort_by { |_name, counter| counter }.reverse.take(20)
+    result = hash.sort_by { |_name, counter| counter }.reverse.take(10)
     render json: result
   end
 

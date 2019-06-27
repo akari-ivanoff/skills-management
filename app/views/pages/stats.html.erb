@@ -1,4 +1,6 @@
-<div class="mx-5 home-wrapper pt-4 px-4 container-background" style="height: 100vh;">
+<!-- <div class="mx-5 home-wrapper pt-3 px-4 container-background"> -->
+<div class="container home-wrapper container-background">
+
   <%# <div class="stats-banner mb-4">
     <div class="container d-flex align-items-center">
       <div class="mr-4"><h2>Charts and data</h2></div>
@@ -6,86 +8,89 @@
   </div> %>
 
   <div class="row">
-    <div class="col-2">
-      <div class="card my-2" style="height: 25rem;">
-        <div class="card-body">
-          <h2 class="card-title text-center mb-4">People</h2>
-          <div class="d-flex flex-column justify-content-around">
-            <h3 class="text-center">60</h3>
-            <p class="text-center">Specialists</p>
-            <h3 class="text-center">3</h3>
-            <p class="text-center">Sites</p>
-            <h3 class="text-center">95%</h3>
-            <p class="text-center">Average FTE per person</p>
-          </div>
-        </div>
-      </div>
-    </div>
     <div class="col-6">
-      <div class="card my-2" style="height: 25rem;">
-        <div class="card-body">
-          <h2 class="card-title text-center">Staff occupation</h2>
-          <%= pie_chart charts_occupation_path, colors: ["#167FFB", "#FFA524", "#0A8A00", "#F5F5F5", "#333333","#A4243B", "#7D1128" ] %>
-        </div>
-      </div>
-    </div>
-    <div class="col-2">
-      <div class="card my-2" style="height: 25rem;">
-        <div class="card-body">
-          <h2 class="card-title text-center mb-4">Skills</h2>
-          <div class="d-flex flex-column justify-content-around">
-            <h3 class="text-center">80</h3>
-            <p class="text-center">total</p>
-            <h3 class="text-center">7</h3>
-            <p class="text-center">Average skill / specialist</p>
+      <div class="card mt-3 ml-4 border-0 p-4" style="height: 21rem;">
+        <h5 class="text-primary">Dashboard</h5>
+          <div class="d-flex justify-content-around">
+            <div class="card border-0 p-3 m-3 chart-box">
+              <h5 class="card-title text-center mb-2 text-secondary">People</h5>
+              <h3 class="text-center text-primary"> <%= @people %></h3>
+            </div>
+            <div class="card border-0 p-3 m-3 chart-box">
+              <h5 class="card-title text-center mb-2 text-secondary">Teams</h5>
+              <h3 class="text-center text-primary"> <%= @teams %></h3>
+            </div>
+            <div class="card border-0 p-3 m-3 chart-box">
+              <h5 class="card-title text-center mb-2 text-secondary">Open spots</h5>
+              <h3 class="text-center text-primary"> <%= @empty_count %> </h3>
+            </div>
           </div>
-        </div>
-      </div>
-    </div>
-    <div class="col-2">
-      <div class="card my-2" style="height: 25rem;">
-        <div class="card-body">
-          <h2 class="card-title text-center mb-4">Teams</h2>
-          <div class="d-flex flex-column justify-content-around">
-            <h3 class="text-center">15</h3>
-            <p class="text-center">Total</p>
-            <h3 class="text-center">5</h3>
-            <p class="text-center">Average user / team</p>
-            <h3 class="text-center">14</h3>
-            <p class="text-center">Empty positions</p>
+          <div class="d-flex justify-content-between">
+            <div class="card border-0 p-3 m-3 chart-box">
+              <h5 class="card-title text-center mb-2 text-secondary">Allocation rate</h5>
+              <h3 class="text-center text-primary mb-2"> 80% </h3>
+            </div>
+            <div class="card border-0 p-3 m-3  chart-box">
+              <h5 class="card-title text-center mb-2 text-secondary">Skills per person</h5>
+              <h3 class="text-center text-primary mb-2"> <%= @skills_pp %></h3>
+            </div>
           </div>
+      </div>
+    </div>
+
+    <div class="col-3">
+      <div class="card border-0 bg-transparent" style="height: 22rem;">
+        <div class="card-body">
+          <h5 class="card-title text-center text-primary">Staff allocation rates</h5>
+          <%= pie_chart charts_occupation_path, colors: ["#7C1B2D", "#606060", "#964050", "#7C7C7C", "#A8253D", "#AFAFAF"] %>
+          <%#= pie_chart charts_occupation_path, colors: ["#dark pink", "#dark gray", "#pink", "#gray", "#light pink", "#light gray"] %>
+          <%#= pie_chart charts_occupation_path, colors: ["#A4243B", "#FFA524", "#7D1128", "#606060", "#0A8A00"] %>
+          <%#= pie_chart charts_occupation_path, colors: ["#pink", "#yellow", "#red", "#gray", "#green"] %>
         </div>
       </div>
     </div>
+
+    <div class="col-3">
+      <div class="card border-0 bg-transparent" style="height: 22rem;">
+        <div class="card-body">
+          <h5 class="card-title text-center text-primary">Open vs filled spots</h5>
+          <%= pie_chart charts_empty_positions_path, colors: ["#7C1B2D", "#606060", "#964050", "#7C7C7C", "#A8253D", "#AFAFAF"] %>
+        </div>
+      </div>
+    </div>
+
   </div>
 
   <div class="row">
-    <div class="col">
-      <div class="card my-3">
+
+    <div class="col-6">
+      <div class="card my-3 border-0 bg-transparent">
         <div class="card-body">
-          <h2 class="card-title">Most common skills</h2>
-          <%= column_chart charts_most_common_skills_path, colors: ["#FFA524", "#333333"] %>
+          <h5 class="card-title text-primary">Top 10 common skills</h5>
+          <%= column_chart charts_most_common_skills_path, colors: ["#606060", "#333333"] %>
         </div>
       </div>
     </div>
-    <div class="col">
-      <div class="card my-3">
+
+    <div class="col-6">
+      <div class="card my-3 border-0 bg-transparent">
         <div class="card-body">
-          <h2 class="card-title">Most needed skills for empty roles</h2>
+          <h5 class="card-title text-primary">Top 10 needed skills for open positions</h5>
           <%= column_chart charts_most_needed_skills_path, colors: ["#A4243B", "#333333"] %>
         </div>
       </div>
     </div>
+
   </div>
 
 
-<%
+  <%
 =begin %>
   <div class="row">
     <div class="col">
       <div class="card my-3">
         <div class="card-body">
-          <h2 class="card-title">Least common skills</h2>
+          <h5 class="card-title">Least common skills</h5>
           <%= column_chart charts_least_common_skills_path, colors: ["#A4243B", "#333333"] %>
         </div>
       </div>
@@ -95,7 +100,7 @@
   <div class="col">
     <div class="card my-3">
       <div class="card-body">
-        <h2 class="card-title">10 less needed skills for empty roles</h2>
+        <h5 class="card-title">10 less needed skills for empty roles</h5>
         <%= column_chart charts_less_needed_skills_path, colors: ["#FFA524", "#333333"] %>
       </div>
     </div>
@@ -104,7 +109,7 @@
   <div class="col">
     <div class="card my-3">
       <div class="card-body">
-        <h2 class="card-title">Empty and taken positions</h2>
+        <h5 class="card-title">Empty and taken positions</h5>
         <%= pie_chart charts_empty_positions_path, colors: ["#167FFB", "#FFA524", "#0A8A00", "#F5F5F5", "#333333","#A4243B", "#7D1128" ] %>
       </div>
     </div>
