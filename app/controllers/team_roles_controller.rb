@@ -4,7 +4,7 @@ class TeamRolesController < ApplicationController
 
   def index
     @team_roles = TeamRole.all.order(updated_at: :desc)
-    render layout: "home"
+    render layout: "index"
   end
 
   def replace

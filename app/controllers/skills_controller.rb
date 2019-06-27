@@ -2,7 +2,7 @@ class SkillsController < ApplicationController
   def index
     # @skills = Skill.all
     @skills = Skill.all.order("name ASC")
-    render layout: "home"
+    render layout: "index"
   end
 
   def new

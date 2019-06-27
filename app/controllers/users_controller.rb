@@ -3,7 +3,7 @@ class UsersController < ApplicationController
 
   def index
     @users = User.all.order("first_name ASC")
-    render layout: "home"
+    render layout: "index"
   end
 
   # def fullname
