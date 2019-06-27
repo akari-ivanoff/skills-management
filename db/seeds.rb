@@ -12,11 +12,9 @@ SKILLS = {
   "Designing and carrying out secure automation processes" => "Secure automation processes",
   "Jenkins" => "Establish DevOps toolchain",
   "Spinnaker" => "Establish DevOps toolchain",
-  "AWS Code Deploy" => "Establish DevOps toolchain",
   "Selenium" => "Establish DevOps toolchain",
   "TestCompare Web" => "Establish DevOps toolchain",
   "GitLab" => "Establish DevOps toolchain",
-  "AWS CloudWatch" => "Establish DevOps toolchain",
   "Google StackDriver" => "Establish DevOps toolchain",
   "Google Cloud Platform" => "Establish DevOps toolchain",
   "Ansible" => "Establish DevOps toolchain",
@@ -39,6 +37,9 @@ SKILLS = {
   "JavaScript" => "Script- and Shell languages",
   "JCL" => "Script- and Shell languages",
   "sh" => "Script- and Shell languages",
+  "Angular" => "Script- and Shell languages",
+  "Vue" => "Script- and Shell languages",
+  "React" => "Script- and Shell languages",
   "HTML" => "Web languages",
   "CSS" => "Web languages",
   "XML" => "Web languages",
@@ -100,8 +101,7 @@ SKILLS = {
   "KanBan" => "Agile methodology",
   "DevOps methods and processes" => "DevOps methodology",
   "Asana" => "Work management tools",
-  "Jira" => "Work management tools",
-  "Angular" => "Script- and Shell languages"
+  "Jira" => "Work management tools"
 }
 
 AVATARS_WOMEN = [
@@ -127,7 +127,6 @@ AVATARS_WOMEN = [
   'https://res.cloudinary.com/dlsvbebuj/image/upload/v1561635736/skill-m/avatars/avatar_w_20_azkbyp.jpg',
   'https://res.cloudinary.com/dlsvbebuj/image/upload/v1561635734/skill-m/avatars/avatar_w_21_tguoro.jpg',
   'https://res.cloudinary.com/dlsvbebuj/image/upload/v1561635736/skill-m/avatars/avatar_w_22_rnlu2u.jpg',
-  'https://res.cloudinary.com/dlsvbebuj/image/upload/v1561635718/skill-m/avatars/avatar_w_23_zgplas.jpg',
   'https://res.cloudinary.com/dlsvbebuj/image/upload/v1561635718/skill-m/avatars/avatar_w_24_vpv4q7.jpg',
   'https://res.cloudinary.com/dlsvbebuj/image/upload/v1561635721/skill-m/avatars/avatar_w_25_gqlh8n.jpg',
   'https://res.cloudinary.com/dlsvbebuj/image/upload/v1561635724/skill-m/avatars/avatar_w_26_yuuwov.jpg',
@@ -160,7 +159,6 @@ AVATARS_MEN = [
   'https://res.cloudinary.com/dlsvbebuj/image/upload/v1561635722/skill-m/avatars/avatar_m_21_yyi928.jpg',
   'https://res.cloudinary.com/dlsvbebuj/image/upload/v1561635724/skill-m/avatars/avatar_m_22_krswum.jpg',
   'https://res.cloudinary.com/dlsvbebuj/image/upload/v1561635724/skill-m/avatars/avatar_m_23_ozlymf.jpg',
-  'https://res.cloudinary.com/dlsvbebuj/image/upload/v1561635724/skill-m/avatars/avatar_m_24_rmt1su.jpg',
   'https://res.cloudinary.com/dlsvbebuj/image/upload/v1561635726/skill-m/avatars/avatar_m_25_csihjv.jpg',
   'https://res.cloudinary.com/dlsvbebuj/image/upload/v1561635728/skill-m/avatars/avatar_m_26_vbdivw.jpg',
   'https://res.cloudinary.com/dlsvbebuj/image/upload/v1561635729/skill-m/avatars/avatar_m_27_zini7i.jpg',
@@ -224,10 +222,10 @@ TeamRoleSkill.destroy_all
 UserSkill.destroy_all
 TeamRole.destroy_all
 Team.destroy_all
-User.destroy_all
 Skill.destroy_all
 Site.destroy_all
 SkillCategory.destroy_all
+User.destroy_all
 
 puts 'Creating Sites...'
 
@@ -237,19 +235,20 @@ sites_attributes = [
     city: 'Helsingborg'
   },
   {
-    country: 'Germany',
-    city: 'Dortmund'
-  },
-  {
     country: 'Sweden',
     city: 'Malmö'
+  },
+  {
+    country: 'Germany',
+    city: 'Dortmund'
   }
 ]
 Site.create!(sites_attributes)
 
+sites = Site.all
+
 puts 'Sites created!'
 
-sites = Site.all
 
 puts 'Creating Skills and SkillCategories...'
 
@@ -262,9 +261,10 @@ SKILLS.each do |skill, category|
   Skill.create!(name: skill, description: '', skill_category: skill_category)
 end
 
+skills = Skill.all
+
 puts 'Skills and SkillCategories created!'
 
-skills = Skill.all
 
 puts 'Creating Users...'
 
@@ -290,6 +290,8 @@ def create_network_id(first_name, last_name)
   return network_id
 end
 
+# Creating users for the presentation
+
 User.create!(
   email: 'brigitte.lindholm@ingka.ikea.com',
   password: '1',
@@ -303,6 +305,38 @@ User.create!(
   remote_photo_url: 'https://res.cloudinary.com/dlsvbebuj/image/upload/v1561564089/skill-m/avatars/avatar_brigitte_bcm4rs.png',
   site: Site.first
 )
+
+User.create!(
+  email: 'eva.nilsson@ingka.ikea.com',
+  password: '1',
+  first_name: 'Eva',
+  last_name: 'Nilsson',
+  network_id: 'ENLS',
+  job_title: 'Software Engineer',
+  chapter: 'Software Engineering',
+  availability: 100,
+  is_manager: false,
+  manager_id: User.first.id,
+  remote_photo_url: 'https://res.cloudinary.com/dlsvbebuj/image/upload/v1561635718/skill-m/avatars/avatar_w_23_zgplas.jpg',
+  site: Site.second
+)
+
+User.create!(
+  email: 'steven.mills@ingka.ikea.com',
+  password: '1',
+  first_name: 'Steven',
+  last_name: 'Mills',
+  network_id: 'STML',
+  job_title: 'Software Engineer',
+  chapter: 'Software Engineering',
+  availability: 100,
+  is_manager: false,
+  manager_id: User.first.id,
+  remote_photo_url: 'https://res.cloudinary.com/dlsvbebuj/image/upload/v1561635724/skill-m/avatars/avatar_m_24_rmt1su.jpg',
+  site: Site.second
+)
+
+# Creating random data
 
 AVATARS_WOMEN.each do |avatar|
   Faker::Config.locale = ['sv', 'de', 'en'].sample
@@ -378,9 +412,23 @@ Faker::UniqueGenerator.clear
 
 puts 'Users created!'
 
-users = User.all.reject { |user| user.job_title == 'Chapter Lead' }
+users = User.all.reject { |user| user.job_title == 'Chapter Lead' || user.network_id == 'STML' || user.network_id == 'ENLS' }
 
 puts 'Creating UserSkills...'
+
+def create_user_skill(user, user_skill, self_assessment, self_comment, manager_assessment, manager_comment, experience)
+  UserSkill.create!(
+    user: user,
+    skill: user_skill,
+    self_assessment: self_assessment,
+    self_comment: self_comment,
+    manager_assessment: manager_assessment,
+    manager_comment: manager_comment,
+    experience: experience
+  )
+end
+
+# Creating random data
 
 users.each do |user|
   user_skills = skills.sample(Random.new.rand(5..12))
@@ -399,23 +447,67 @@ users.each do |user|
       manager_assessment = self_assessment
       manager_comment = 'Agree with self-assessment'
     end
-    UserSkill.create!(
-      user: user,
-      skill: user_skill,
-      self_assessment: self_assessment,
-      self_comment: Faker::GreekPhilosophers.quote,
-      manager_assessment: manager_assessment,
-      manager_comment: manager_comment,
-      experience: "#{Random.new.rand(2..12)} months"
-    )
+    self_comment = Faker::GreekPhilosophers.quote
+    experience = "#{Random.new.rand(2..12)} months"
+    create_user_skill(user, user_skill, self_assessment, self_comment, manager_assessment, manager_comment, experience)
   end
+end
+
+# Creating user_skills for the presentation
+
+eva_skills = [
+  [
+    Skill.where(name: 'Python')[0],
+    4,
+    "I have 10 years of Python experience from both personal and professional projects. The latest project I worked on is called ‘Will it fit’, which calculates the amount of items IKEA customers can fit in their cars.",
+    "10 years"
+  ],
+  [
+    Skill.where(name: 'C#')[0],
+    5,
+    "I wrote my master’s thesis on how to improve parsing in C# systems, and have been working with it on a daily basis in various projects ranging from IoT to finance.",
+    "5 years"
+  ],
+  [
+    Skill.where(name: 'Go')[0],
+    3,
+    "I have been working with Go for the past 2 years on a nearly daily basis in my previous company, setting up a new system to match drivers to riders.",
+    "2 years"
+  ]
+]
+
+steven_skills = [
+  [
+    Skill.where(name: 'API/Microservices architecture')[0],
+    4,
+    "I worked intensively with APIs for 2 years in the Performance Monitoring team
+Automated testing skills",
+    "2 years"
+  ],
+  # [
+  #   Skill.where(name: 'Angular')[0],
+  #   1,
+  #   "I just completed an online course on Angular and feel like I have a basic understanding, can’t wait to put it into practice!",
+  #   "6 months",
+  # ],
+  [
+    Skill.where(name: 'Automated testing')[0],
+    2,
+    "During the last year, we have started to implement automated testing.",
+    "2 years"
+  ]
+]
+
+eva_skills.each do |skill|
+  create_user_skill(User.where(network_id: 'ENLS')[0], skill[0], skill[1], skill[2], skill[1], 'Agree with self-assessment', skill[3])
+end
+
+steven_skills.each do |skill|
+  create_user_skill(User.where(network_id: 'STML')[0], skill[0], skill[1], skill[2], skill[1], 'Agree with self-assessment', skill[3])
 end
 
 puts 'UserSkills created!'
 
-sites = Site.all
-skills = Skill.all
-users = User.all.reject { |user| user.job_title == 'Chapter Lead' }
 
 puts 'Creating Teams, TeamRoles and TeamRoleSkills...'
 
