@@ -108,7 +108,7 @@
 
         <% if !params[:query].is_a?(Array) && params.dig(:query, :team_role_id).present? %>
           <%= link_to replace_team_role_path(user, @team_role) do %>
-            <p class="btn btn-primary w-100 mb-2 button-upgrade"> Fill open position </p>
+            <p class="btn btn-primary w-100 mb-2 button-upgrade"> Fill open spot </p>
           <% end %>
         <% else %>
           <%= link_to teams_path(user_id: user) do %>
