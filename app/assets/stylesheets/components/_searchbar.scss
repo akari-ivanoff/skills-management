@@ -17,7 +17,6 @@ _searchbar.scss
 }
 
 
-
 /* dropdown options on mouseover */
 .select2-results__option--highlighted {
   background-color: transparent !important;
@@ -114,6 +113,6 @@ _searchbar.scss
 }
 
 .select2-search__field {
-  color: $white !important;
+  color: $white !important !important;
   font-size: 20px !important;
 }
