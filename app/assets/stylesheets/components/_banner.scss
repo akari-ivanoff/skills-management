@@ -1,9 +1,12 @@
 .banner {
-  background-size: cover;
   background-position: center;
   padding: 300px 0;
   height: 100vh;
-  background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), asset-url('banner03.jpg');
+  background-image: linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.5)), asset-url('banner03.jpg');
+  position: fixed;
+  top:0;
+  background-size: cover;
+  width: 100%;
 }
 
 
