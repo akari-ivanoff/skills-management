@@ -1,12 +1,25 @@
 <div class="home-wrapper">
 
-  <div class="banner">
-    <div class="container">
-      <h1>Find the perfect match to your skill needs</h1>
-      <br>
-      <br>
-      <br>
-      <form action="/pages/index" method="GET" class="">
+<div class="banner">
+   <div class="container d-flex justify-content-center flex-column align-items-center mt-5">
+
+      <div class="navbar-home mb-4">
+        <%= link_to root_path, class: "home-brand mb-4" do %>
+        <%= image_tag "logo02.png" %>
+        <% end %>
+
+<!--         <div class="home-brandtext text-white">
+          <p><em><strong>SkillM</strong></em></p>
+        </div>
+      </div> -->
+
+
+      <div class="mt-5 text-center">
+        <!-- <h1>Find the best person for the job </h1> -->
+        <h1> Build qualified teams with SkillM</h1>
+      </div>
+
+      <form action="/pages/index" method="GET" class="position-relative">
         <select class="query-select-boxes" name="query[]" multiple="multiple" style="width: 75%" id="select2Selector">
           <% @skills.each do |skill| %>
           <option value="<%= skill.name %>"><%= skill.name %></option>
@@ -16,8 +29,32 @@
           <i class="fas fa-search"></i>
         </button>
       </form>
+
+      <div class="d-flex mt-5 pt-2 w-100 justify-content-start home-links">
+
+        <p class="nav-item mr-2">
+          <%= link_to "People", users_path, class: "nav-link text-white" %>
+        </p>
+
+        <p class="nav-item mr-2">
+          <%= link_to "Teams", teams_path, class: "nav-link text-white" %>
+          </<%=  %>>
+
+          <p class="nav-item mr-2">
+            <%= link_to "Open positions", team_roles_path, class: "nav-link text-white" %>
+          </p>
+
+          <p class="nav-item mr-2">
+            <%= link_to "Skills", skills_path, class: "nav-link text-white" %>
+          </p>
+
+          <p class="nav-item mr-2">
+            <%= link_to "Dashboard", pages_stats_path, class: "nav-link text-white" %>
+          </p>
+
+        </div>
+      </div>
+
     </div>
 
   </div>
-
-</div>

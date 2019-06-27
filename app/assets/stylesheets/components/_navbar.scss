@@ -4,7 +4,17 @@
   height: 75px;
 }
 
+.navbar-home {
+  justify-content: space-between;
+  background: transparent;
+  height: 75px;
+}
+
 .navbar-lewagon .navbar-collapse {
+  flex-grow: 0;
+}
+
+.navbar-home .navbar-collapse {
   flex-grow: 0;
 }
 
@@ -13,17 +23,41 @@
   border-radius: 50%;
 }
 
+
+.navbar-home .home-brand img {
+  width: 200px;
+  border-radius: 50%;
+  position: absolute;
+  top: 120px; left: 45vw;
+}
+
+.navbar-home .home-brandtext {
+  font-size: 60px;
+  position: absolute;
+  top: 120px; left: 50vw;
+  font-weight: normal;
+  font-family: 'Courgette', cursive;
+}
+
 .navbar-lewagon .navbar-brandtext {
   font-size: 28px;
   position: absolute;
   top: 20px; left: 75px;
   font-weight: normal;
-  // font-family: 'Amaranth', sans-serif;
   font-family: 'Courgette', cursive;
-  // font-family: 'Concert One', cursive;
-  // font-family: 'Averia Gruesa Libre', cursive;
-
   span {
   color: $red;
   }
+}
+
+.home-links {
+width: 84% !important;
+}
+
+.home-links .nav-item:hover {
+text-decoration: underline;
+}
+
+li.nav-item.dropdown {
+list-style: none;
 }

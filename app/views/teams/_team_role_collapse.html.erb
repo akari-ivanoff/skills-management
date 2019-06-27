@@ -29,7 +29,7 @@
         <%= simple_form_for :query, url: pages_index_path, method: :get do |f| %>
 
         <%= f.input :team_role_id, :as => :hidden, :input_html => { :value => team_role.id }%>
-        <%= f.button :submit, class: "btn btn-info text-white w-100", value: " Search to fill open position" %>
+        <%= f.button :submit, class: "btn btn-info text-white w-100", value: " Search to fill this spot" %>
         <% end %>
 
         <% else %>
@@ -75,7 +75,7 @@
           <%= f.input :team_role_id, :as => :hidden, input_html: { value: team_role.id }%>
           <%= f.input :team_id, :as => :hidden, input_html: { value: params[:id] }%>
           <% if team_role.user.nil? %>
-            <%= f.button :submit, class: "btn btn-info text-white w-100", value: "Search to fill open position", style: 'width: 400px' %>
+            <%= f.button :submit, class: "btn btn-info text-white w-100", value: "Search to this spot", style: 'width: 400px' %>
           <% else %>
           <%= f.button :submit, class: "btn btn-info text-white w-100", value: "Search to replace #{team_role.user.first_name}", style: 'width: 400px' %>
           <% end %>

@@ -1,13 +1,7 @@
-<div class="navbar navbar-expand-sm navbar-light navbar-lewagon fixed-top">
+<div class="navbar navbar-expand-sm navbar-light navbar-home fixed-top">
 
-  <%= link_to root_path, class: "navbar-brand" do %>
+  <%= link_to root_path, class: "home-brand transparent" do %>
     <%= image_tag "logo02.png" %>
-  <% end %>
-
-  <%= link_to root_path do %>
-    <div class="navbar-brandtext">
-      <p><em><strong>Skill<span>M</span></strong></em></p>
-    </div>
   <% end %>
 
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
@@ -16,28 +10,6 @@
   </button>
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
-
-    <ul class="navbar-nav mr-auto">
-
-      <li class="nav-item mr-2">
-        <%= link_to "People", users_path, class: "nav-link" %>
-      </li>
-
-      <li class="nav-item mr-2">
-        <%= link_to "Teams", teams_path, class: "nav-link" %>
-      </li>
-
-      <li class="nav-item mr-2">
-        <%= link_to "Open positions", team_roles_path, class: "nav-link" %>
-      </li>
-
-      <li class="nav-item mr-2">
-        <%= link_to "Skills", skills_path, class: "nav-link" %>
-      </li>
-
-      <li class="nav-item mr-2">
-        <%= link_to "Stats", pages_stats_path, class: "nav-link" %>
-      </li>
 
       <% if user_signed_in? %>
         <li class="nav-item dropdown">
