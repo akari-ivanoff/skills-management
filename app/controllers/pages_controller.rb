@@ -54,7 +54,8 @@ class PagesController < ApplicationController
     @team_roles = TeamRole.all.count
     @teams = Team.all.count
     @empty_count = TeamRole.all.select { |team_role| team_role.user.nil? }.count
-    @allocation_rate
+    user_occupations = User.all.map { |user| user.occupation }
+    @allocation_rate = user_occupations.inject { |sum, el| sum + el }.to_f / user_occupations.size
     @skills_pp = UserSkill.all.count / User.all.count
   end
 end
