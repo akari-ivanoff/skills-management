@@ -341,7 +341,7 @@ User.create!(
 AVATARS_WOMEN.each do |avatar|
   Faker::Config.locale = ['sv', 'de', 'en'].sample
   first_name = Faker::Name.female_first_name
-  last_name = Faker::Name.unique.last_name
+  last_name = Faker::Name.last_name
   email = create_email(first_name, last_name)
   network_id = create_network_id(first_name, last_name)
   User.create!(
@@ -360,12 +360,12 @@ AVATARS_WOMEN.each do |avatar|
   )
 end
 
-Faker::UniqueGenerator.clear
+# Faker::UniqueGenerator.clear
 
 AVATARS_MEN.each do |avatar|
   Faker::Config.locale = ['sv', 'de', 'en'].sample
   first_name = Faker::Name.male_first_name
-  last_name = Faker::Name.unique.last_name
+  last_name = Faker::Name.last_name
   email = create_email(first_name, last_name)
   network_id = create_network_id(first_name, last_name)
   User.create!(
@@ -384,7 +384,7 @@ AVATARS_MEN.each do |avatar|
   )
 end
 
-Faker::UniqueGenerator.clear
+# Faker::UniqueGenerator.clear
 
 # 30.times do
 #   Faker::Config.locale = ['sv', 'de', 'en'].sample
