@@ -15,7 +15,7 @@
       </div>
       <div>
         <% if team_role.user == nil %>
-          <%= image_tag "avatar_placeholder2", alt: "placeholder", class: "avatar" %>
+          <%= image_tag "avatar_placeholder2.jpg", alt: "placeholder", class: "avatar" %>
         <% else %>
           <%= link_to user_path(team_role.user) do  %>
           <div class="avatar" style="background-image: url('<%= cl_image_path team_role.user.photo, width: 50, height: 50, crop: :thumb, gravity: :face %>')"></div>
