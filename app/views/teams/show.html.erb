@@ -20,7 +20,7 @@
       <% end %>
 
       <% occupation = @team.occupation %>
-      <strong class="text-secondary"><i class="fas fa-users text-secondary"></i> <%= @team.team_roles.count %> ( <%= @team.team_roles.count == 0 ? 0: occupation/@team.team_roles.count %>% )</strong>
+      <strong class="text-secondary"><i class="fas fa-users text-secondary"></i> <%= @team.team_roles.count %> ( <%= @team.team_roles.count == 0 ? 0: occupation/@team.team_roles.count %>% AVG) </strong>
     </h2>
   </div>
 
