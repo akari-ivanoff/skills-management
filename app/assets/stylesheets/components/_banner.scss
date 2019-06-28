@@ -10,6 +10,20 @@
 }
 
 
+.banner h1 {
+  margin: 0;
+  color: white;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+  font-size: 43px;
+}
+
+.banner p {
+  font-size: 20px;
+  color: white;
+  opacity: .9;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+}
+
 .skills-banner {
   background-size: cover;
   background-position: 50% 70%;
@@ -44,18 +58,4 @@
   padding: 40px 0;
   background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), asset-url('banner06.jpg');
   color: white
-}
-
-.banner h1 {
-  margin: 0;
-  color: white;
-  text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
-  font-size: 43px;
-}
-
-.banner p {
-  font-size: 20px;
-  color: white;
-  opacity: .9;
-  text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
 }

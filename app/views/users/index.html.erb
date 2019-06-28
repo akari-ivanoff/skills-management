@@ -7,22 +7,36 @@
 
 <div class="container pb-5 pt-4 mt-0 container-background">
 
-<ul class="list-group">
-  <% @users.each do |user| %>
-    <li class="list-group-item d-flex justify-content-between align-items-center">
-      <p class="w-50 mb-0"> <%= link_to "#{user.first_name} #{user.last_name}  (#{user.job_title}) ", user_path(user) %> </p>
+  <ul class="list-group">
+    <% @users.each do |user| %>
+      <li class="list-group-item d-flex justify-content-between align-items-center">
+        <p class="team-role-details-width mb-0"> <%= link_to "#{user.first_name} #{user.last_name}  (#{user.job_title}) ", user_path(user) %> </p>
+        <div mt-2 mb-2>
+          <% a = user.availability %>
+          <% o = user.occupation %>
+          <% if a == o %>
+            <i class="fas fa-check-circle text-secondary"></i>
+          <% elsif a > o  %>
+            <span class="text-success"> <%= user.availability - user.occupation %>% free </span>
+          <% else %>
+            <span class="text-primary">  <i class="fas fa-exclamation-circle"></i> <%= user.occupation - user.availability %>% overload </span>
+          <% end %>
+        </div>
 
-      <% if user.is_manager == true %>
-        <span class="badge badge-danger badge-pill"> Mgr </span>
-      <% end %>
 
-      <% if user.user_skills.all.count > 0 %>
-        <span class="badge badge-primary badge-pill"><%= user.user_skills.all.count %></span>
+        <% if user.is_manager == true %>
+          <span class="badge badge-danger badge-pill"> Mgr </span>
         <% else %>
-        <span class="badge badge-secondary badge-pill"><%= user.user_skills.all.count %></span>
-      <% end %>
-    </li>
-  <% end %>
-</ul>
+          <span class="badge badge-transparent badge-pill"> </span>
+        <% end %>
+
+        <% if user.user_skills.all.count > 0 %>
+          <span class="pills badge badge-primary badge-pill"><%= user.user_skills.all.count %></span>
+          <% else %>
+          <span class="pills badge badge-secondary badge-pill"><%= user.user_skills.all.count %></span>
+        <% end %>
+      </li>
+    <% end %>
+  </ul>
 
 </div>
